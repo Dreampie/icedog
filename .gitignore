@@ -1,7 +1,3 @@
-.settings
-.classpath
-.project
-*.iml
 *.ipr
 *.iws
 dist/
@@ -51,7 +47,6 @@ build.log
 #  ^\.pc/
 
 #SHITTY output not in target directory
-build.log
 .DS_Store
 derby.log
 
@@ -61,6 +56,6 @@ derby.log
 .lib
 sbt
 
-log
+*.log
 logs
 overlays
