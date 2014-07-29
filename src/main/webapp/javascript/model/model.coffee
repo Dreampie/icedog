@@ -1,3 +1,3 @@
-define ['angular'], ->
+define ['angular', 'angular-resource'], ->
   'use strict'
-  angular.module('models', [])
+  angular.module('models', ['ngResource'])

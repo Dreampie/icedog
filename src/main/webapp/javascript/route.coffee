@@ -1,5 +1,5 @@
-'use strict'
 define ['app', 'controller'], ->
+  'use strict'
   angular.module('app').config ($routeProvider) ->
     $routeProvider
     .when '/',

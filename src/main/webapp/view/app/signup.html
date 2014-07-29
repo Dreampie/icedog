@@ -29,8 +29,18 @@
     </div>
   </div>
 
+  <div class="pure-control-group">
+    <label class="right inline">Captcha:</label>
+    <input class="pure-u-1-4" type="text" name="captcha" ng-model="captcha" required placeholder="Captcha">
+    <img class="captcha" src="/patchca?width=119&height=42&time={{time}}">
+    <div ng-show="form.captcha.$dirty && form.captcha.$invalid">
+      <small ng-show="form.number.$error.required" class="error">Tell us your captcha</small>
+      <small ng-show="form.number.$error.number" class="error">This is not a valid captcha</small>
+    </div>
+  </div>
+
   <div class="pure-controls">
-    <button ng-click="create(user)" ng-disabled="form.$invalid" class="pure-button pure-button-primary">Signup</button>
+    <button ng-click="create(user,captcha)" ng-disabled="form.$invalid" class="pure-button pure-button-primary">Signup</button>
   </div>
 
 </form>
