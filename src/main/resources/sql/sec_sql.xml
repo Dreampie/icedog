@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<sqlRoot>
+
+  <sqlGroup name="user">
+    <sql id="findInfoBySelect">SELECT `user`.*,`userInfo`.street street,`userInfo`.gender gender,
+      `userInfo`.zip_code zip_code,`province`.name province,`city`.name city,`county`.name
+      county,`userRole`.role_id role_id
+    </sql>
+    <sql id="findInfoByExceptSelect">FROM sec_user `user` LEFT JOIN sec_user_info `userInfo`
+      ON(`user`.id=`userInfo`.id) LEFT
+      JOIN com_area `province` ON(`userInfo`.province_id=`province`.id) LEFT JOIN com_area `city`
+      ON(`userInfo`.city_id=`city`.id) LEFT JOIN com_area `county`
+      ON(`userInfo`.county_id=`county`.id) LEFT JOIN sec_user_role `userRole` ON
+      (`user`.id=`userRole`.user_id)
+    </sql>
+  </sqlGroup>
+
+  <sqlGroup name="role">
+    <sql id="findUserByExceptSelect">FROM sec_role `role` WHERE `role`.id IN (SELECT `userRole`.role_id FROM
+      sec_user_role `userRole` WHERE `userRole`.user_id=?)
+    </sql>
+    <!--需要一个参数-->
+    <sql id="findChildrenByExceptSelect">FROM sec_role `role`
+      INNER JOIN (SELECT left_code,right_code FROM sec_role WHERE id=?) `code` ON (`role`.left_code
+      &gt; `code`.left_code AND
+      `role`.right_code &lt;
+      `code`.right_code)
+    </sql>
+  </sqlGroup>
+
+  <sqlGroup name="userRole">
+
+  </sqlGroup>
+
+  <sqlGroup name="permission">
+    <sql id="findRoleByExceptSelect">FROM sec_permission `permission` WHERE `permission`.id IN (SELECT
+      `role_permission`.permission_id FROM sec_role_permission
+      `role_permission` WHERE `role_permission`.role_id=?)
+    </sql>
+  </sqlGroup>
+
+  <sqlGroup name="rolePermission">
+
+  </sqlGroup>
+
+</sqlRoot>

@@ -1,0 +1,36 @@
+<form name="form" class="pure-form pure-form-aligned">
+  <div class="pure-control-group">
+    <label for="email">Email</label>
+    <input class="pure-u-1-4" id="email" type="email" name="email" ng-model="user.email" required placeholder="Your email">
+
+    <div ng-show="form.email.$dirty && form.email.$invalid">
+      <small ng-show="form.email.$error.required" class="error">Tell us your email</small>
+      <small ng-show="form.email.$error.email" class="error">This is not a valid email</small>
+    </div>
+  </div>
+
+  <div class="pure-control-group">
+    <label class="right inline">Password:</label>
+    <input class="pure-u-1-4" type="password" name="password" ng-model="user.password" required placeholder="Your password">
+
+    <div ng-show="form.password.$dirty && form.password.$invalid">
+      <small ng-show="form.password.$error.required" class="error">Tell us your password</small>
+      <small ng-show="form.password.$error.password" class="error">This is not a valid password</small>
+    </div>
+  </div>
+
+  <div class="pure-control-group">
+    <label class="right inline">Confirm Password:</label>
+    <input class="pure-u-1-4" type="password" name="confirm-password" ng-model="user.confirm_password" required placeholder="Confirm password">
+
+    <div ng-show="form.password.$dirty && form.password.$invalid">
+      <small ng-show="form.password.$error.required" class="error">Tell us your password</small>
+      <small ng-show="form.password.$error.password" class="error">This is not a valid password</small>
+    </div>
+  </div>
+
+  <div class="pure-controls">
+    <button ng-click="create(user)" ng-disabled="form.$invalid" class="pure-button pure-button-primary">Signup</button>
+  </div>
+
+</form>

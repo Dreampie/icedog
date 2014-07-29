@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html> <!-- Do not add ng-app here as we bootstrap AngularJS manually-->
+<head>
+  <title>First AngularJS App</title>
+  <meta charset="utf-8"/>
+  <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/3.1.1/css/bootstrap.min.css">
+  <!--[if lt IE 9]>
+  <script src="/webjars/es6-shim/0.12.0/es6-shim.js"></script>
+  <script src="/webjars/json3/3.3.2/json3.min.js"></script>
+  <![endif]-->
+</head>
+<body class="home-page">
+<div ng-view></div>
+
+
+<!-- build:js javascript/main.js -->
+<script data-main="/javascript/main" src="/webjars/requirejs/2.1.14/require.min.js"></script>
+<!-- endbuild -->
+</body>
+</html>
