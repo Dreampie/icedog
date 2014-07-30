@@ -1,4 +1,4 @@
 define ['angular'], ->
   'use strict'
-  angular.module('filters', []);
+  angular.module('filter', [])
 

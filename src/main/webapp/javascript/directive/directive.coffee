@@ -1,3 +1,3 @@
 define ['angular'], ->
   'use strict'
-  angular.module('directives', [])
+  angular.module('directive', [])

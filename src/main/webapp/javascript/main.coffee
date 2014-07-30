@@ -25,7 +25,7 @@ require.config
     'angular-cookie': ['angular']
     'angularfire': ['angular', 'firebase']
 
-require ['jQuery', 'route','javascript/controller/home'], ->
+require ['jQuery', 'route','javascript/controller/common-controller'], ->
   $ ->
     angular.bootstrap document, ['app']
     $('html').addClass('ng-app: app')

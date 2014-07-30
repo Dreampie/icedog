@@ -1,4 +1,4 @@
-define ['app', 'controller'], ->
+define ['app'], ->
   'use strict'
   angular.module('app').config ($routeProvider) ->
     $routeProvider

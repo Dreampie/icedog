@@ -28,6 +28,7 @@
         <jfinal.version>1.8</jfinal.version>
         <jfinal-ext.version>3.1.0</jfinal-ext.version>
         <joda.version>2.3</joda.version>
+        <angular.version>1.3.0-beta.15</angular.version>
     </properties>
 
     <dependencies>
@@ -279,18 +280,18 @@
         <dependency>
             <groupId>org.webjars</groupId>
             <artifactId>angularjs</artifactId>
-            <version>1.3.0-beta.15</version>
+            <version>${angular.version}</version>
         </dependency>
         <dependency>
             <groupId>org.webjars</groupId>
             <artifactId>angular-ui-bootstrap</artifactId>
             <version>0.11.0-2</version>
         </dependency>
-        <dependency>
-            <groupId>org.webjars</groupId>
-            <artifactId>angular-bootstrap-switch</artifactId>
-            <version>0.3.0-alpha.2</version>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>org.webjars</groupId>-->
+            <!--<artifactId>angular-bootstrap-switch</artifactId>-->
+            <!--<version>0.3.0-alpha.2</version>-->
+        <!--</dependency>-->
         <dependency>
             <groupId>org.atmosphere.client</groupId>
             <artifactId>jquery</artifactId>
