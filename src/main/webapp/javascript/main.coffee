@@ -18,14 +18,15 @@ require.config
     'directive': 'javascript/directive/directive'
     'filter': 'javascript/filter/filter'
     'model': 'javascript/model/model'
-    'service':'javascript/service/service'
+    'service': 'javascript/service/service'
   shim:
     'angular-route': ['angular']
     'angular-resource': ['angular']
     'angular-cookie': ['angular']
     'angularfire': ['angular', 'firebase']
 
-require ['jQuery', 'route','javascript/controller/common-controller'], ->
+
+require ['jQuery', 'app'], ->
   $ ->
     angular.bootstrap document, ['app']
     $('html').addClass('ng-app: app')
