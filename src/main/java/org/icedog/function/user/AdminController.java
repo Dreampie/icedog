@@ -1,6 +1,7 @@
 package org.icedog.function.user;
 
 import cn.dreampie.common.config.AppConstants;
+import cn.dreampie.common.ehcache.CacheNameRemove;
 import cn.dreampie.common.util.SortUtils;
 import cn.dreampie.common.util.SubjectUtils;
 import cn.dreampie.common.util.ValidateUtils;
@@ -84,7 +85,7 @@ public class AdminController extends Controller {
     dynaRender("/view/admin/user.ftl");
   }
 
-  @cn.dreampie.common.ehcache.CacheNameRemove(name = AppConstants.DEFAULT_CACHENAME)
+  @CacheNameRemove(name = AppConstants.DEFAULT_CACHENAME)
   @Before({AdminValidator.deleteUserValidator.class, Tx.class})
   public void deleteUser() {
     keepModel(User.class);
@@ -104,7 +105,7 @@ public class AdminController extends Controller {
   }
 
 
-  @cn.dreampie.common.ehcache.CacheNameRemove(name = AppConstants.DEFAULT_CACHENAME)
+  @CacheNameRemove(name = AppConstants.DEFAULT_CACHENAME)
   @Before({AdminValidator.UpdateRoleValidator.class, Tx.class})
   public void updateRole() {
     keepModel(UserRole.class);
@@ -136,7 +137,7 @@ public class AdminController extends Controller {
     dynaRender("/view/admin/user.ftl");
   }
 
-  @cn.dreampie.common.ehcache.CacheNameRemove(name = AppConstants.DEFAULT_CACHENAME)
+  @CacheNameRemove(name = AppConstants.DEFAULT_CACHENAME)
   @Before({AdminValidator.UpdatePwdValidator.class, Tx.class})
   public void updatePwd() {
     keepModel(User.class);
@@ -184,7 +185,7 @@ public class AdminController extends Controller {
     dynaRender("/view/admin/role.ftl");
   }
 
-  @cn.dreampie.common.ehcache.CacheNameRemove(name = AppConstants.DEFAULT_CACHENAME)
+  @CacheNameRemove(name = AppConstants.DEFAULT_CACHENAME)
   @Before({AdminValidator.RoleSaveValidator.class, Tx.class})
   public void roleSave() {
     Role role = getModel(Role.class);
@@ -214,7 +215,7 @@ public class AdminController extends Controller {
     dynaRender("/view/admin/role.ftl");
   }
 
-  @cn.dreampie.common.ehcache.CacheNameRemove(name = AppConstants.DEFAULT_CACHENAME)
+  @CacheNameRemove(name = AppConstants.DEFAULT_CACHENAME)
   @Before({AdminValidator.RoleUpdateValidator.class, Tx.class})
   public void roleUpdate() {
     Role role = getModel(Role.class);
@@ -230,7 +231,7 @@ public class AdminController extends Controller {
     dynaRender("/view/admin/role.ftl");
   }
 
-  @cn.dreampie.common.ehcache.CacheNameRemove(name = AppConstants.DEFAULT_CACHENAME)
+  @CacheNameRemove(name = AppConstants.DEFAULT_CACHENAME)
   @Before({AdminValidator.RoleDeleteValidator.class, Tx.class})
   public void roleDrop() {
 
@@ -255,7 +256,7 @@ public class AdminController extends Controller {
     dynaRender("/view/admin/role.ftl");
   }
 
-  @cn.dreampie.common.ehcache.CacheNameRemove(name = AppConstants.DEFAULT_CACHENAME)
+  @CacheNameRemove(name = AppConstants.DEFAULT_CACHENAME)
   @Before({AdminValidator.PermSaveValidator.class, Tx.class})
   public void permSave() {
     Permission permission = getModel(Permission.class);
@@ -286,7 +287,7 @@ public class AdminController extends Controller {
     dynaRender("/view/admin/role.ftl");
   }
 
-  @cn.dreampie.common.ehcache.CacheNameRemove(name = AppConstants.DEFAULT_CACHENAME)
+  @CacheNameRemove(name = AppConstants.DEFAULT_CACHENAME)
   @Before({AdminValidator.PermUpdateValidator.class, Tx.class})
   public void permUpdate() {
     Permission permission = getModel(Permission.class);
@@ -302,7 +303,7 @@ public class AdminController extends Controller {
     dynaRender("/view/admin/role.ftl");
   }
 
-  @cn.dreampie.common.ehcache.CacheNameRemove(name = AppConstants.DEFAULT_CACHENAME)
+  @CacheNameRemove(name = AppConstants.DEFAULT_CACHENAME)
   @Before({AdminValidator.PermDeleteValidator.class, Tx.class})
   public void permDrop() {
 
@@ -325,7 +326,7 @@ public class AdminController extends Controller {
     dynaRender("/view/admin/role.ftl");
   }
 
-  @cn.dreampie.common.ehcache.CacheNameRemove(name = AppConstants.DEFAULT_CACHENAME)
+  @CacheNameRemove(name = AppConstants.DEFAULT_CACHENAME)
   @Before({AdminValidator.RolePermsValidator.class, Tx.class})
   public void permsAdd() {
     String[] idsPara = getParaValues("permission.id");
