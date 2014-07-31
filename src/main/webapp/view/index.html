@@ -10,10 +10,10 @@
   <script src="/webjars/json3/3.3.2/json3.min.js"></script>
   <![endif]-->
 </head>
-<body>
+<body ng-cloak  ng-controller="AppCtrl">
 <div ng-include="'view/main/header.tpl.html'"></div>
-
-<div ng-cloak ng-view></div>
+<div ng-include="'view/main/notification.tpl.html'" class="container-fluid" ng-show="notification.getCurrent().length"></div>
+<div ng-view></div>
 
 <div ng-include="'view/main/footer.tpl.html'"></div>
 <!-- build:js javascript/main.js -->

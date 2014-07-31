@@ -1,10 +1,24 @@
-define ['angular', 'directive', 'resource', 'filter'], ->
+define ['angular'], ->
   'use strict'
   angular.module('controller', [])
 
 
   #common controller
-  angular.module('controller').controller 'HeaderCtrl', ($scope, breadcrumb) ->
+#  controller 'AppCtrl',['$scope','LOCAL',($scope,local)->
+#    $scope.errorMsg=local.message['errors.route.changeError']
+  angular.module('controller').controller 'AppCtrl',($scope,messageNotification)->
+#    messageNotification.pushForCurrentRoute('errors.route.changeError', 'error',{},{rejection: ''})
+
+    $scope.notification = messageNotification
+    console.log $scope.notification
+
+    $scope.removeNotification = (notification) ->
+      messageNotification.remove(notification)
+
+    $scope.$on '$routeChangeError', (event, current, previous, rejection)->
+      messageNotification.pushForCurrentRoute('errors.route.changeError', 'error', {}, {rejection: rejection})
+
+  .controller 'HeaderCtrl', ($scope, breadcrumb) ->
     $scope.breadcrumb = breadcrumb
 
   .controller 'FooterCtrl', ($scope) ->

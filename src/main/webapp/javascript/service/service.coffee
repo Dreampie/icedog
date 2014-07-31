@@ -5,7 +5,7 @@ define ['angular'], ->
 
   #common service
   angular.module('service').factory 'breadcrumb', ($rootScope, $location, $log) ->
-    breadcrumb = {}
+    breadcrumbService = {}
     data = []
 
     $rootScope.$on '$routeChangeSuccess', ->
@@ -22,11 +22,11 @@ define ['angular'], ->
 
       data = result
 
-    breadcrumb.all = ->
-      $log.debug data
+    breadcrumbService.all = ->
+      #$log.debug data
       data
 
-    breadcrumb.first = ->
+    breadcrumbService.first = ->
       data[0] || {}
 
-    breadcrumb
+    breadcrumbService
