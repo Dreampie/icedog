@@ -1,10 +1,16 @@
-define ['angular', 'directive', 'service', 'filter'], ->
+define ['angular', 'directive', 'resource', 'filter'], ->
   'use strict'
   angular.module('controller', [])
 
 
   #common controller
-  angular.module('controller').controller 'Controller', ($scope) ->
+  angular.module('controller').controller 'HeaderCtrl', ($scope, breadcrumb) ->
+    $scope.breadcrumb = breadcrumb
+
+  .controller 'FooterCtrl', ($scope) ->
+    $scope.foot = 'foot'
+
+  .controller 'HomeCtrl', ($scope) ->
     $scope.name = 'baby'
 
     $scope.awesomeThings = [
@@ -15,7 +21,7 @@ define ['angular', 'directive', 'service', 'filter'], ->
       'Karma',
       'haha']
 
-  .controller 'SignupController', ($scope, Email) ->
+  .controller 'SignupCtrl', ($scope, Email) ->
     $scope.time = new Date().getTime()
 
     $scope.user =
@@ -31,6 +37,6 @@ define ['angular', 'directive', 'service', 'filter'], ->
 
       $scope.email.$save()
 
-  .controller 'SigninController', ($scope) ->
+  .controller 'SigninCtrl', ($scope) ->
     $scope.post = (user) ->
       console.log user

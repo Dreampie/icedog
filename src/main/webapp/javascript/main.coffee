@@ -17,7 +17,7 @@ require.config
     'controller': 'javascript/controller/controller'
     'directive': 'javascript/directive/directive'
     'filter': 'javascript/filter/filter'
-    'model': 'javascript/model/model'
+    'resource': 'javascript/resource/resource'
     'service': 'javascript/service/service'
   shim:
     'angular-route': ['angular']

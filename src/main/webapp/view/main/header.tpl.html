@@ -1,0 +1,13 @@
+<div ng-controller="HeaderCtrl">
+  <div>
+    <ul class="breadcrumb">
+      <li ng-repeat="breadcrumb in breadcrumb.all()">
+        <span class="divider">/</span>
+        <ng-switch on="$last">
+          <span ng-switch-when="true">{{breadcrumb.name}}</span>
+          <span ng-switch-default><a href="{{breadcrumb.path}}">{{breadcrumb.name}}</a></span>
+        </ng-switch>
+      </li>
+    </ul>
+  </div>
+</div>

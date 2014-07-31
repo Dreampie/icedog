@@ -4,6 +4,6 @@ define ['angular'], ->
 
 
   #common filter
-  angular.module('filter').filter 'firstUpperCase', ()->
+  angular.module('filter').filter 'firstUpperCase', ->
     (word)->
       word.charAt(0).toUpperCase() + word.slice(1);

@@ -1,4 +1,5 @@
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html> <!-- Do not add ng-app here as we bootstrap AngularJS manually-->
 <head>
   <title>First AngularJS App</title>
@@ -9,10 +10,12 @@
   <script src="/webjars/json3/3.3.2/json3.min.js"></script>
   <![endif]-->
 </head>
-<body class="home-page">
+<body>
+<div ng-include="'view/main/header.tpl.html'"></div>
+
 <div ng-cloak ng-view></div>
 
-
+<div ng-include="'view/main/footer.tpl.html'"></div>
 <!-- build:js javascript/main.js -->
 <script data-main="/javascript/main" src="/webjars/requirejs/2.1.14/require.min.js"></script>
 <!-- endbuild -->
