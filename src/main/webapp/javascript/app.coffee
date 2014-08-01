@@ -21,12 +21,19 @@ define ['angular', 'angular-route', 'local', 'notification', 'controller', 'serv
     #$resourceProvider.defaults.stripTrailingSlashes = false
     $httpProvider.defaults.headers.common =
       'x-Requested-With': 'XMLHttpRequest'
+    #异常过滤
+    $httpProvider.interceptors.push ($q, $location)->
+      'responseError': (response) ->
+        if(response.status == 401 || response.status == 403)
+          $location.path('/signin')
+        $q.reject(response)
 
-    $routeProvider.when '/',
+    $routeProvider
+    .when '/',
       templateUrl: 'view/app/home.html', controller: 'HomeCtrl'
     .when '/signup',
       templateUrl: 'view/app/signup.html', controller: 'SignupCtrl'
     .when '/signin',
       templateUrl: 'view/app/signin.html', controller: 'SigninCtrl'
     .otherwise
-        redirectTo: '/'
+      templateUrl: 'view/app/404.html'
