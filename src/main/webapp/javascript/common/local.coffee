@@ -5,14 +5,18 @@ define ['angular'], ->
 
   #common service
   angular.module('local').factory 'local', ['$interpolate', 'LOCAL', ($interpolate, local) ->
-    notFound = (msg, msgKey)->
-      msg || '?' + msgKey + '?'
+    notFound = (msg, msgType, msgKey)->
+      msg || '?' + msgType + ':' + msgKey + '?'
+
 
     get: (msgType, msgKey, interpolateParams)->
-      msg = local[msgType][msgKey]
+      if(msgKey)
+        msg = local[msgType][msgKey]
+      else
+        msg = local[msgType]
 
       if (msg)
         $interpolate(msg)(interpolateParams)
       else
-        notFound(msg, msgKey)
+        notFound(msg, msgType, msgKey)
   ]

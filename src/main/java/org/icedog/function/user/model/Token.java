@@ -1,4 +1,4 @@
-package org.icedog.function.user;
+package org.icedog.function.user.model;
 
 import cn.dreampie.common.model.Model;
 import com.jfinal.ext.plugin.tablebind.TableBind;

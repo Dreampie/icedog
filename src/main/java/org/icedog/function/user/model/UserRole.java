@@ -1,6 +1,7 @@
-package org.icedog.function.user;
+package org.icedog.function.user.model;
 
 import cn.dreampie.common.model.Model;
+import cn.dreampie.common.plugin.sqlinxml.SqlKit;
 import com.jfinal.ext.plugin.tablebind.TableBind;
 import com.jfinal.plugin.activerecord.Db;
 
@@ -19,7 +20,7 @@ public class UserRole extends Model<UserRole> {
 
 
   public List<String> findUserIds(String where, Object... paras) {
-    List<String> result = Db.query("SELECT DISTINCT `userRole`.user_id " + cn.dreampie.common.plugin.sqlinxml.SqlKit.sql("userRole.findByExceptSelect") + " " + getWhere(where), paras);
+    List<String> result = Db.query("SELECT DISTINCT `userRole`.user_id " + SqlKit.sql("userRole.findByExceptSelect") + " " + getWhere(where), paras);
     return result;
   }
 }

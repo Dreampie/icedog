@@ -5,6 +5,10 @@ import cn.dreampie.common.util.ValidateUtils;
 import cn.dreampie.common.web.thread.ThreadLocalUtil;
 import com.jfinal.core.Controller;
 import com.jfinal.validate.Validator;
+import org.icedog.function.user.model.Permission;
+import org.icedog.function.user.model.Role;
+import org.icedog.function.user.model.User;
+import org.icedog.function.user.model.UserRole;
 
 import java.util.List;
 

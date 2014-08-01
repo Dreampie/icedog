@@ -4,13 +4,15 @@ define ['angular'], ->
 
 
   #common controller
-#  controller 'AppCtrl',['$scope','LOCAL',($scope,local)->
-#    $scope.errorMsg=local.message['errors.route.changeError']
-  angular.module('controller').controller 'AppCtrl',($scope,messageNotification)->
+  #  controller 'AppCtrl',['$scope','LOCAL',($scope,local)->
+  #    $scope.errorMsg=local.message['errors.route.changeError']
+  angular.module('controller').controller 'AppCtrl', ($scope, local, messageNotification)->
 #    messageNotification.pushForCurrentRoute('errors.route.changeError', 'error',{},{rejection: ''})
+    $scope.local = local
+    console.log $scope.local.get('resource','javascript')
 
     $scope.notification = messageNotification
-    console.log $scope.notification
+    #    console.log $scope.notification
 
     $scope.removeNotification = (notification) ->
       messageNotification.remove(notification)
@@ -24,8 +26,17 @@ define ['angular'], ->
   .controller 'FooterCtrl', ($scope) ->
     $scope.foot = 'foot'
 
-  .controller 'HomeCtrl', ($scope) ->
+  .controller 'HomeCtrl', ($scope, User) ->
     $scope.name = 'baby'
+
+    user = User.user.get({id: 1},
+    (response)->
+      console.log response
+    ,
+    (error)->
+      console.log error)
+
+#    console.log(user)
 
     $scope.awesomeThings = [
       'HTML5 Boilerplate',

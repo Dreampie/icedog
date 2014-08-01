@@ -1,6 +1,7 @@
-package org.icedog.function.user;
+package org.icedog.function.user.model;
 
 import cn.dreampie.common.model.Model;
+import cn.dreampie.common.plugin.sqlinxml.SqlKit;
 import cn.dreampie.common.util.SubjectUtils;
 import com.jfinal.ext.plugin.tablebind.TableBind;
 import com.jfinal.plugin.activerecord.Page;
@@ -25,12 +26,12 @@ public class Follower extends Model<Follower> {
   }
 
   public Page<Follower> paginateFollowingInfoBy(int pageNumber, int pageSize, String where, Object... paras) {
-    Page<Follower> result = dao.paginate(pageNumber, pageSize, cn.dreampie.common.plugin.sqlinxml.SqlKit.sql("follower.findInfoBySelect"), cn.dreampie.common.plugin.sqlinxml.SqlKit.sql("follower.findFollowingInfoByExceptSelect") + getWhere(where), paras);
+    Page<Follower> result = dao.paginate(pageNumber, pageSize, SqlKit.sql("follower.findInfoBySelect"), SqlKit.sql("follower.findFollowingInfoByExceptSelect") + getWhere(where), paras);
     return result;
   }
 
   public Page<Follower> paginateFollowerInfoBy(int pageNumber, int pageSize, String where, Object... paras) {
-    Page<Follower> result = dao.paginate(pageNumber, pageSize, cn.dreampie.common.plugin.sqlinxml.SqlKit.sql("follower.findInfoBySelect"), cn.dreampie.common.plugin.sqlinxml.SqlKit.sql("follower.findFollowerInfoByExceptSelect") + getWhere(where), paras);
+    Page<Follower> result = dao.paginate(pageNumber, pageSize, SqlKit.sql("follower.findInfoBySelect"), SqlKit.sql("follower.findFollowerInfoByExceptSelect") + getWhere(where), paras);
     return result;
   }
 }

@@ -3,8 +3,8 @@ package org.icedog.common.shiro;
 import cn.dreampie.common.plugin.shiro.plugin.AuthzHandler;
 import cn.dreampie.common.plugin.shiro.plugin.JdbcAuthzService;
 import cn.dreampie.common.plugin.shiro.plugin.JdbcPermissionAuthzHandler;
-import org.icedog.function.user.Permission;
-import org.icedog.function.user.Role;
+import org.icedog.function.user.model.Permission;
+import org.icedog.function.user.model.Role;
 
 import java.util.HashMap;
 import java.util.List;

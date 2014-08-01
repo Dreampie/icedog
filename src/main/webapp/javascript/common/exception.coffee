@@ -18,8 +18,8 @@ define ['angular'], ->
           cause: cause
         })
 
-  .config '$provide', ($provide) ->
-    $provide.decorator('$exception', ['$delegate', 'exceptionFactory', ($delegate, exceptionFactory) ->
+  .config ($provide) ->
+    $provide.decorator('$exception', ($delegate, exceptionFactory) ->
       exceptionFactory($delegate)
-    ])
+    )
 

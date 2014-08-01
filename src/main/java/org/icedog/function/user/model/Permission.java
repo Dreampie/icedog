@@ -1,6 +1,7 @@
-package org.icedog.function.user;
+package org.icedog.function.user.model;
 
 import cn.dreampie.common.model.Model;
+import cn.dreampie.common.plugin.sqlinxml.SqlKit;
 import cn.dreampie.common.util.tree.TreeNode;
 import com.jfinal.ext.plugin.tablebind.TableBind;
 
@@ -37,7 +38,7 @@ public class Permission extends Model<Permission> implements TreeNode<Permission
 
   public List<Permission> findByRole(String where, Object... paras) {
 
-    List<Permission> result = find(getSelectSql() + cn.dreampie.common.plugin.sqlinxml.SqlKit.sql("permission.findRoleByExceptSelect") + blank + getWhere(where), paras);
+    List<Permission> result = find(getSelectSql() + SqlKit.sql("permission.findRoleByExceptSelect") + blank + getWhere(where), paras);
     return result;
   }
 }

@@ -62,7 +62,7 @@ public class AppConfig extends JFinalConfig {
     //set log to slf4j
     Logger.setLoggerFactory(new Slf4jLogFactory());
     constants.setErrorRenderFactory(new JsonErrorRenderFactory());
-    constants.setI18n("messages", Locale.CHINA, Const.DEFAULT_I18N_MAX_AGE_OF_COOKIE);
+//    constants.setI18n("messages", Locale.CHINA, Const.DEFAULT_I18N_MAX_AGE_OF_COOKIE);
 //        constants.setError401View("/view/login.ftl");
 //        constants.setError403View("/view/layout/403.ftl");
 //        constants.setError404View("/view/layout/404.ftl");
@@ -135,7 +135,7 @@ public class AppConfig extends JFinalConfig {
 //    interceptors.add(new CacheInterceptor());
     interceptors.add(new SessionInViewInterceptor());
 //    interceptors.add(new TxByRegex("^(/[a-z0-9]*/)*(save|update|delete|drop)[a-z0-9/]*$",false));
-    interceptors.add(new UrlInterceptor());
+//    interceptors.add(new UrlInterceptor());
   }
 
   /**

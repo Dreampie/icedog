@@ -1,5 +1,6 @@
-package org.icedog.function.user;
+package org.icedog.function.user.model;
 
+import cn.dreampie.common.plugin.sqlinxml.SqlKit;
 import cn.dreampie.common.util.SubjectUtils;
 import cn.dreampie.common.util.ValidateUtils;
 import com.jfinal.ext.plugin.tablebind.TableBind;
@@ -63,7 +64,7 @@ public class User extends cn.dreampie.common.model.User<User> {
   }
 
   public Page<User> paginateInfoBy(int pageNumber, int pageSize, String where, Object... paras) {
-    Page<User> result = dao.paginate(pageNumber, pageSize, cn.dreampie.common.plugin.sqlinxml.SqlKit.sql("user.findInfoBySelect"), cn.dreampie.common.plugin.sqlinxml.SqlKit.sql("user.findInfoByExceptSelect") + getWhere(where), paras);
+    Page<User> result = dao.paginate(pageNumber, pageSize, SqlKit.sql("user.findInfoBySelect"), SqlKit.sql("user.findInfoByExceptSelect") + getWhere(where), paras);
     return result;
   }
 

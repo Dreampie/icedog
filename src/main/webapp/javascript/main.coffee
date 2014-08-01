@@ -3,7 +3,7 @@
 require.config
   baseUrl: '/javascript/'
   paths:
-    'jQuery': '../webjars/jquery/1.11.1/jquery.min'
+    'jQuery': ['https://code.jquery.com/jquery-1.11.1.min','../webjars/jquery/1.11.1/jquery.min']
     'angular': '../webjars/angularjs/1.3.0-beta.15/angular.min'
     'angular-route': '../webjars/angularjs/1.3.0-beta.15/angular-route.min'
     'angular-resource': '../webjars/angularjs/1.3.0-beta.15/angular-resource.min'

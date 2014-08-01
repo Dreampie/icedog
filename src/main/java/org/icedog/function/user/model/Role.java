@@ -1,6 +1,7 @@
-package org.icedog.function.user;
+package org.icedog.function.user.model;
 
 import cn.dreampie.common.model.Model;
+import cn.dreampie.common.plugin.sqlinxml.SqlKit;
 import cn.dreampie.common.util.ValidateUtils;
 import cn.dreampie.common.util.tree.TreeNode;
 import com.jfinal.ext.plugin.tablebind.TableBind;
@@ -60,17 +61,17 @@ public class Role extends Model<Role> implements TreeNode<Role> {
   }
 
   public List<Role> findUserBy(String where, Object... paras) {
-    List<Role> result = find(getSelectSql() + cn.dreampie.common.plugin.sqlinxml.SqlKit.sql("role.findUserByExceptSelect") + blank + getWhere(where), paras);
+    List<Role> result = find(getSelectSql() + SqlKit.sql("role.findUserByExceptSelect") + blank + getWhere(where), paras);
     return result;
   }
 
   public List<Role> findChildrenById(String where, Object... paras) {
-    List<Role> result = find(getSelectSql() + cn.dreampie.common.plugin.sqlinxml.SqlKit.sql("role.findChildrenByExceptSelect") + blank + getWhere(where), paras);
+    List<Role> result = find(getSelectSql() + SqlKit.sql("role.findChildrenByExceptSelect") + blank + getWhere(where), paras);
     return result;
   }
 
   public List<Long> findChildrenIdsById(String where, Object... paras) {
-    List<Long> result = Db.query("SELECT `role`.id " + cn.dreampie.common.plugin.sqlinxml.SqlKit.sql("role.findChildrenByExceptSelect") + blank + getWhere(where), paras);
+    List<Long> result = Db.query("SELECT `role`.id " + SqlKit.sql("role.findChildrenByExceptSelect") + blank + getWhere(where), paras);
     return result;
   }
 

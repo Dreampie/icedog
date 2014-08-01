@@ -3,9 +3,10 @@ package org.icedog.function.user;
 import cn.dreampie.common.util.SubjectUtils;
 import cn.dreampie.common.util.ValidateUtils;
 import cn.dreampie.common.web.thread.ThreadLocalUtil;
-import org.icedog.function.user.Follower;
+import org.icedog.function.user.model.Follower;
 import com.jfinal.core.Controller;
 import com.jfinal.validate.Validator;
+import org.icedog.function.user.model.User;
 
 /**
  * Created by wangrenhui on 2014/6/10.

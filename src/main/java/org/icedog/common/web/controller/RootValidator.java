@@ -6,7 +6,7 @@ import cn.dreampie.common.util.ValidateUtils;
 import cn.dreampie.common.web.thread.ThreadLocalUtil;
 import com.jfinal.core.Controller;
 import com.jfinal.validate.Validator;
-import org.icedog.function.user.User;
+import org.icedog.function.user.model.User;
 
 /**
  * Created by wangrenhui on 14-1-2.

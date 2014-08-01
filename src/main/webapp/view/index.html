@@ -11,6 +11,10 @@
   <![endif]-->
 </head>
 <body ng-cloak  ng-controller="AppCtrl">
+<ul>
+  <li ng-repeat="resource in local.get('resource')">{{resource | firstUpperCase}}</li>
+</ul>
+
 <div ng-include="'view/main/header.tpl.html'"></div>
 <div ng-include="'view/main/notification.tpl.html'" class="container-fluid" ng-show="notification.getCurrent().length"></div>
 <div ng-view></div>

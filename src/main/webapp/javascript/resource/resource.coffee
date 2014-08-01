@@ -5,6 +5,8 @@ define ['angular', 'angular-resource'], ->
 
   #common service
   angular.module('resource').factory 'Email', ($resource) ->
-    email=$resource '/signupEmail'
+    email = $resource('/signupEmail')
 
-  .factory 'User',($resource)->
+  .factory 'User', ($resource)->
+    user: $resource('/user/:id', {id: '@id'}),
+    users: $resource('/user')

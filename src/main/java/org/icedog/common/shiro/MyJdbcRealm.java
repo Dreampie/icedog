@@ -11,9 +11,9 @@ import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.subject.SimplePrincipalCollection;
-import org.icedog.function.user.Permission;
-import org.icedog.function.user.Role;
-import org.icedog.function.user.User;
+import org.icedog.function.user.model.Permission;
+import org.icedog.function.user.model.Role;
+import org.icedog.function.user.model.User;
 
 import java.util.LinkedHashSet;
 import java.util.List;

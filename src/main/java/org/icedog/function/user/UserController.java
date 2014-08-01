@@ -9,6 +9,8 @@ import com.jfinal.aop.Before;
 import com.jfinal.plugin.activerecord.Page;
 import com.jfinal.plugin.activerecord.tx.Tx;
 import org.icedog.common.web.controller.Controller;
+import org.icedog.function.user.model.Follower;
+import org.icedog.function.user.model.User;
 
 import java.util.Date;
 import java.util.Map;

@@ -98,6 +98,43 @@ CREATE TABLE sec_token (
   expiration_at TIMESTAMP    NOT NULL  COMMENT '结束时间',
   used_to    INT NOT NULL  COMMENT '0是注册，1是手机验证'
 );
+//不同的角色使用不同的菜单
+DROP TABLE IF EXISTS sec_menu;
+DROP SEQUENCE IF EXISTS sec_menu_id_seq;
+CREATE SEQUENCE sec_menu_id_seq START WITH 1;
+CREATE TABLE sec_menu (
+  id         BIGINT      NOT NULL DEFAULT NEXTVAL('sec_menu_id_seq') PRIMARY KEY,
+  name       VARCHAR(50) NOT NULL  COMMENT '名称',
+  value      VARCHAR(50) NOT NULL  COMMENT '值',
+  url        VARCHAR(255)  COMMENT 'url地址',
+  intro      VARCHAR(255)  COMMENT '简介',
+  pid        BIGINT DEFAULT 0  COMMENT '父级id',
+  left_code       BIGINT DEFAULT 0  COMMENT '数据左边码',
+  right_code       BIGINT DEFAULT 0  COMMENT '数据右边码',
+  created_at TIMESTAMP   NOT NULL,
+  updated_at TIMESTAMP,
+  deleted_at TIMESTAMP
+);
+
+
+DROP TABLE IF EXISTS sec_role_menu;
+DROP SEQUENCE IF EXISTS sec_role_menu_id_seq;
+CREATE SEQUENCE sec_role_menu_id_seq START WITH 1;
+CREATE TABLE sec_role_menu (
+  id            BIGINT NOT NULL DEFAULT NEXTVAL('sec_role_menu_id_seq') PRIMARY KEY,
+  role_id       BIGINT NOT NULL,
+  menu_id BIGINT NOT NULL
+);
+//用户自定义的快捷菜单 必须严格经过角色菜单的筛选
+DROP TABLE IF EXISTS sec_user_menu;
+DROP SEQUENCE IF EXISTS sec_user_menu_id_seq;
+CREATE SEQUENCE sec_user_menu_id_seq START WITH 1;
+CREATE TABLE sec_user_menu (
+  id            BIGINT NOT NULL DEFAULT NEXTVAL('sec_user_menu_id_seq') PRIMARY KEY,
+  user_id       BIGINT NOT NULL,
+  menu_id BIGINT NOT NULL
+);
+
 
 DROP TABLE IF EXISTS com_area;
 DROP SEQUENCE IF EXISTS com_area_id_seq;
@@ -111,7 +148,7 @@ CREATE TABLE com_area (
   zip_code VARCHAR(6) DEFAULT NULL COMMENT '邮编',
   left_code BIGINT DEFAULT '0' COMMENT '左编码',
   right_code BIGINT DEFAULT '0' COMMENT '右编码',
-  created_at TIMESTAMP   NOT NULL,
+  created_at TIMESTAMP NOT NULL,
   updated_at TIMESTAMP,
   deleted_at TIMESTAMP
 );
