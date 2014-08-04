@@ -4,7 +4,9 @@ define ['angular'], ->
 
 
   #common directive
-  angular.module('directive').directive 'hello', ->
+  angular.module('directive')
+  #test hello tag show and hide
+  .directive 'hello', ->
     restrict: 'EA'
     transclude: true #tag include content reserve
     replace: true #replace hello tag

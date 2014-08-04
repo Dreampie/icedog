@@ -4,15 +4,15 @@ define ['angular'], ->
 
 
   #common controller
-  #  controller 'AppCtrl',['$scope','LOCAL',($scope,local)->
-  #    $scope.errorMsg=local.message['errors.route.changeError']
-  angular.module('controller').controller 'AppCtrl', ($scope, local, messageNotification)->
-#    messageNotification.pushForCurrentRoute('errors.route.changeError', 'error',{},{rejection: ''})
+  angular.module('controller')
+  #AppCtrl is base controller
+  .controller 'AppCtrl', ($scope, local, messageNotification)->
+    #messageNotification.pushForCurrentRoute('errors.route.changeError', 'error',{},{rejection: ''})
     $scope.local = local
-    console.log $scope.local.get('resource','javascript')
+    #console.log $scope.local.get('resource', 'javascript')
 
     $scope.notification = messageNotification
-    #    console.log $scope.notification
+    #console.log $scope.notification
 
     $scope.removeNotification = (notification) ->
       messageNotification.remove(notification)
@@ -20,23 +20,33 @@ define ['angular'], ->
     $scope.$on '$routeChangeError', (event, current, previous, rejection)->
       messageNotification.pushForCurrentRoute('errors.route.changeError', 'error', {}, {rejection: rejection})
 
-  .controller 'HeaderCtrl', ($scope, breadcrumb) ->
-    $scope.breadcrumb = breadcrumb
+  #show error
+  .controller 'ErrorCtrl', ($scope, $location, local) ->
+    $scope.errorCode = $location.search()['code']
+    $scope.errorCode ? 404
 
+    $scope.errorMsg = $scope.errorCode + " - " + local.get('message', 'errors.route.' + $scope.errorCode + 'Error')
+
+  #HeaderCtrl is Navbar
+  .controller 'HeaderCtrl', ($scope, Breadcrumb) ->
+    $scope.breadcrumb = Breadcrumb
+
+  #FooterCtrl is Version
   .controller 'FooterCtrl', ($scope) ->
     $scope.foot = 'foot'
 
+  #HomeCtrl is first page
   .controller 'HomeCtrl', ($scope, User) ->
     $scope.name = 'baby'
 
-    user = User.user.get({id: 1},
+    user = User.get({id: 1},
     (response)->
       console.log response
     ,
     (error)->
       console.log error)
 
-#    console.log(user)
+    #console.log(user)
 
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
@@ -46,6 +56,7 @@ define ['angular'], ->
       'Karma',
       'haha']
 
+  #SignupCtrl is sign up page
   .controller 'SignupCtrl', ($scope, Email) ->
     $scope.time = new Date().getTime()
 
@@ -62,6 +73,7 @@ define ['angular'], ->
 
       $scope.email.$save()
 
+  #SigninCtrl is sign in page
   .controller 'SigninCtrl', ($scope) ->
     $scope.post = (user) ->
       console.log user

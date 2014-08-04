@@ -4,29 +4,35 @@ define ['angular'], ->
 
 
   #common service
-  angular.module('service').factory 'breadcrumb', ($rootScope, $location, $log) ->
-    breadcrumbService = {}
+  angular.module('service')
+  #Breadcrumb  is site map
+  .factory 'Breadcrumb', ($rootScope, $location, $log) ->
     data = []
 
     $rootScope.$on '$routeChangeSuccess', ->
-      pathElements = $location.path().split '/'
+      path = $location.path().trim()
+
+      pathElements = path.split('/') if path != '/'
 
       breadcrumbPath = (index)->
         '/' + (pathElements.slice 0, index + 1).join '/'
 
-      pathElements.shift()
 
       result = []
-      for i in [0..pathElements.length - 1]
-        result.push {name: pathElements[i], path: breadcrumbPath(i)}
+      result.push {name: 'home', path: '/'}
+      if pathElements
+        #delete first element
+        pathElements.shift()
+        for i in [0..pathElements.length - 1]
+          result.push {name: pathElements[i], path: breadcrumbPath(i)}
 
       data = result
 
-    breadcrumbService.all = ->
+
+    ->
+    all: ->
       #$log.debug data
       data
-
-    breadcrumbService.first = ->
+    first: ->
       data[0] || {}
 
-    breadcrumbService

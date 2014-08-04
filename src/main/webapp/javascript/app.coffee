@@ -13,6 +13,10 @@ define ['angular', 'angular-route', 'local', 'notification', 'controller', 'serv
       'style': '/style'
     'message':
       'errors.route.changeError': 'Route change error'
+      'errors.route.401Error': 'Your account not authorized'
+      'errors.route.403Error': 'Your cant allow access'
+      'errors.route.404Error': 'Your page not fount'
+      'errors.route.500Error': 'Server error'
   }
   .config ($routeProvider, $locationProvider, $httpProvider) ->
     #use the HTML5 History API
@@ -24,16 +28,23 @@ define ['angular', 'angular-route', 'local', 'notification', 'controller', 'serv
     #异常过滤
     $httpProvider.interceptors.push ($q, $location)->
       'responseError': (response) ->
-        if(response.status == 401 || response.status == 403)
-          $location.path('/signin')
+        switch response.status
+          when '401' then $location.path('/signin')
+#          when '403' then $location.path('/error').search({code: 403})
+#          when '404' then $location.path('/error').search({code: 404})
+#          when '500' then $location.path('/error').search({code: 500})
+#          else  $location.path('/error').search({code: 404})
+
         $q.reject(response)
 
     $routeProvider
     .when '/',
       templateUrl: 'view/app/home.html', controller: 'HomeCtrl'
+    .when '/error',
+      templateUrl: 'view/app/error.html', controller: 'ErrorCtrl'
     .when '/signup',
       templateUrl: 'view/app/signup.html', controller: 'SignupCtrl'
     .when '/signin',
       templateUrl: 'view/app/signin.html', controller: 'SigninCtrl'
     .otherwise
-      templateUrl: 'view/app/404.html'
+      redirectTo: '/error'

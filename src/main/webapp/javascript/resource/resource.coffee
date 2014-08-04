@@ -4,9 +4,20 @@ define ['angular', 'angular-resource'], ->
 
 
   #common service
-  angular.module('resource').factory 'Email', ($resource) ->
-    email = $resource('/signupEmail')
-
-  .factory 'User', ($resource)->
-    user: $resource('/user/:id', {id: '@id'}),
-    users: $resource('/user')
+  angular.module('resource')
+  #user model
+  .factory 'User', ($http)->
+    get: (user, success, error)->
+      $http.get('/user/get/' + user.id).success(success).error(error)
+    save: (user, success, error)->
+      $http.post('/user/save', {user: user}).success(success).error(error)
+    delete: (user, success, error)->
+      $http.delete('/user/delete/' + user.id).success(success).error(error)
+    update: (user, success, error)->
+      $http.post('/user/update', {user: user}).success(success).error(error)
+    query: (user, success, error)->
+      $http.get('/user/query', {user: user}).success(success).error(error)
+  #email model
+  .factory 'Email', ($http) ->
+    signup: (email, success, error)->
+      $http.get('/signupEmail', {email: email}).success(success).error(error)
