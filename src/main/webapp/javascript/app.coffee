@@ -1,9 +1,9 @@
-define ['angular', 'angular-route', 'local', 'notification', 'controller', 'service', 'resource', 'filter',
+define ['angular', 'angular-route', 'angular-ui-bootstrap-tpls', 'local', 'controller', 'service', 'resource', 'filter',
         'directive'],
 ->
   'use strict'
   angular.module('app',
-    ['ngRoute', 'local', 'notification', 'controller', 'service', 'resource', 'filter', 'directive'])
+    ['ngRoute', 'ui.bootstrap' , 'local', 'controller', 'service', 'resource', 'filter', 'directive'])
 
   #config app
   angular.module('app').constant 'LOCAL', {
@@ -30,10 +30,10 @@ define ['angular', 'angular-route', 'local', 'notification', 'controller', 'serv
       'responseError': (response) ->
         switch response.status
           when '401' then $location.path('/signin')
-#          when '403' then $location.path('/error').search({code: 403})
-#          when '404' then $location.path('/error').search({code: 404})
-#          when '500' then $location.path('/error').search({code: 500})
-#          else  $location.path('/error').search({code: 404})
+        #          when '403' then $location.path('/error').search({code: 403})
+        #          when '404' then $location.path('/error').search({code: 404})
+        #          when '500' then $location.path('/error').search({code: 500})
+        #          else  $location.path('/error').search({code: 404})
 
         $q.reject(response)
 
@@ -47,4 +47,4 @@ define ['angular', 'angular-route', 'local', 'notification', 'controller', 'serv
     .when '/signin',
       templateUrl: 'view/app/signin.html', controller: 'SigninCtrl'
     .otherwise
-      redirectTo: '/error'
+        redirectTo: '/error'

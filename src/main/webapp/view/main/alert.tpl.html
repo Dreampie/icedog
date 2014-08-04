@@ -1,0 +1,5 @@
+<div>
+  <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</alert>
+  <input type="text" ng-model="message.type"> <input type="text" ng-model="message.msg">
+  <button class='btn btn-default' ng-click="addAlert(message)">Add Alert</button>
+</div>

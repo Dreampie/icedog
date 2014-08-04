@@ -3,25 +3,21 @@
 <html> <!-- Do not add ng-app here as we bootstrap AngularJS manually-->
 <head>
   <title>First AngularJS App</title>
-  <meta charset="utf-8"/>
-  <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/3.1.1/css/bootstrap.min.css">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <!--<link rel="stylesheet" type="text/css" href="/webjars/bootstrap/3.1.1/css/bootstrap.min.css">-->
   <!--[if lt IE 9]>
   <script src="/webjars/es6-shim/0.12.0/es6-shim.js"></script>
   <script src="/webjars/json3/3.3.2/json3.min.js"></script>
   <![endif]-->
 </head>
-<body ng-cloak  ng-controller="AppCtrl">
-<ul>
-  <li ng-repeat="resource in local.get('resource')">{{resource | firstUpperCase}}</li>
-</ul>
-
+<body ng-cloak ng-controller="AppCtrl">
 <div ng-include="'view/main/header.tpl.html'"></div>
-<div ng-include="'view/main/notification.tpl.html'" class="container-fluid" ng-show="notification.getCurrent().length"></div>
+<div ng-include="'view/main/alert.tpl.html'" class="container-fluid" ng-show="showAlert"></div>
 <div ng-view></div>
 
 <div ng-include="'view/main/footer.tpl.html'"></div>
 <!-- build:js javascript/main.js -->
-<script data-main="/javascript/main" src="/webjars/requirejs/2.1.14/require.min.js"></script>
+<script data-main="/javascript/main" src="/webjars/requirejs/2.1.14/require.min.js" charset="utf-8"></script>
 <!-- endbuild -->
 </body>
 </html>

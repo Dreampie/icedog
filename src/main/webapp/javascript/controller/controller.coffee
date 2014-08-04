@@ -6,19 +6,22 @@ define ['angular'], ->
   #common controller
   angular.module('controller')
   #AppCtrl is base controller
-  .controller 'AppCtrl', ($scope, local, messageNotification)->
+  .controller 'AppCtrl', ($scope, local)->
     #messageNotification.pushForCurrentRoute('errors.route.changeError', 'error',{},{rejection: ''})
     $scope.local = local
     #console.log $scope.local.get('resource', 'javascript')
+    $scope.alerts = [
+      {type: 'danger', msg: 'Oh snap! Change a few things up and try submitting again.'},
+      {type: 'success', msg: 'Well done! You successfully read this important alert message.'}
+    ]
+    $scope.showAlert = $scope.alerts.length > 0
 
-    $scope.notification = messageNotification
-    #console.log $scope.notification
+    $scope.addAlert = (message)->
+      $scope.alerts.push({type: message.type, msg: message.msg})
 
-    $scope.removeNotification = (notification) ->
-      messageNotification.remove(notification)
+    $scope.closeAlert = (index) ->
+      $scope.alerts.splice(index, 1)
 
-    $scope.$on '$routeChangeError', (event, current, previous, rejection)->
-      messageNotification.pushForCurrentRoute('errors.route.changeError', 'error', {}, {rejection: rejection})
 
   #show error
   .controller 'ErrorCtrl', ($scope, $location, local) ->
@@ -47,6 +50,7 @@ define ['angular'], ->
       console.log error)
 
     #console.log(user)
+    $scope.addAlert({type:'info',msg:'test'})
 
     $scope.awesomeThings = [
       'HTML5 Boilerplate',

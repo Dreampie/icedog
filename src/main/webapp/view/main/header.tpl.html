@@ -3,8 +3,8 @@
     <ul class="breadcrumb">
       <li ng-repeat="breadcrumb in breadcrumb.all()">
         <ng-switch on="$last">
-          <span ng-switch-when="true">{{breadcrumb.name}}</span>
-          <span ng-switch-default><a href="{{breadcrumb.path}}">{{breadcrumb.name}}</a></span>
+          <span ng-switch-when="true">{{breadcrumb.name | firstUpperCase}}</span>
+          <span ng-switch-default><a href="{{breadcrumb.path}}">{{breadcrumb.name | firstUpperCase}}</a></span>
         </ng-switch>
       </li>
     </ul>
