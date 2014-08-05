@@ -31,7 +31,7 @@ define ['angular', 'angular-route', 'angular-ui-bootstrap-tpls', 'local', 'contr
         switch response.status
           when '401' then $location.path('/signin')
         #          when '403' then $location.path('/error').search({code: 403})
-        #          when '404' then $location.path('/error').search({code: 404})
+          when '404' then $location.path('/error').search({code: 404})
         #          when '500' then $location.path('/error').search({code: 500})
         #          else  $location.path('/error').search({code: 404})
 

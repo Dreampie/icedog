@@ -8,7 +8,7 @@ require.config
     'angular-route': '../webjars/angularjs/1.3.0-beta.15/angular-route.min'
     'angular-resource': '../webjars/angularjs/1.3.0-beta.15/angular-resource.min'
     'angular-cookie': '../webjars/angularjs/1.3.0-beta.15/angular-cookies.min'
-    'angular-ui-bootstrap': '../webjars/angular-ui-bootstrap/0.11.0/ui-bootstrap.min'
+  #'angular-ui-bootstrap': '../webjars/angular-ui-bootstrap/0.11.0/ui-bootstrap.min'
     'angular-ui-bootstrap-tpls': '../webjars/angular-ui-bootstrap/0.11.0/ui-bootstrap-tpls.min'
     'firebase': ['https://cdn.firebase.com/v0/firebase', '../webjars/firebase/1.0.17/firebase']
     'angularfire': '../webjars/angularFire/0.7.1/angularfire.min'
@@ -24,7 +24,7 @@ require.config
     'angular-route': ['angular']
     'angular-resource': ['angular']
     'angular-cookie': ['angular']
-    'angular-ui-bootstrap': ['angular']
+  #'angular-ui-bootstrap': ['angular']
     'angular-ui-bootstrap-tpls': ['angular']
     'angularfire': ['angular', 'firebase']
     'controller': ['css!../webjars/bootstrap/3.2.0/css/bootstrap.min']

@@ -6,9 +6,9 @@ define ['angular'], ->
   #common controller
   angular.module('controller')
   #AppCtrl is base controller
-  .controller 'AppCtrl', ($scope, local)->
+  .controller 'AppCtrl', ($scope, Local)->
     #messageNotification.pushForCurrentRoute('errors.route.changeError', 'error',{},{rejection: ''})
-    $scope.local = local
+    $scope.local = Local
     #console.log $scope.local.get('resource', 'javascript')
     $scope.alerts = [
       {type: 'danger', msg: 'Oh snap! Change a few things up and try submitting again.'},

@@ -4,7 +4,7 @@ define ['angular'], ->
 
 
   #common service
-  angular.module('local').factory 'local', ['$interpolate', 'LOCAL', ($interpolate, local) ->
+  angular.module('local').factory 'Local', ['$interpolate', 'LOCAL', ($interpolate, local) ->
     notFound = (msg, msgType, msgKey)->
       msg || '?' + msgType + ':' + msgKey + '?'
 
