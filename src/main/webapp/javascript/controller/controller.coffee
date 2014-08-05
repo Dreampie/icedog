@@ -6,29 +6,17 @@ define ['angular'], ->
   #common controller
   angular.module('controller')
   #AppCtrl is base controller
-  .controller 'AppCtrl', ($scope, Local)->
+  .controller 'AppCtrl', ($scope, Local, Alert)->
     #messageNotification.pushForCurrentRoute('errors.route.changeError', 'error',{},{rejection: ''})
     $scope.local = Local
     #console.log $scope.local.get('resource', 'javascript')
-    $scope.alerts = [
-      {type: 'danger', msg: 'Oh snap! Change a few things up and try submitting again.'},
-      {type: 'success', msg: 'Well done! You successfully read this important alert message.'}
-    ]
-    $scope.showAlert = $scope.alerts.length > 0
-
-    $scope.addAlert = (message)->
-      $scope.alerts.push({type: message.type, msg: message.msg})
-
-    $scope.closeAlert = (index) ->
-      $scope.alerts.splice(index, 1)
-
 
   #show error
-  .controller 'ErrorCtrl', ($scope, $location, local) ->
+  .controller 'ErrorCtrl', ($scope, $location, Local) ->
     $scope.errorCode = $location.search()['code']
     $scope.errorCode ? 404
 
-    $scope.errorMsg = $scope.errorCode + " - " + local.get('message', 'errors.route.' + $scope.errorCode + 'Error')
+    $scope.errorMsg = $scope.errorCode + " - " + Local.get('message', 'errors.route.' + $scope.errorCode + 'Error')
 
   #HeaderCtrl is Navbar
   .controller 'HeaderCtrl', ($scope, Breadcrumb) ->
@@ -50,7 +38,6 @@ define ['angular'], ->
       console.log error)
 
     #console.log(user)
-    $scope.addAlert({type:'info',msg:'test'})
 
     $scope.awesomeThings = [
       'HTML5 Boilerplate',

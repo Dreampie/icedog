@@ -28,8 +28,6 @@ define ['angular'], ->
 
       data = result
 
-
-    ->
     all: ->
       #$log.debug data
       data

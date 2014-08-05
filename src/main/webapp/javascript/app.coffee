@@ -13,10 +13,11 @@ define ['angular', 'angular-route', 'angular-ui-bootstrap-tpls', 'local', 'contr
       'style': '/style'
     'message':
       'errors.route.changeError': 'Route change error'
-      'errors.route.401Error': 'Your account not authorized'
-      'errors.route.403Error': 'Your cant allow access'
-      'errors.route.404Error': 'Your page not fount'
+      'errors.route.401Error': 'Not authorized'
+      'errors.route.403Error': 'Not allow access'
+      'errors.route.404Error': 'Not fount'
       'errors.route.500Error': 'Server error'
+      'errors.route.unknownError': 'Unknown error'
   }
   .config ($routeProvider, $locationProvider, $httpProvider) ->
     #use the HTML5 History API
@@ -26,14 +27,15 @@ define ['angular', 'angular-route', 'angular-ui-bootstrap-tpls', 'local', 'contr
     $httpProvider.defaults.headers.common =
       'x-Requested-With': 'XMLHttpRequest'
     #异常过滤
-    $httpProvider.interceptors.push ($q, $location)->
-      'responseError': (response) ->
+    $httpProvider.interceptors.push ($q, $location, Local, Alert)->
+      responseError: (response) ->
         switch response.status
-          when '401' then $location.path('/signin')
-        #          when '403' then $location.path('/error').search({code: 403})
-          when '404' then $location.path('/error').search({code: 404})
-        #          when '500' then $location.path('/error').search({code: 500})
-        #          else  $location.path('/error').search({code: 404})
+          when 401 then $location.path('/signin')
+          when 403 then Alert.addAlert({type: 'danger', msg: 403 + " - " + Local.get('message', 'errors.route.403Error')})
+          when 404 then Alert.addAlert({type: 'danger', msg: 404 + " - " + Local.get('message', 'errors.route.404Error')})
+          when 500 then Alert.addAlert({type: 'danger', msg: 500 + " - " + Local.get('message', 'errors.route.500Error')})
+          else
+            Alert.addAlert({type: 'danger', msg: Local.get('message', 'errors.route.unknownError')})
 
         $q.reject(response)
 

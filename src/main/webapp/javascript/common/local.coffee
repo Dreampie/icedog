@@ -20,3 +20,17 @@ define ['angular'], ->
       else
         notFound(msg, msgType, msgKey)
   ]
+
+  .factory 'Alert', ($rootScope) ->
+    $rootScope.alerts = []
+
+    addAlert: (message)->
+      $rootScope.alerts.push(
+        type: message.type
+        msg: message.msg
+        close: (index)->
+          $rootScope.alerts.splice(index, 1)
+      )
+
+    closeAlert: (index) ->
+      $rootScope.alerts.splice(index, 1)
