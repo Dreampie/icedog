@@ -1,0 +1,21 @@
+@import 'reset.less';
+@import 'mate.less';
+@import 'theme.less';
+
+// ----------------------- MAIN STYLES
+
+.fade-animate.ng-enter,
+.fade-animate.ng-leave {
+  -webkit-transition: 0.5s linear all;
+  transition: 0.5s linear all;
+}
+
+.fade-animate.ng-enter,
+.fade-animate.ng-leave.ng-leave-active {
+  opacity: 0;
+}
+
+.fade-animate.ng-leave,
+.fade-animate.ng-enter.ng-enter-active {
+  opacity: 1;
+}

@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html> <!-- Do not add ng-app here as we bootstrap AngularJS manually-->
+<html ng-controller="AppCtrl"> <!-- Do not add ng-app here as we bootstrap AngularJS manually-->
 <head>
   <title>First AngularJS App</title>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
@@ -10,10 +10,11 @@
   <script src="/webjars/json3/3.3.2/json3.min.js"></script>
   <![endif]-->
 </head>
-<body ng-cloak ng-controller="AppCtrl">
+<body>
 <div ng-include="'view/main/header.tpl.html'"></div>
 <div ng-include="'view/main/alert.tpl.html'" class="container-fluid"></div>
-<div ng-view></div>
+
+<div ng-view class="container-fluid"></div>
 
 <div ng-include="'view/main/footer.tpl.html'"></div>
 <!-- build:js javascript/main.js -->

@@ -9,8 +9,9 @@ define ['angular'], ->
   .controller 'AppCtrl', ($scope, Local, Alert)->
     #messageNotification.pushForCurrentRoute('errors.route.changeError', 'error',{},{rejection: ''})
     $scope.local = Local
-    #console.log $scope.local.get('resource', 'javascript')
-
+  #console.log $scope.local.get('resource', 'javascript')
+#    $scope.addAlert = (message)->
+#      Alert.addAlert(message)
   #show error
   .controller 'ErrorCtrl', ($scope, $location, Local) ->
     $scope.errorCode = $location.search()['code']
@@ -19,9 +20,26 @@ define ['angular'], ->
     $scope.errorMsg = $scope.errorCode + " - " + Local.get('message', 'errors.route.' + $scope.errorCode + 'Error')
 
   #HeaderCtrl is Navbar
-  .controller 'HeaderCtrl', ($scope, Breadcrumb) ->
+  .controller 'HeaderCtrl', ($scope, $log, $modal, Breadcrumb) ->
     $scope.breadcrumb = Breadcrumb
 
+    $scope.signin = ->
+      signinModal = $modal.open
+        templateUrl: 'view/app/signin.html',
+        controller: 'HeaderCtrl',
+        size: '', #lg sm
+      #传递参数
+      #resolve:
+      #items: ()->
+      #$scope.items
+
+      #close and cancel event
+      signinModal.result.then(
+        ->
+          console.log '1'
+      , ->
+        $log.info('Modal dismissed at: ' + new Date());
+      )
   #FooterCtrl is Version
   .controller 'FooterCtrl', ($scope) ->
     $scope.foot = 'foot'
@@ -65,6 +83,12 @@ define ['angular'], ->
       $scope.email.$save()
 
   #SigninCtrl is sign in page
-  .controller 'SigninCtrl', ($scope) ->
+  .controller 'SigninCtrl', ($scope, $signinModal) ->
     $scope.post = (user) ->
       console.log user
+
+    $scope.ok = ->
+      $signinModal.close()
+
+    $scope.cancel = ->
+      $signinModal.dismiss('cancel')

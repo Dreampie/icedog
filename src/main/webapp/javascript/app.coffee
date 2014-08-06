@@ -1,9 +1,9 @@
-define ['angular', 'angular-route', 'angular-ui-bootstrap-tpls', 'local', 'controller', 'service', 'resource', 'filter',
-        'directive'],
+define ['angular', 'angular-route', 'angular-animate', 'angular-ui-bootstrap-tpls', 'local', 'controller',
+        'service', 'resource', 'filter', 'directive'],
 ->
   'use strict'
-  angular.module('app',
-    ['ngRoute', 'ui.bootstrap' , 'local', 'controller', 'service', 'resource', 'filter', 'directive'])
+  angular.module('app',['ngRoute', 'ui.bootstrap', 'ngAnimate' , 'local', 'controller', 'service', 'resource',
+     'filter', 'directive'])
 
   #config app
   angular.module('app').constant 'LOCAL', {
@@ -31,9 +31,12 @@ define ['angular', 'angular-route', 'angular-ui-bootstrap-tpls', 'local', 'contr
       responseError: (response) ->
         switch response.status
           when 401 then $location.path('/signin')
-          when 403 then Alert.addAlert({type: 'danger', msg: 403 + " - " + Local.get('message', 'errors.route.403Error')})
-          when 404 then Alert.addAlert({type: 'danger', msg: 404 + " - " + Local.get('message', 'errors.route.404Error')})
-          when 500 then Alert.addAlert({type: 'danger', msg: 500 + " - " + Local.get('message', 'errors.route.500Error')})
+          when 403 then Alert.addAlert({type: 'danger', msg: 403 + " - " + Local.get('message',
+            'errors.route.403Error')})
+          when 404 then Alert.addAlert({type: 'danger', msg: 404 + " - " + Local.get('message',
+            'errors.route.404Error')})
+          when 500 then Alert.addAlert({type: 'danger', msg: 500 + " - " + Local.get('message',
+            'errors.route.500Error')})
           else
             Alert.addAlert({type: 'danger', msg: Local.get('message', 'errors.route.unknownError')})
 

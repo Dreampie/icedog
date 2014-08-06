@@ -21,16 +21,26 @@ define ['angular'], ->
         notFound(msg, msgType, msgKey)
   ]
 
-  .factory 'Alert', ($rootScope) ->
+  .factory 'Alert', ($rootScope, $timeout) ->
     $rootScope.alerts = []
-
+    $rootScope.timers = []
     addAlert: (message)->
-      $rootScope.alerts.push(
+      alert =
         type: message.type
         msg: message.msg
         close: (index)->
           $rootScope.alerts.splice(index, 1)
-      )
+
+      $rootScope.alerts.push(alert)
+      index = $rootScope.alerts.indexOf(alert)
+
+      $rootScope.timers[index] = $timeout ->
+        $rootScope.$apply(->
+          $rootScope.alerts.splice(index, 1)
+        )
+      , 5000
+
 
     closeAlert: (index) ->
       $rootScope.alerts.splice(index, 1)
+      $timeout.cancel($rootScope.timers[index])
