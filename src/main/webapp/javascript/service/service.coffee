@@ -44,8 +44,8 @@ define ['angular'], ->
 
     signin: (user)->
       User.signin(user,
-      (data, status, headers, config)->
-        $rootScope.user = data.user
+      (data)->
+        $cookieStore.put('user', data.user)
       , (data)->
         failureKey = data.shiroLoginFailure
         switch failureKey
@@ -53,4 +53,16 @@ define ['angular'], ->
           when 'IncorrectCaptchaException' then Alert.addAlert({type: 'danger', msg: '验证码错误!'})
           else
             Alert.addAlert({type: 'danger', msg: '账户验证失败或已被禁用!'})
+      )
+    signup: (user)->
+      User.signup(user,
+      (data)->
+
+      , (data)->
+      )
+    signout: ->
+      User.signout(
+        (data)->
+
+      , (data)->
       )
