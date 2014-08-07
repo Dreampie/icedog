@@ -21,6 +21,12 @@ require.config
     'resource': 'javascript/resource/resource'
     'service': 'javascript/service/service'
     'local': 'javascript/common/local'
+
+  #gt ie 9
+    'es6-shim': 'webjars/es6-shim/0.12.0/es6-shim'
+    'json3': 'webjars/json3/3.3.2/json3.min'
+    'html5shiv': 'webjars/html5shiv/3.7.2/html5shiv.min'
+    'respond': 'webjars/respond/1.4.2/dest/respond.min'
   shim:
     'angular': ['jQuery']
     'angular-animate': ['angular']

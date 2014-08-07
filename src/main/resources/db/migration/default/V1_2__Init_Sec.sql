@@ -30,8 +30,8 @@ VALUES (sec_role_permission_id_seq.nextval,1,1),(sec_role_permission_id_seq.next
 --user data--
 --create  admin--
 INSERT INTO sec_user(id, username, providername, email, mobile, password, hasher, salt, avatar_url, first_name, last_name, full_name,department_id, created_at)
-VALUES (sec_user_id_seq.nextval,'admin','dreampie','wangrenhui1990@gmail.com','18611434552','$shiro1$SHA-256$500000$ZMhNGAcL3HbpTbNXzxxT1Q==$wRi5AF6BK/1FsQdvISIY1lJ9Rm/aekBoChjunVsqkUU=','default_hasher','','','仁辉','王','仁辉·王',1,current_timestamp),
-       (sec_user_id_seq.nextval,'liujintong','dreampie','liujintong1990@gmail.com','18511400502','$shiro1$SHA-256$500000$ZMhNGAcL3HbpTbNXzxxT1Q==$wRi5AF6BK/1FsQdvISIY1lJ9Rm/aekBoChjunVsqkUU=','default_hasher','','','金彤','刘','金彤·刘',2,current_timestamp);
+VALUES (sec_user_id_seq.nextval,'admin','dreampie','wangrenhui1000@gmail.com','18611434500','$shiro1$SHA-256$500000$ZMhNGAcL3HbpTbNXzxxT1Q==$wRi5AF6BK/1FsQdvISIY1lJ9Rm/aekBoChjunVsqkUU=','default_hasher','','','仁辉','王','仁辉·王',1,current_timestamp),
+       (sec_user_id_seq.nextval,'liujintong','dreampie','liujintong1000@gmail.com','18511400000','$shiro1$SHA-256$500000$ZMhNGAcL3HbpTbNXzxxT1Q==$wRi5AF6BK/1FsQdvISIY1lJ9Rm/aekBoChjunVsqkUU=','default_hasher','','','金彤','刘','金彤·刘',2,current_timestamp);
 
 --create user_info--
 INSERT INTO sec_user_info(id, user_id, creator_id, gender,province_id,city_id,county_id,street,created_at)

@@ -6,40 +6,21 @@ define ['angular'], ->
   #common controller
   angular.module('controller')
   #AppCtrl is base controller
-  .controller 'AppCtrl', ($scope, Local, Alert)->
+  .controller 'AppCtrl', ($scope, Local, Alert, $http)->
     #messageNotification.pushForCurrentRoute('errors.route.changeError', 'error',{},{rejection: ''})
     $scope.local = Local
-  #console.log $scope.local.get('resource', 'javascript')
-#    $scope.addAlert = (message)->
-#      Alert.addAlert(message)
-  #show error
-  .controller 'ErrorCtrl', ($scope, $location, Local) ->
-    $scope.errorCode = $location.search()['code']
-    $scope.errorCode ? 404
+    if (!$.support.leadingWhitespace)
+      Alert.addAlert({type: 'danger', msg: "Error - " + Local.get('message', 'errors.browser.ieSupportError')})
 
-    $scope.errorMsg = $scope.errorCode + " - " + Local.get('message', 'errors.route.' + $scope.errorCode + 'Error')
+#    $http.get('/').success((data)->console.log data.user).error((data)->console.log data)
+  #left menu
+  .controller 'LefterCtrl', ($scope, $rootScope)->
+    $scope.menus = $rootScope.user.menus
 
   #HeaderCtrl is Navbar
   .controller 'HeaderCtrl', ($scope, $log, $modal, Breadcrumb) ->
     $scope.breadcrumb = Breadcrumb
 
-    $scope.signin = ->
-      signinModal = $modal.open
-        templateUrl: 'view/app/signin.html',
-        controller: 'HeaderCtrl',
-        size: '', #lg sm
-      #传递参数
-      #resolve:
-      #items: ()->
-      #$scope.items
-
-      #close and cancel event
-      signinModal.result.then(
-        ->
-          console.log '1'
-      , ->
-        $log.info('Modal dismissed at: ' + new Date());
-      )
   #FooterCtrl is Version
   .controller 'FooterCtrl', ($scope) ->
     $scope.foot = 'foot'
@@ -80,15 +61,8 @@ define ['angular'], ->
 
       console.log $scope.email
 
-      $scope.email.$save()
 
   #SigninCtrl is sign in page
-  .controller 'SigninCtrl', ($scope, $signinModal) ->
+  .controller 'SigninCtrl', ($scope, UserService) ->
     $scope.post = (user) ->
-      console.log user
-
-    $scope.ok = ->
-      $signinModal.close()
-
-    $scope.cancel = ->
-      $signinModal.dismiss('cancel')
+      UserService.signin(user)

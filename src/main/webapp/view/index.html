@@ -1,22 +1,39 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--http://scotch.io/-->
 <html ng-controller="AppCtrl"> <!-- Do not add ng-app here as we bootstrap AngularJS manually-->
 <head>
   <title>First AngularJS App</title>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-  <!--<link rel="stylesheet" type="text/css" href="/webjars/bootstrap/3.1.1/css/bootstrap.min.css">-->
-  <!--[if lt IE 9]>
-  <script src="/webjars/es6-shim/0.12.0/es6-shim.js"></script>
-  <script src="/webjars/json3/3.3.2/json3.min.js"></script>
-  <![endif]-->
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable = no,minimal-ui"/>
+  <!-- Makes your prototype chrome-less once bookmarked to your phone's home screen -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <!--IE兼容模式-->
+  <meta http-equiv="X-UA-Compatible" content="IE=8,chrome=1">
+  <meta name="copyright" content="Copyright Icedog">
+  <meta name="author" content="wangrenhui1990@gmail.com">
+  <meta name="keywords" content="ice dog">
+  <meta name="description" content="ice dog">
+  <!--百度站长验证-->
+  <meta name="baidu-site-verification" content="ejR7RPMvau">
+  <!--google站长验证-->
+  <meta name="google-site-verification" content="ALViN24w3GrrIVAL-93BULRE99fdlBXw0V8QSXvSs7E">
+
+  <link rel="apple-touch-icon-precomposed" href="/image/favicon.png"/>
+  <link rel="shortcut icon" href="/image/favicon.ico"/>
 </head>
 <body>
-<div ng-include="'view/main/header.tpl.html'"></div>
-<div ng-include="'view/main/alert.tpl.html'" class="container-fluid"></div>
-
-<div ng-view class="container-fluid"></div>
-
-<div ng-include="'view/main/footer.tpl.html'"></div>
+<div class="lefter" ng-include="'view/main/lefter.tpl.html'"></div>
+<div class="main">
+  <!--header-->
+  <div class="header" ng-include="'view/main/header.tpl.html'"></div>
+  <div ng-include="'view/main/alert.tpl.html'" class="container-fluid"></div>
+  <!--content-->
+  <div ng-view class="container-fluid"></div>
+  <!--footer-->
+  <div ng-include="'view/main/footer.tpl.html'"></div>
+</div>
 <!-- build:js javascript/main.js -->
 <script data-main="/javascript/main" src="/webjars/requirejs/2.1.14/require.min.js" charset="utf-8"></script>
 <!-- endbuild -->

@@ -47,8 +47,8 @@ public class MyJdbcRealm extends AuthorizingRealm {
       user = User.dao.findFirstBy(" `user`.username =? AND `user`.deleted_at is null", username);
     }
     if (user != null) {
-      Session session = SecurityUtils.getSubject().getSession();
-      session.setAttribute(AppConstants.TEMP_USER, user);
+//      Session session = SecurityUtils.getSubject().getSession();
+//      session.setAttribute(AppConstants.TEMP_USER, user);
       SimpleAuthenticationInfo info = new SimpleAuthenticationInfo(user, user.getStr("password"), getName());
       clearCachedAuthorizationInfo(info.getPrincipals());
       return info;

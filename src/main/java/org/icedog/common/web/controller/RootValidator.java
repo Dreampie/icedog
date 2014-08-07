@@ -13,7 +13,7 @@ import org.icedog.function.user.model.User;
  */
 public class RootValidator {
 
-  public static class RegisterEmailValidator extends Validator {
+  public static class SignupEmailValidator extends Validator {
     protected void validate(Controller c) {
 
 
@@ -39,7 +39,7 @@ public class RootValidator {
     }
   }
 
-  public static class RegisterValidator extends Validator {
+  public static class SignupValidator extends Validator {
     protected void validate(Controller c) {
       Object tmpU = SubjectUtils.me().getSession().getAttribute(AppConstants.TEMP_USER);
       //ValidateUtils.me().isEmail(((User) tmpU).getStr("email"))
@@ -99,7 +99,7 @@ public class RootValidator {
       if (ThreadLocalUtil.isJson())
         c.renderJson();
       else
-        c.render(c.getAttr("back") != null ? c.getAttr("back").toString() : "/view/signup.ftl");
+        c.render(c.getAttr("back") != null ? c.getAttr("back").toString() : "/view/index.html");
     }
   }
 }

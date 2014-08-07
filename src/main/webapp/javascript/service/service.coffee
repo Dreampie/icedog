@@ -34,3 +34,23 @@ define ['angular'], ->
     first: ->
       data[0] || {}
 
+  .factory 'UserService', ($cookieStore, User, Alert)->
+    currentUser = $cookieStore.get('user') || new User({ full_name: '访客'});
+
+    isAuthenticated: ->
+      if currentUser.role
+        true
+      else false
+
+    signin: (user)->
+      User.signin(user,
+      (data, status, headers, config)->
+        $rootScope.user = data.user
+      , (data)->
+        failureKey = data.shiroLoginFailure
+        switch failureKey
+          when 'UnknownUserException' then Alert.addAlert({type: 'danger', msg: '账户验证失败或已被禁用!'})
+          when 'IncorrectCaptchaException' then Alert.addAlert({type: 'danger', msg: '验证码错误!'})
+          else
+            Alert.addAlert({type: 'danger', msg: '账户验证失败或已被禁用!'})
+      )

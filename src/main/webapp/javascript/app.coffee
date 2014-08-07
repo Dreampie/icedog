@@ -1,8 +1,9 @@
-define ['angular', 'angular-route', 'angular-animate', 'angular-ui-bootstrap-tpls', 'local', 'controller',
-        'service', 'resource', 'filter', 'directive'],
+define ['angular', 'angular-route', 'angular-cookies', 'angular-animate', 'angular-ui-bootstrap-tpls', 'local',
+        'controller','service', 'resource', 'filter', 'directive'],
 ->
   'use strict'
-  angular.module('app',['ngRoute', 'ui.bootstrap', 'ngAnimate' , 'local', 'controller', 'service', 'resource',
+  angular.module('app',
+    ['ngRoute', 'ngCookies', 'ui.bootstrap', 'ngAnimate' , 'local', 'controller', 'service', 'resource',
      'filter', 'directive'])
 
   #config app
@@ -18,6 +19,7 @@ define ['angular', 'angular-route', 'angular-animate', 'angular-ui-bootstrap-tpl
       'errors.route.404Error': 'Not fount'
       'errors.route.500Error': 'Server error'
       'errors.route.unknownError': 'Unknown error'
+      'errors.browser.ieSupportError': 'Not support the Internet explorer browser version below 8'
   }
   .config ($routeProvider, $locationProvider, $httpProvider) ->
     #use the HTML5 History API
@@ -38,15 +40,13 @@ define ['angular', 'angular-route', 'angular-animate', 'angular-ui-bootstrap-tpl
           when 500 then Alert.addAlert({type: 'danger', msg: 500 + " - " + Local.get('message',
             'errors.route.500Error')})
           else
-            Alert.addAlert({type: 'danger', msg: Local.get('message', 'errors.route.unknownError')})
+            Alert.addAlert({type: 'danger', msg: "Error - " + Local.get('message', 'errors.route.unknownError')})
 
         $q.reject(response)
 
     $routeProvider
     .when '/',
       templateUrl: 'view/app/home.html', controller: 'HomeCtrl'
-    .when '/error',
-      templateUrl: 'view/app/error.html', controller: 'ErrorCtrl'
     .when '/signup',
       templateUrl: 'view/app/signup.html', controller: 'SignupCtrl'
     .when '/signin',

@@ -28,7 +28,9 @@ define ['angular'], ->
       alert =
         type: message.type
         msg: message.msg
-        close: (index)->
+        close: (alert)->
+          index = $rootScope.alerts.indexOf(alert)
+          $timeout.cancel($rootScope.timers[index])
           $rootScope.alerts.splice(index, 1)
 
       $rootScope.alerts.push(alert)
@@ -36,11 +38,12 @@ define ['angular'], ->
 
       $rootScope.timers[index] = $timeout ->
         $rootScope.$apply(->
+          index = $rootScope.alerts.indexOf(alert)
           $rootScope.alerts.splice(index, 1)
         )
       , 5000
 
 
     closeAlert: (index) ->
-      $rootScope.alerts.splice(index, 1)
       $timeout.cancel($rootScope.timers[index])
+      $rootScope.alerts.splice(index, 1)

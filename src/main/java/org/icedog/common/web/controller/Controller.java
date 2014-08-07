@@ -26,8 +26,15 @@ import java.util.UUID;
  * Controller
  */
 public class Controller extends com.jfinal.core.Controller {
-
+  static String indexView = "view/index.html";
   protected Logger logger = LoggerFactory.getLogger(getClass());
+
+  public void dynaRender() {
+    if (ThreadLocalUtil.isJson())
+      super.renderJson();
+    else
+      super.render(indexView);
+  }
 
   public void dynaRender(String view) {
     if (ThreadLocalUtil.isJson())
@@ -36,22 +43,13 @@ public class Controller extends com.jfinal.core.Controller {
       super.render(view);
   }
 
-
   /**
    * 根目录
    */
 //  @Before(EvictInterceptor.class)
 //  @CacheName("index")
   public void index() {
-    render("view/index.html");
-  }
-
-
-  /**
-   * 登录页
-   */
-  public void tologin() {
-    dynaRender("/view/login.ftl");
+    dynaRender(indexView);
   }
 
   public void tosignup() {
@@ -105,7 +103,7 @@ public class Controller extends com.jfinal.core.Controller {
     render(new PatchcaRender(minnum, maxnum, width, height));
   }
 
-  @Before({RootValidator.RegisterEmailValidator.class, Tx.class})
+  @Before({RootValidator.SignupEmailValidator.class, Tx.class})
   public void signupEmail() {
     User regUser = getModel(User.class);
 
@@ -128,7 +126,7 @@ public class Controller extends com.jfinal.core.Controller {
     }
   }
 
-  @Before({RootValidator.RegisterValidator.class, Tx.class})
+  @Before({RootValidator.SignupValidator.class, Tx.class})
   public void signup() {
     User regUser = getModel(User.class);
 //        Object u = SubjectUtils.me().getSession().getAttribute(AppConstants.TEMP_USER);
@@ -156,17 +154,17 @@ public class Controller extends com.jfinal.core.Controller {
         if (SubjectUtils.me().login(regUser.getStr("username"), passwordInfo.getHashText(), User.dao.findFirstBy("username=?", regUser.get("username")))) {
           //添加到session
           SubjectUtils.me().getSession().setAttribute(AppConstants.CURRENT_USER, regUser);
-          dynaRender("/view/index.ftl");
+          dynaRender();
           return;
         }
       }
     } else {
       setAttr("state", "failure");
-      dynaRender("/view/signup.ftl");
+      dynaRender();
       return;
     }
 
-    dynaRender("/view/login.ftl");
+    dynaRender();
   }
 
 
