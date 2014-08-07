@@ -24,10 +24,22 @@
   <link rel="shortcut icon" href="/image/favicon.ico"/>
 </head>
 <body>
-<div class="lefter" ng-include="'view/main/lefter.tpl.html'"></div>
-<div class="main">
-  <!--header-->
-  <div class="header" ng-include="'view/main/header.tpl.html'"></div>
+<!--header-->
+<div class="header" ng-include="'view/main/header.tpl.html'"></div>
+
+<div class="mainer">
+  <!--breadcrumb-->
+  <div>
+    <ul class="breadcrumb">
+      <li ng-repeat="breadcrumb in breadcrumb.all()">
+        <ng-switch on="$last">
+          <span ng-switch-when="true">{{breadcrumb.name | firstUpperCase}}</span>
+          <span ng-switch-default><a href="{{breadcrumb.path}}">{{breadcrumb.name | firstUpperCase}}</a></span>
+        </ng-switch>
+      </li>
+    </ul>
+  </div>
+
   <div ng-include="'view/main/alert.tpl.html'" class="container-fluid"></div>
   <!--content-->
   <div ng-view class="container-fluid"></div>

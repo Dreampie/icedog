@@ -120,9 +120,10 @@ public class AppConfig extends JFinalConfig {
     plugins.add(new MailerPlugin());
     //quartz
 //    plugins.add(new QuartzPlugin());
-    plugins.add(new CoffeeScriptPlugin());
 
     plugins.add(new LessCssPlugin());
+
+    plugins.add(new CoffeeScriptPlugin());
 
   }
 

@@ -1,13 +1,29 @@
 <div ng-controller="HeaderCtrl">
-
-  <div>
-    <ul class="breadcrumb">
-      <li ng-repeat="breadcrumb in breadcrumb.all()">
-        <ng-switch on="$last">
-          <span ng-switch-when="true">{{breadcrumb.name | firstUpperCase}}</span>
-          <span ng-switch-default><a href="{{breadcrumb.path}}">{{breadcrumb.name | firstUpperCase}}</a></span>
-        </ng-switch>
+  <nav class="left-nav">
+    <ul>
+      <li class="logo"><a href="/">IceDog</a></li>
+      <li ng-repeat="menu in menus">
+        <a href="#{{menu.url}}">
+          <span class="fa fa-{{menu.icon}}"></span> {{menu.name}}
+        </a>
       </li>
     </ul>
-  </div>
+  </nav>
+  <nav headroom class="top-nav hidden-xs">
+    <div class="search-form">
+      <form name="search-form" method="GET" role="search" ng-init="focusSearch=false">
+        <input type="search" name="content" ng-show="focusSearch" ng-model="content" required auto-focus="{{focusSearch}}">
+      </form>
+    </div>
+
+    <ul>
+      <li>
+        <a class="nav-email" href="mailto:wangrenhui1990@gmail.com"><span class="fa fa-envelope"></span></a>
+      </li>
+      <li>
+        <a class="nav-rss" href="/feed" target="_blank"><span class="fa fa-rss"></span></a>
+      </li>
+      <li><a ng-click="focusSearch=true;search(content)" href="#"><span class="fa fa-search"></span></a></li>
+    </ul>
+  </nav>
 </div>

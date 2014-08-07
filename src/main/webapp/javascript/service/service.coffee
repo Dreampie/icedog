@@ -34,11 +34,18 @@ define ['angular'], ->
     first: ->
       data[0] || {}
 
+  .factory 'AppService', ->
+    search: (content)->
+      console.log content
+
   .factory 'UserService', ($cookieStore, User, Alert)->
-    currentUser = $cookieStore.get('user') || new User({ full_name: '访客'});
+    currentUser = $cookieStore.get('user') || { full_name: '访客'}
+
+    getUser: ->
+      currentUser
 
     isAuthenticated: ->
-      if currentUser.role
+      if currentUser.username
         true
       else false
 
@@ -47,19 +54,20 @@ define ['angular'], ->
       (data)->
         $cookieStore.put('user', data.user)
       , (data)->
-        failureKey = data.shiroLoginFailure
-        switch failureKey
+        switch data.shiroLoginFailure
           when 'UnknownUserException' then Alert.addAlert({type: 'danger', msg: '账户验证失败或已被禁用!'})
           when 'IncorrectCaptchaException' then Alert.addAlert({type: 'danger', msg: '验证码错误!'})
           else
             Alert.addAlert({type: 'danger', msg: '账户验证失败或已被禁用!'})
       )
+
     signup: (user)->
-      User.signup(user,
-      (data)->
+      User.signup(
+        user, (data)->
 
       , (data)->
       )
+
     signout: ->
       User.signout(
         (data)->

@@ -6,6 +6,15 @@ define ['angular'], ->
   #common directive
   angular.module('directive')
   #test hello tag show and hide
+  .directive 'autoFocus', ($timeout)->
+    link: (scope, element, attrs) ->
+      attrs.$observe("autoFocus", (newValue)->
+        if newValue == "true"
+          $timeout(->
+            element.focus())
+      )
+
+
   .directive 'hello', ->
     restrict: 'EA'
     transclude: true #tag include content reserve

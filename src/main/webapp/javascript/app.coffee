@@ -51,5 +51,7 @@ define ['angular', 'angular-route', 'angular-cookies', 'angular-animate', 'angul
       templateUrl: 'view/app/signup.html', controller: 'SignupCtrl'
     .when '/signin',
       templateUrl: 'view/app/signin.html', controller: 'SigninCtrl'
+    .when '/about',
+      templateUrl: 'view/app/about.html', controller: 'AboutCtrl'
     .otherwise
-        redirectTo: '/error'
+      redirectTo: '/'

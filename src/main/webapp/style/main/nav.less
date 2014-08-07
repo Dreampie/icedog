@@ -1,0 +1,123 @@
+@import 'reset.less';
+@import 'mate.less';
+@import 'theme.less';
+
+.left-nav {
+  background: #2A2A2A;
+  height: 100%;
+  //  float: left;
+  position: fixed;
+  width: 100px;
+  z-index: 99999999999;
+  ul {
+    list-style: none;
+    li.logo {
+      color: #333;
+      a {
+        padding: 15px 0;
+        background: #D98218;
+        &:hover {
+          background: #D98218;
+          color: #F1F1F1;
+          .transition(all, 0.5s, ease);
+        }
+      }
+    }
+    li:not(.logo) {
+      a {
+        padding: 10px 0;
+        color: #F1F1F1;
+        background: #545454;
+        &:hover {
+          background: #111;
+          .transition(all, 0.5s, ease);
+        }
+      }
+    }
+    li {
+      background: #545454;
+      border-radius: 0px;
+      text-align: center;
+      a {
+        display: block;
+        letter-spacing: 1px;
+        font-size: 11px;
+        text-transform: uppercase;
+        border-bottom: 1px solid #1B1B1B;
+        &:hover {
+          text-decoration: none;
+          .transition(all, 0.5s, ease);
+        }
+        span {
+          color: #D98218;
+          display: block;
+          line-height: 1;
+          font-size: 40px;
+          margin-bottom: 6px;
+        }
+      }
+    }
+  }
+}
+
+.top-nav {
+  color: #FFF;
+  background: #2A2A2A;
+  padding-left: 100px;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  width: 100%;
+  z-index: 99999999;
+  ul {
+    list-style: none;
+    text-align: center;
+    li {
+      display: block;
+      float: right;
+      height: 46px;
+      position: relative;
+      width: 80px;
+      a.nav-email {
+        background: #BBB;
+        &:hover {
+          background: #CCC;
+          .transition(all, 0.5s, ease);
+        }
+      }
+      a.nav-rss {
+        background: #808080;
+        &:hover {
+          background: #a6a6a6;
+          .transition(all, 0.5s, ease);
+        }
+      }
+      a {
+        color: #FFF;
+        display: block;
+        height: 100%;
+        font-size: 20px;
+        padding: 10px 0 0;
+        width: 100%;
+
+      }
+    }
+  }
+  .search-form {
+    width: 100%;
+    color: #FFF;
+    //    display: none;
+    left: 100px;
+    position: absolute;
+    input {
+      background: #222;
+      border: none;
+      font-size: 20px;
+      outline: none;
+      padding: 9px 0 9px 70px;
+      width: 100%;
+      z-index: 9999;
+    }
+  }
+}

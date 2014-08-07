@@ -6,20 +6,27 @@ define ['angular'], ->
   #common controller
   angular.module('controller')
   #AppCtrl is base controller
-  .controller 'AppCtrl', ($scope, Local, Alert, $http)->
+  .controller 'AppCtrl', ($scope, Local, Alert, Breadcrumb)->
     #messageNotification.pushForCurrentRoute('errors.route.changeError', 'error',{},{rejection: ''})
     $scope.local = Local
     if (!$.support.leadingWhitespace)
       Alert.addAlert({type: 'danger', msg: "Error - " + Local.get('message', 'errors.browser.ieSupportError')})
 
-#    $http.get('/').success((data)->console.log data.user).error((data)->console.log data)
-  #left menu
-  .controller 'LefterCtrl', ($scope, $rootScope)->
-    $scope.menus = $rootScope.user.menus
+    $scope.breadcrumb = Breadcrumb
 
   #HeaderCtrl is Navbar
-  .controller 'HeaderCtrl', ($scope, $log, $modal, Breadcrumb) ->
-    $scope.breadcrumb = Breadcrumb
+  .controller 'HeaderCtrl', ($scope, $log, $modal, AppService, UserService) ->
+    isAuthed = UserService.isAuthenticated()
+    if(isAuthed)
+      $scope.menus = UserService.getUser().menus
+    else
+      $scope.menus = [
+        {icon: 'user', name: 'About', url: '/about'}
+      ]
+
+    $scope.search = (content)->
+      if content && $.trim(content) != ''
+        AppService.search(content)
 
   #FooterCtrl is Version
   .controller 'FooterCtrl', ($scope) ->
@@ -28,15 +35,6 @@ define ['angular'], ->
   #HomeCtrl is first page
   .controller 'HomeCtrl', ($scope, User) ->
     $scope.name = 'baby'
-
-    user = User.get({id: 1},
-    (response)->
-      console.log response
-    ,
-    (error)->
-      console.log error)
-
-    #console.log(user)
 
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
@@ -66,3 +64,6 @@ define ['angular'], ->
   .controller 'SigninCtrl', ($scope, UserService) ->
     $scope.post = (user) ->
       UserService.signin(user)
+
+  .controller 'AboutCtrl',($scope)->
+    $scope.organize='Icedog'
