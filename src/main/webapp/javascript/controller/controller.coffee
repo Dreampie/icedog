@@ -1,4 +1,4 @@
-define ['angular'], ->
+define ['angular', 'css!style/app/signin'], ->
   'use strict'
   angular.module('controller', [])
 
@@ -7,6 +7,7 @@ define ['angular'], ->
   angular.module('controller')
   #AppCtrl is base controller
   .controller 'AppCtrl', ($scope, Local, Alert, Breadcrumb)->
+    $scope.time = new Date().getTime()
     #messageNotification.pushForCurrentRoute('errors.route.changeError', 'error',{},{rejection: ''})
     $scope.local = Local
     if (!$.support.leadingWhitespace)
@@ -16,8 +17,8 @@ define ['angular'], ->
 
   #HeaderCtrl is Navbar
   .controller 'HeaderCtrl', ($scope, $log, $modal, AppService, UserService) ->
-    isAuthed = UserService.isAuthenticated()
-    if(isAuthed)
+    isAuth = UserService.isAuthenticated()
+    if isAuth
       $scope.menus = UserService.getUser().menus
     else
       $scope.menus = [
@@ -46,8 +47,6 @@ define ['angular'], ->
 
   #SignupCtrl is sign up page
   .controller 'SignupCtrl', ($scope, Email) ->
-    $scope.time = new Date().getTime()
-
     $scope.user =
       email: "example@hello.com"
       password: "123456"
@@ -62,8 +61,11 @@ define ['angular'], ->
 
   #SigninCtrl is sign in page
   .controller 'SigninCtrl', ($scope, UserService) ->
-    $scope.post = (user) ->
-      UserService.signin(user)
+    $scope.user = {username: '', password: ''}
 
-  .controller 'AboutCtrl',($scope)->
-    $scope.organize='Icedog'
+    $scope.singin = (user, captcha) ->
+      UserService.signin(user, captcha)
+      $scope.user = user
+
+  .controller 'AboutCtrl', ($scope)->
+    $scope.organize = 'Icedog'

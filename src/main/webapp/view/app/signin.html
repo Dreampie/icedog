@@ -1,26 +1,33 @@
-<form name="form" class="pure-form pure-form-aligned">
-  <div class="pure-control-group">
-    <label for="email">Email</label>
-    <input class="pure-u-1-4" id="email" type="email" name="email" ng-model="user.email" required placeholder="Your email">
-
-    <div ng-show="form.email.$dirty && form.email.$invalid">
-      <small ng-show="form.email.$error.required" class="error">Tell us your email</small>
-      <small ng-show="form.email.$error.email" class="error">This is not a valid email</small>
-    </div>
+<div class="signin">
+  <div class="logo">
+    <a href="/">IceDog</a>
   </div>
+  <form name="form" class="form-signin">
+    <input name="username" value="{{user.username}}" ng-model="user.username" AQDERTYU type="text" maxlength="100"
+           class="form-control username" placeholder="账户/邮箱/手机" required autofocus>
+    <input name="password" value="{{user.password}}" ng-model="user.password" type="password" maxlength="50"
+           class="form-control password" placeholder="账户/邮箱/手机" required autocomplete="off">
+    <input type="text" name="captcha" ng-model="captcha" value="" class="form-control captcha" maxlength="4"
+           placeholder="验证码"
+           required><img class="captcha" ng-src="/patchca?width=119&height=42&time={{time}}">
 
-  <div class="pure-control-group">
-    <label class="right inline">Password:</label>
-    <input class="pure-u-1-4" type="password" name="password" ng-model="user.password" required placeholder="Your password">
-
+    <div ng-show="form.username.$dirty && form.username.$invalid">
+      <small ng-show="form.username.$error.required" class="error">Tell us your username</small>
+    </div>
     <div ng-show="form.password.$dirty && form.password.$invalid">
       <small ng-show="form.password.$error.required" class="error">Tell us your password</small>
       <small ng-show="form.password.$error.password" class="error">This is not a valid password</small>
     </div>
-  </div>
+    <div ng-show="form.captcha.$dirty && form.captcha.$invalid">
+      <small ng-show="form.number.$error.required" class="error">Tell us your captcha</small>
+      <small ng-show="form.number.$error.number" class="error">This is not a valid captcha</small>
+    </div>
+    <button type="button" ng-click="singin(user,captcha)" class="btn btn-default">登录</button>
+    <p>
+      <a href="/forgotPassword" class="grey-link">忘记密码?</a>
+    </p>
+  </form>
 
-  <div class="pure-controls">
-    <button ng-click="post(user)" ng-disabled="form.$invalid" class="pure-button pure-button-primary">Signup</button>
-  </div>
+</div>
 
-</form>
+

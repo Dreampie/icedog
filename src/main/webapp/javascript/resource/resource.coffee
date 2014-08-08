@@ -7,8 +7,8 @@ define ['angular', 'angular-resource'], ->
   angular.module('resource')
   #user model
   .factory 'User', ($http)->
-    signin: (user, success, error)->
-      $http.get('/signin', {user: user}).success(success).error(error)
+    signin: (user, captcha, success, error)->
+      $http.get('/signin', {user: user, captcha: captcha}).success(success).error(error)
     signout: (success, error)->
       $http.get('/signout').success(success).error(error)
     signup: (user, success, error)->

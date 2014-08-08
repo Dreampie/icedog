@@ -6,38 +6,55 @@
 
 // ------------------------ GRADIENTS
 .gradient(@from:#000, @to:#EEE) {
-    background: @from;
-    background-image: -webkit-gradient(linear, left top, left bottom, from(@from), to(@to));
-    background-image: -moz-linear-gradient(top, @from, @to);
+  background: @from;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(@from), to(@to));
+  background-image: -moz-linear-gradient(top, @from, @to);
 }
 
 // ---------------------- TRANSITIONS
 .transition(@range: all, @time: 500ms, @ease: ease-in-out) {
-    -moz-transition: @range @time @ease;
-    -webkit-transition: @range @time @ease;
-    -o-transition: @range @time @ease;
-    transition: @range @time @ease;
+  -moz-transition: @range @time @ease;
+  -webkit-transition: @range @time @ease;
+  -o-transition: @range @time @ease;
+  transition: @range @time @ease;
+}
+
+//-------------------------ANIMATION
+.animation(@name:rave,@time:500ms,@count:infinite) {
+  animation: @name @time @count;
+  -moz-animation: @name @time @count;
+  -webkit-animation: @name @time @count;
 }
 
 // ------------------------ TRANSFORMS
 .transform(@props) {
-    -moz-transform: @arguments;
-    -webkit-transform: @arguments;
-    -o-transform: @arguments;
-    transform: @arguments;
+  -moz-transform: @arguments;
+  -webkit-transform: @arguments;
+  -o-transform: @arguments;
+  transform: @arguments;
 }
 
 // --------------------------- HELPERS
 .ellipsis() {
-   white-space: nowrap;
-   text-overflow: ellipsis;
-   overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 
 .clear() {
-    &:after {
-        display: block;
-        content: " ";
-        clear: both;
-    }
+  &:after {
+    display: block;
+    content: " ";
+    clear: both;
+  }
+}
+
+//----------------------------------BOXSHADOW
+.box-shadow(@style, @c) when (iscolor(@c)) {
+  -webkit-box-shadow: @style @c;
+  box-shadow: @style @c;
+}
+
+.box-shadow(@style, @alpha: 50%) when (isnumber(@alpha)) {
+  .box-shadow(@style, rgba(0, 0, 0, @alpha));
 }
