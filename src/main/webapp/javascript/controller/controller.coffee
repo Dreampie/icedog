@@ -10,6 +10,7 @@ define ['angular', 'css!style/app/signin'], ->
     $scope.time = new Date().getTime()
     #messageNotification.pushForCurrentRoute('errors.route.changeError', 'error',{},{rejection: ''})
     $scope.local = Local
+
     if (!$.support.leadingWhitespace)
       Alert.addAlert({type: 'danger', msg: "Error - " + Local.get('message', 'errors.browser.ieSupportError')})
 
@@ -48,7 +49,7 @@ define ['angular', 'css!style/app/signin'], ->
   #SignupCtrl is sign up page
   .controller 'SignupCtrl', ($scope, Email) ->
     $scope.user =
-      email: "example@hello.com"
+      username: "example@hello.com"
       password: "123456"
 
     $scope.create = (user, captcha) ->
@@ -64,8 +65,8 @@ define ['angular', 'css!style/app/signin'], ->
     $scope.user = {username: '', password: ''}
 
     $scope.singin = (user, captcha) ->
-      UserService.signin(user, captcha)
       $scope.user = user
+      UserService.signin(user, captcha)
 
   .controller 'AboutCtrl', ($scope)->
     $scope.organize = 'Icedog'

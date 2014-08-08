@@ -1,5 +1,5 @@
 define ['angular', 'angular-route', 'angular-cookies', 'angular-animate', 'angular-ui-bootstrap-tpls', 'local',
-        'controller','service', 'resource', 'filter', 'directive'],
+        'controller', 'service', 'resource', 'filter', 'directive'],
 ->
   'use strict'
   angular.module('app',
@@ -44,6 +44,7 @@ define ['angular', 'angular-route', 'angular-cookies', 'angular-animate', 'angul
 
         $q.reject(response)
 
+
     $routeProvider
     .when '/',
       templateUrl: 'view/app/home.html', controller: 'HomeCtrl'
@@ -54,4 +55,17 @@ define ['angular', 'angular-route', 'angular-cookies', 'angular-animate', 'angul
     .when '/about',
       templateUrl: 'view/app/about.html', controller: 'AboutCtrl'
     .otherwise
-      redirectTo: '/'
+        redirectTo: '/'
+
+
+  .run ($rootScope, $location,Local,Alert) ->
+    $rootScope.path = $location.path();
+
+    $rootScope.$on('$routeChangeSuccess', (newVal) ->
+      $rootScope.path = $location.path()
+      $('html, body').animate({scrollTop: '0px'}, 400, 'linear')
+    )
+
+    $rootScope.$on('$routeChangeError', (newVal) ->
+      Alert.addAlert({type: 'danger', msg: "Error - " + Local.get('message', 'errors.route.changeError')})
+    )

@@ -6,7 +6,7 @@ define ['angular'], ->
   #common service
   angular.module('service')
   #Breadcrumb  is site map
-  .factory 'Breadcrumb', ($rootScope, $location) ->
+  .factory 'Breadcrumb', ($rootScope, $location, $log) ->
     data = []
 
     $rootScope.$on '$routeChangeSuccess', ->
@@ -39,7 +39,10 @@ define ['angular'], ->
       console.log content
 
   .factory 'UserService', ($cookieStore, User, Alert)->
-    currentUser = $cookieStore.get('user') || { full_name: '访客'}
+    currentUser = $cookieStore.get('current_user') || { full_name: '访客'}
+
+    putUser: (user)->
+      $cookieStore.put('current_user', user)
 
     getUser: ->
       currentUser
@@ -49,10 +52,10 @@ define ['angular'], ->
         true
       else false
 
-    signin: (user, captcha)->
-      User.signin(user, captcha
-        (data)->
-          $cookieStore.put('user', data.user)
+    signin: (user)->
+      User.signin(user,
+      (data)->
+        $cookieStore.put('current_user', data.user)
       , (data)->
         switch data.shiroLoginFailure
           when 'UnknownUserException' then Alert.addAlert({type: 'danger', msg: '账户验证失败或已被禁用!'})
