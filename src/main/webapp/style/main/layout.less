@@ -21,12 +21,31 @@
   opacity: 1;
 }
 
+.breadcrumb {
+  border-radius: 0px;
+}
+
 .mainer {
   background: #E5E5E5;
-  padding: 46px 340px 0 100px;
+  @media (min-width: 1200px) {
+    padding: 46px 340px 0 100px;
+  }
+  @media (max-width: 1200px) {
+    padding: 46px 0 0 100px;
+  }
   height: 100%;
 }
 
-.breadcrumb {
-  border-radius: 0px;
+.content {
+  width: 100%;
+}
+
+.sidebar-right {
+  background: #333;
+  color: #E0E0E0;
+  height: 100%;
+  width: 340px;
+  position: absolute;
+  right: 0;
+  padding: 0 20px;
 }
