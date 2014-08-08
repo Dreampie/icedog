@@ -38,6 +38,7 @@
 }
 
 .content {
+  overflow: auto;
   width: 100%;
   height: 100%;
 }
@@ -49,7 +50,8 @@
   width: 340px;
   position: absolute;
   right: 0;
-  padding: 0 20px;
+  padding: 46px 20px 0 0;
+  margin-top: -46px;
 }
 
 .grey-link {
@@ -70,17 +72,17 @@
   background-color: #e7e7e7;
   border-color: #dadada;
   border-radius: 0px;
-  &:hover{
-    color:#333;
+  &:hover {
+    color: #333;
     background-color: #d3d3d3;
-    border-color:#bbb;
+    border-color: #bbb;
   }
   //  color: #ffffff;
   //  background-color: #c17702;
   //  border-color: #935b01;
 }
 
-.back-top{
+.back-top {
   font-size: 50px;
   position: fixed;
   bottom: 50px;
@@ -90,7 +92,7 @@
   cursor: pointer;
   z-index: 999;
   color: #c17702;
-  &:hover{
+  &:hover {
     color: #e99002;
     .transition(all, 0.5s, ease);
   }
