@@ -6,15 +6,19 @@ define ['angular', 'css!style/app/signin'], ->
   #common controller
   angular.module('controller')
   #AppCtrl is base controller
-  .controller 'AppCtrl', ($scope, Local, Alert, Breadcrumb)->
-    $scope.time = new Date().getTime()
+  .controller 'AppCtrl', ($scope, Local, Alert, Breadcrumb, UserService)->
     #messageNotification.pushForCurrentRoute('errors.route.changeError', 'error',{},{rejection: ''})
     $scope.local = Local
+
+    $scope.user = UserService.getUser()
 
     if (!$.support.leadingWhitespace)
       Alert.addAlert({type: 'danger', msg: "Error - " + Local.get('message', 'errors.browser.ieSupportError')})
 
     $scope.breadcrumb = Breadcrumb
+
+    $scope.signout = ->
+      UserService.signout()
 
   #HeaderCtrl is Navbar
   .controller 'HeaderCtrl', ($scope, $log, $modal, AppService, UserService) ->
@@ -29,8 +33,10 @@ define ['angular', 'css!style/app/signin'], ->
     $scope.search = (content)->
       if content && $.trim(content) != ''
         AppService.search(content)
+      else
 
-  #FooterCtrl is Version
+
+        #FooterCtrl is Version
   .controller 'FooterCtrl', ($scope) ->
     $scope.foot = 'foot'
 

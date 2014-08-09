@@ -8,17 +8,17 @@ define ['angular', 'angular-resource'], ->
   #user model
   .factory 'User', ($http)->
     signin: (user, captcha, success, error)->
-      $http.get('/signin', {user: user, captcha: captcha}).success(success).error(error)
+      $http.post('/signin', {username: user.username, password: user.password, captcha: captcha}).success(success).error(error)
     signout: (success, error)->
       $http.get('/signout').success(success).error(error)
     signup: (user, success, error)->
-      $http.get('/signup', {user: user}).success(success).error(error)
+      $http.post('/signup', {user: user}).success(success).error(error)
     get: (user, success, error)->
       $http.get('/user/get/' + user.id).success(success).error(error)
     save: (user, success, error)->
       $http.post('/user/save', {user: user}).success(success).error(error)
     delete: (user, success, error)->
-      $http.delete('/user/delete/' + user.id).success(success).error(error)
+      $http.get('/user/delete/' + user.id).success(success).error(error)
     update: (user, success, error)->
       $http.post('/user/update', {user: user}).success(success).error(error)
     query: (user, success, error)->

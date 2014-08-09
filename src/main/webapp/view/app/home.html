@@ -1,6 +1,6 @@
 <div>
   {{local.get('resource', 'javascript')}}
-  <hello hello-title='name'><h1>Hello, {{name}}!</h1></hello>
+  <hello hello-name='user.full_name'><h1>Hello, {{name}}!</h1></hello>
   <p>You now have</p>
   <ul>
     <li ng-repeat="thing in awesomeThings">{{thing | firstUpperCase}}</li>
@@ -9,6 +9,6 @@
 
   <a href="/signup" class="pure-button pure-button-primary">Sign Up</a>
   <a href="/signin" class="pure-button pure-button-primary">Sign In</a>
-
+  <a href="#" ng-click="signout()" class="pure-button pure-button-primary">Sign Out</a>
   <p style="height:10000px"></p>
 </div>

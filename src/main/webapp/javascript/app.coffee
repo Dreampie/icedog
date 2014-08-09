@@ -28,6 +28,15 @@ define ['angular', 'angular-route', 'angular-cookies', 'angular-animate', 'angul
     #$resourceProvider.defaults.stripTrailingSlashes = false
     $httpProvider.defaults.headers.common =
       'x-Requested-With': 'XMLHttpRequest'
+
+    contentType = 'application/x-www-form-urlencoded;charset=utf-8'
+    #Use x-www-form-urlencoded Content-Type
+    $httpProvider.defaults.headers.post['Content-Type'] = contentType
+    $httpProvider.defaults.headers.post['Content-Type'] = contentType
+    $httpProvider.defaults.transformRequest = (data)->
+      if data
+        $.param(data)
+
     #异常过滤
     $httpProvider.interceptors.push ($q, $location, Local, Alert)->
       responseError: (response) ->

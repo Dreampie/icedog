@@ -11,11 +11,10 @@
     </ul>
   </nav>
 
-  <header headroom class="header headroom" role="banner">
+  <header headroom tolerance='5' offset='50' class="header headroom" role="banner">
     <div class="search-form">
-      <form name="search-form" method="GET" role="search" ng-init="focusSearch=false">
-        <input type="search" name="content" ng-show="focusSearch" ng-model="content" required
-               auto-focus="{{focusSearch}}">
+      <form name="search-form" method="GET" role="search" ng-init="showFocus=false">
+        <input type="search" name="content" ng-show="showFocus" ng-model="content" required focus-me="showFocus">
       </form>
     </div>
     <ul>
@@ -25,7 +24,7 @@
       <li>
         <a class="nav-rss" href="/feed" target="_blank"><span class="fa fa-rss"></span></a>
       </li>
-      <li><a ng-click="focusSearch=true;search(content)" href="#"><span class="fa fa-search"></span></a></li>
+      <li><a ng-click="showFocus=!showFocus;search(content)" href="#"><span class="fa fa-search"></span></a></li>
     </ul>
   </header>
 </div>

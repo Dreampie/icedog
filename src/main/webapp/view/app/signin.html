@@ -9,18 +9,21 @@
            class="form-control password" placeholder="密码" required autocomplete="off">
     <!--img  must no change row-->
     <input type="text" name="captcha" ng-model="captcha" value="" class="form-control captcha" maxlength="4"
-           placeholder="验证码" required><img class="captcha" ng-src="/patchca?width=119&height=42&time={{time}}">
+           placeholder="验证码" required><captcha></captcha>
+    <!--<img class="captcha" ng-src="/patchca?width=119&height=42&time={{time}}">-->
 
-    <div ng-show="form.username.$dirty && form.username.$invalid">
-      <small ng-show="form.username.$error.required" class="error">Tell us your username</small>
-    </div>
-    <div ng-show="form.password.$dirty && form.password.$invalid">
-      <small ng-show="form.password.$error.required" class="error">Tell us your password</small>
-      <small ng-show="form.password.$error.password" class="error">This is not a valid password</small>
-    </div>
-    <div ng-show="form.captcha.$dirty && form.captcha.$invalid">
-      <small ng-show="form.captcha.$error.required" class="error">Tell us your captcha</small>
-      <small ng-show="form.captcha.$error.number" class="error">This is not a valid captcha</small>
+    <div class="error">
+      <div ng-show="form.username.$dirty && form.username.$invalid">
+        <small ng-show="form.username.$error.required" class="error">Tell us your username</small>
+      </div>
+      <div ng-show="form.password.$dirty && form.password.$invalid">
+        <small ng-show="form.password.$error.required" class="error">Tell us your password</small>
+        <small ng-show="form.password.$error.password" class="error">This is not a valid password</small>
+      </div>
+      <div ng-show="form.captcha.$dirty && form.captcha.$invalid">
+        <small ng-show="form.captcha.$error.required" class="error">Tell us your captcha</small>
+        <small ng-show="form.captcha.$error.number" class="error">This is not a valid captcha</small>
+      </div>
     </div>
     <button type="button" ng-click="singin(user,captcha)" ng-disabled="form.$invalid" class="btn btn-default">登录</button>
     <p>

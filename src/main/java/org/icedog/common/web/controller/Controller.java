@@ -87,7 +87,7 @@ public class Controller extends com.jfinal.core.Controller {
    * 验证码
    */
   public void patchca() {
-    int width = 0, height = 0, minnum = 0, maxnum = 0;
+    int width = 0, height = 0, minnum = 0, maxnum = 0, fontsize = 0, fontmin = 0, fontmax = 0;
     if (isParaExists("width")) {
       width = getParaToInt("width");
     }
@@ -100,7 +100,20 @@ public class Controller extends com.jfinal.core.Controller {
     if (isParaExists("maxnum")) {
       maxnum = getParaToInt("maxnum");
     }
-    render(new PatchcaRender(minnum, maxnum, width, height));
+
+    if (isParaExists("fontsize")) {
+      fontsize = getParaToInt("fontsize");
+      render(new PatchcaRender(minnum, maxnum, width, height, fontsize));
+    } else {
+      if (isParaExists("fontmin")) {
+        fontmin = getParaToInt("fontmin");
+      }
+      if (isParaExists("fontmax")) {
+        fontmax = getParaToInt("fontmax");
+      }
+      render(new PatchcaRender(minnum, maxnum, width, height, fontmin, fontmax));
+    }
+
   }
 
   @Before({RootValidator.SignupEmailValidator.class, Tx.class})

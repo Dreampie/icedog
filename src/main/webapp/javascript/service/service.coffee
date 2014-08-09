@@ -38,30 +38,33 @@ define ['angular'], ->
     search: (content)->
       console.log content
 
-  .factory 'UserService', ($cookieStore, User, Alert)->
-    currentUser = $cookieStore.get('current_user') || { full_name: '访客'}
+  .factory 'UserService', ($cookieStore, $location, User, Alert)->
+    currentUser = $cookieStore.get('current_user')
 
     putUser: (user)->
-      $cookieStore.put('current_user', user)
+      if user
+        $cookieStore.put('current_user', user)
 
     getUser: ->
-      currentUser
+      currentUser || { full_name: '访客'}
 
     isAuthenticated: ->
-      if currentUser.username
+      if currentUser
         true
       else false
 
-    signin: (user)->
-      User.signin(user,
+    signin: (user, captcha)->
+      User.signin(user, captcha,
       (data)->
-        $cookieStore.put('current_user', data.user)
-      , (data)->
-        switch data.shiroLoginFailure
-          when 'UnknownUserException' then Alert.addAlert({type: 'danger', msg: '账户验证失败或已被禁用!'})
-          when 'IncorrectCaptchaException' then Alert.addAlert({type: 'danger', msg: '验证码错误!'})
-          else
-            Alert.addAlert({type: 'danger', msg: '账户验证失败或已被禁用!'})
+        if data.user
+          $cookieStore.put('current_user', data.user)
+          $location.path('/')
+        else
+          switch data.shiroLoginFailure
+            when 'UnknownUserException' then Alert.addAlert({type: 'danger', msg: '账户验证失败或已被禁用!'})
+            when 'IncorrectCaptchaException' then Alert.addAlert({type: 'danger', msg: '验证码错误!'})
+            else
+              Alert.addAlert({type: 'danger', msg: '账户验证失败或已被禁用!'})
       )
 
     signup: (user)->
@@ -74,6 +77,7 @@ define ['angular'], ->
     signout: ->
       User.signout(
         (data)->
-
+          $cookieStore.remove('current_user')
+          $location.path('/')
       , (data)->
       )

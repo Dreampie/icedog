@@ -19,7 +19,7 @@
     <dependency>
       <groupId>cn.dreampie</groupId>
       <artifactId>jfinal-dreampie</artifactId>
-      <version>0.2</version>
+      <version>0.2.1</version>
     </dependency>
     <!--webjars-->
     <dependency>
