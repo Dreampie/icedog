@@ -60,7 +60,19 @@
   }
 }
 
-.top-nav {
+.headroom {
+  .transition(all, 200ms, linear)
+}
+
+.headroom--pinned {
+  .transform(translateY(0%))
+}
+
+.headroom--unpinned {
+  .transform(translateY(-100%))
+}
+
+.header {
   color: #FFF;
   background: #2A2A2A;
   padding-left: 100px;
@@ -111,6 +123,7 @@
     left: 100px;
     position: absolute;
     input {
+      .box-shadow(0 0 0 3px #D98218, 75%);
       background: #222;
       border: none;
       font-size: 20px;

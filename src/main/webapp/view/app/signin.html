@@ -9,7 +9,7 @@
            class="form-control password" placeholder="密码" required autocomplete="off">
     <!--img  must no change row-->
     <input type="text" name="captcha" ng-model="captcha" value="" class="form-control captcha" maxlength="4"
-           placeholder="验证码" required><img class="captcha" src="/patchca?width=119&height=42&time={{time}}">
+           placeholder="验证码" required><img class="captcha" ng-src="/patchca?width=119&height=42&time={{time}}">
 
     <div ng-show="form.username.$dirty && form.username.$invalid">
       <small ng-show="form.username.$error.required" class="error">Tell us your username</small>

@@ -1,9 +1,9 @@
-define ['angular', 'angular-route', 'angular-cookies', 'angular-animate', 'angular-ui-bootstrap-tpls', 'local',
+define ['angular', 'angular-route', 'angular-cookies', 'angular-animate', 'angular-ui-bootstrap-tpls', 'angular-headroom', 'local',
         'controller', 'service', 'resource', 'filter', 'directive'],
 ->
   'use strict'
   angular.module('app',
-    ['ngRoute', 'ngCookies', 'ui.bootstrap', 'ngAnimate' , 'local', 'controller', 'service', 'resource',
+    ['ngRoute', 'ngCookies', 'ngAnimate' , 'ui.bootstrap', 'headroom', 'local', 'controller', 'service', 'resource',
      'filter', 'directive'])
 
   #config app
@@ -58,12 +58,12 @@ define ['angular', 'angular-route', 'angular-cookies', 'angular-animate', 'angul
         redirectTo: '/'
 
 
-  .run ($rootScope, $location,Local,Alert) ->
+  .run ($rootScope, $location, Local, Alert) ->
     $rootScope.path = $location.path();
 
     $rootScope.$on('$routeChangeSuccess', (newVal) ->
-      $rootScope.path = $location.path()
       $('html, body').animate({scrollTop: '0px'}, 400, 'linear')
+      $rootScope.path = $location.path()
     )
 
     $rootScope.$on('$routeChangeError', (newVal) ->

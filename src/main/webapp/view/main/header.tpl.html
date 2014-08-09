@@ -11,7 +11,7 @@
     </ul>
   </nav>
 
-  <nav headroom class="top-nav">
+  <header headroom class="header headroom" role="banner">
     <div class="search-form">
       <form name="search-form" method="GET" role="search" ng-init="focusSearch=false">
         <input type="search" name="content" ng-show="focusSearch" ng-model="content" required
@@ -27,5 +27,5 @@
       </li>
       <li><a ng-click="focusSearch=true;search(content)" href="#"><span class="fa fa-search"></span></a></li>
     </ul>
-  </nav>
+  </header>
 </div>

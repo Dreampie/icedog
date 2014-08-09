@@ -14,8 +14,8 @@ require.config
     'firebase': ['https://cdn.firebase.com/v0/firebase', 'webjars/firebase/1.0.17/firebase']
     'angularfire': 'webjars/angularFire/0.7.1/angularfire.min'
   #'domReady': 'webjars/requirejs-domready/2.0.1/domReady'
-    'headroom':['http://cdn.jsdelivr.net/headroomjs/0.7.0/headroom.min','javascript/lib/headroom.min']
-    'angular-headroom':['http://cdn.jsdelivr.net/headroomjs/0.7.0/angular.headroom.min','javascript/lib/angular.headroom.min']
+    'headroom': ['http://cdn.jsdelivr.net/headroomjs/0.7.0/headroom.min', 'javascript/lib/headroom.min']
+    'angular-headroom': ['http://cdn.jsdelivr.net/headroomjs/0.7.0/angular.headroom.min', 'javascript/lib/angular.headroom.min']
 
     'app': 'javascript/app'
     'controller': 'javascript/controller/controller'
@@ -40,7 +40,7 @@ require.config
     'angular-ui-bootstrap-tpls': ['angular']
     'angularfire': ['angular', 'firebase']
 
-    'angular-headroom':['headroom']
+    'angular-headroom': ['angular','headroom']
 
 
     'controller': ['css!webjars/bootstrap/3.2.0/css/bootstrap.min', 'css!webjars/font-awesome/4.1.0/css/font-awesome.min',
@@ -49,7 +49,7 @@ require.config
     '*':
       'css': 'webjars/require-css/0.1.4/css' #or whatever the path to require-css is
 
-require ['jQuery', 'app','angular-headroom'], ->
+require ['jQuery', 'app'], ->
   $ ->
     angular.bootstrap document, ['app']
     $('html').addClass('ng-app: app')

@@ -25,18 +25,18 @@
 </head>
 <body>
 <!--header-->
-<div class="header" ng-include="'view/main/header.tpl.html'"></div>
+<div ng-include="'view/main/header.tpl.html'"></div>
 
 <div class="mainer">
   <div class="content pull-left">
     <!--breadcrumb-->
     <div ng-include="'view/main/breadcrumb.tpl.html'"></div>
     <!--alert-->
-    <div ng-include="'view/main/alert.tpl.html'" class="container-fluid"></div>
+    <div ng-include="'view/main/alert.tpl.html'"></div>
     <!--content-->
     <div ng-view class="container-fluid"></div>
   </div>
-  <div ng-include="'view/main/sidebar-right.tpl.html'" class="sidebar-right pull-left visible-lg"></div>
+  <div ng-include="'view/main/sidebar-right.tpl.html'"></div>
 </div>
 
 <!--footer-->
@@ -45,5 +45,9 @@
 <!-- build:js javascript/main.js -->
 <script data-main="/javascript/main" src="/webjars/requirejs/2.1.14/require.min.js" charset="utf-8"></script>
 <!-- endbuild -->
+<!--[if lt IE 9]>
+<script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+<script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
 </body>
 </html>
