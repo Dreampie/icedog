@@ -17,23 +17,28 @@ define ['angular'], ->
   .directive 'backTop', ->
     restrict: 'EA'
     replace: true #replace hello tag
-    template:
-      '<a class="back-top fa fa-angle-up" href="#" ng-show="showBack"></a>'
+    template: '<a class="back-top fa fa-angle-up" href="#"></a>'
     link: (scope, element, attrs) ->
-      scope.showBack = false
+      attrs.$observe("backTop", ->
+        showBack = false
 
-      $(window).scroll(->
-        scope.$apply(->
+        $(window).scroll(->
           if ($(window).scrollTop() > 100)
-            scope.showBack = true
+            if (!showBack)
+              showBack = true
+              #$(element)['fadeIn'](200)
+              $(element).fadeIn(200)
           else
-            scope.showBack = false
+            if showBack
+              showBack = false
+              #$(element)['fadeOut'](200)
+              $(element).fadeOut(200)
         )
-      )
 
-      $(element).click(->
-        $('html, body').animate({scrollTop: '0px'}, 400, 'linear')
-        scope.showBack = false
+        $(element).click((e)->
+          e.preventDefault()
+          $('html, body').animate({scrollTop: '0px'}, 400, 'linear')
+        )
       )
 
   .directive 'hello', ->

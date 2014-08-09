@@ -34,16 +34,18 @@
     padding: 46px 0 0 100px;
   }
   height: 100%;
-  min-height: 1000px;
+//  min-height: 1000px;
+//  overflow: auto;
 }
 
 .content {
-  overflow: auto;
+  float: left;
   width: 100%;
   height: 100%;
 }
 
 .sidebar-right {
+  float: left;
   background: #333;
   color: #E0E0E0;
   height: 100%;
@@ -83,12 +85,12 @@
 }
 
 .back-top {
+  display: none;
   font-size: 50px;
   position: fixed;
   bottom: 50px;
   right: 40px;
   top: auto;
-  display: block;
   cursor: pointer;
   z-index: 999;
   color: #c17702;
