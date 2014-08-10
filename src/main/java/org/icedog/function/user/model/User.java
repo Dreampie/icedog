@@ -68,4 +68,8 @@ public class User extends cn.dreampie.common.model.User<User> {
     return result;
   }
 
+  public User findInfoBy(String where, Object... paras) {
+    User result = dao.findFirst(SqlKit.sql("user.findInfoBySelect") + SqlKit.sql("user.findInfoByExceptSelect") + getWhere(where), paras);
+    return result;
+  }
 }

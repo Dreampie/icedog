@@ -35,29 +35,32 @@ define ['angular'], ->
       data[0] || {}
 
   .factory 'AppService', ->
-    search: (content)->
+    searchAll: (content)->
       console.log content
 
   .factory 'UserService', ($cookieStore, $location, User, Alert)->
-    currentUser = $cookieStore.get('current_user')
+    guestUser = { full_name: '访客', isAuthed: false}
+    currentUser = $cookieStore.get('current_user') || guestUser
+    #    isAuthenticated = !!(currentUser.id)
 
-    putUser: (user)->
-      if user
-        $cookieStore.put('current_user', user)
+    authUtils =
+      changeUser: (user)->
+        if user
+#          isAuthenticated=true
+          user.isAuthed = true
+          $cookieStore.put('current_user', user)
+          angular.extend(currentUser || {}, user)
+      removeUser: ->
+#        isAuthenticated=false
+        $cookieStore.remove('current_user')
+        angular.extend(currentUser || {}, guestUser)
 
-    getUser: ->
-      currentUser || { full_name: '访客'}
-
-    isAuthenticated: ->
-      if currentUser
-        true
-      else false
 
     signin: (user, captcha)->
       User.signin(user, captcha,
       (data)->
         if data.user
-          $cookieStore.put('current_user', data.user)
+          authUtils.changeUser(data.user)
           $location.path('/')
         else
           switch data.shiroLoginFailure
@@ -74,10 +77,13 @@ define ['angular'], ->
       , (data)->
       )
 
-    signout: ->
+    signout: (outpath)->
       User.signout(
         (data)->
-          $cookieStore.remove('current_user')
-          $location.path('/')
+          authUtils.removeUser()
+          $location.path(outpath || '/')
       , (data)->
       )
+
+    user: currentUser
+#    isAuthed:isAuthenticated

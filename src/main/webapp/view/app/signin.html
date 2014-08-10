@@ -3,34 +3,39 @@
     <a href="/">IceDog</a>
   </div>
   <form name="form" class="form-signin">
-    <input name="username" value="" ng-model="user.username" AQDERTYU type="text" maxlength="100"
-           class="form-control username" placeholder="账户/邮箱/手机" required autofocus>
-    <input name="password" value="" ng-model="user.password" type="password" maxlength="50"
-           class="form-control password" placeholder="密码" required autocomplete="off">
-    <!--img  must no change row-->
-    <input type="text" name="captcha" ng-model="captcha" value="" class="form-control captcha" maxlength="4"
-           placeholder="验证码" required><captcha></captcha>
-    <!--<img class="captcha" ng-src="/patchca?width=119&height=42&time={{time}}">-->
+    <div ng-show="!isAuthed">
+      <input name="username" value="" ng-model="user.username" AQDERTYU type="text" maxlength="100"
+             class="form-control username" placeholder="账户/邮箱/手机" required autofocus>
+      <input name="password" value="" ng-model="user.password" type="password" maxlength="50"
+             class="form-control password" placeholder="密码" required autocomplete="off">
+      <!--img  must no change row-->
+      <input type="text" name="captcha" ng-model="captcha" value="" class="form-control captcha" maxlength="4"
+             placeholder="验证码" required><captcha></captcha>
+      <!--<img class="captcha" ng-src="/patchca?width=119&height=42&time={{time}}">-->
 
-    <div class="error">
-      <div ng-show="form.username.$dirty && form.username.$invalid">
-        <small ng-show="form.username.$error.required" class="error">Tell us your username</small>
+      <div class="error">
+        <div ng-show="form.username.$dirty && form.username.$invalid">
+          <small ng-show="form.username.$error.required" class="error">Tell us your username</small>
+        </div>
+        <div ng-show="form.password.$dirty && form.password.$invalid">
+          <small ng-show="form.password.$error.required" class="error">Tell us your password</small>
+          <small ng-show="form.password.$error.password" class="error">This is not a valid password</small>
+        </div>
+        <div ng-show="form.captcha.$dirty && form.captcha.$invalid">
+          <small ng-show="form.captcha.$error.required" class="error">Tell us your captcha</small>
+          <small ng-show="form.captcha.$error.number" class="error">This is not a valid captcha</small>
+        </div>
       </div>
-      <div ng-show="form.password.$dirty && form.password.$invalid">
-        <small ng-show="form.password.$error.required" class="error">Tell us your password</small>
-        <small ng-show="form.password.$error.password" class="error">This is not a valid password</small>
-      </div>
-      <div ng-show="form.captcha.$dirty && form.captcha.$invalid">
-        <small ng-show="form.captcha.$error.required" class="error">Tell us your captcha</small>
-        <small ng-show="form.captcha.$error.number" class="error">This is not a valid captcha</small>
-      </div>
+      <button type="button" ng-click="signin(user,captcha)" ng-disabled="form.$invalid" class="btn btn-default">登录</button>
+      <p>
+        <a href="/forgotPassword" class="grey-link">忘记密码?</a>
+      </p>
     </div>
-    <button type="button" ng-click="singin(user,captcha)" ng-disabled="form.$invalid" class="btn btn-default">登录</button>
-    <p>
-      <a href="/forgotPassword" class="grey-link">忘记密码?</a>
-    </p>
+    <div ng-show="isAuthed">
+      <div class="authed">{{user.full_name}}</div>
+      <button type="button" ng-click="signout('/signin')" class="btn btn-default">切换账号</button>
+    </div>
   </form>
-
 </div>
 
 

@@ -10,33 +10,32 @@ define ['angular', 'css!style/app/signin'], ->
     #messageNotification.pushForCurrentRoute('errors.route.changeError', 'error',{},{rejection: ''})
     $scope.local = Local
 
-    $scope.user = UserService.getUser()
+    $scope.user = UserService.user
 
     if (!$.support.leadingWhitespace)
       Alert.addAlert({type: 'danger', msg: "Error - " + Local.get('message', 'errors.browser.ieSupportError')})
 
     $scope.breadcrumb = Breadcrumb
 
-    $scope.signout = ->
-      UserService.signout()
+    $scope.signout =(outpath) ->
+      UserService.signout(outpath)
 
   #HeaderCtrl is Navbar
   .controller 'HeaderCtrl', ($scope, $log, $modal, AppService, UserService) ->
-    isAuth = UserService.isAuthenticated()
-    if isAuth
-      $scope.menus = UserService.getUser().menus
-    else
-      $scope.menus = [
-        {icon: 'user', name: 'About', url: '/about'}
-      ]
+    $scope.menus = [
+      {icon: 'user', name: 'About', url: '/about'}
+    ]
 
-    $scope.search = (content)->
+    if UserService.isAuthed
+      $scope.menus = UserService.user.menus || $scope.menus
+
+    $scope.showSearchFocus = false
+    $scope.searchAll = (content)->
       if content && $.trim(content) != ''
-        AppService.search(content)
-      else
+        AppService.searchAll(content)
 
 
-        #FooterCtrl is Version
+  #FooterCtrl is Version
   .controller 'FooterCtrl', ($scope) ->
     $scope.foot = 'foot'
 
@@ -68,10 +67,8 @@ define ['angular', 'css!style/app/signin'], ->
 
   #SigninCtrl is sign in page
   .controller 'SigninCtrl', ($scope, UserService) ->
-    $scope.user = {username: '', password: ''}
-
-    $scope.singin = (user, captcha) ->
-      $scope.user = user
+    $scope.isAuthed=UserService.user.isAuthed
+    $scope.signin = (user, captcha) ->
       UserService.signin(user, captcha)
 
   .controller 'AboutCtrl', ($scope)->

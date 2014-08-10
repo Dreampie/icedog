@@ -32,7 +32,7 @@ define ['angular', 'angular-route', 'angular-cookies', 'angular-animate', 'angul
     contentType = 'application/x-www-form-urlencoded;charset=utf-8'
     #Use x-www-form-urlencoded Content-Type
     $httpProvider.defaults.headers.post['Content-Type'] = contentType
-    $httpProvider.defaults.headers.post['Content-Type'] = contentType
+    $httpProvider.defaults.headers.put['Content-Type'] = contentType
     $httpProvider.defaults.transformRequest = (data)->
       if data
         $.param(data)
