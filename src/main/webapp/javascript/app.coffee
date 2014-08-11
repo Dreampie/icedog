@@ -1,4 +1,5 @@
-define ['angular', 'angular-route', 'angular-cookies', 'angular-animate', 'angular-ui-bootstrap-tpls', 'angular-headroom', 'local',
+define ['angular', 'angular-route', 'angular-cookies', 'angular-animate', 'angular-ui-bootstrap-tpls',
+        'angular-headroom', 'local',
         'controller', 'service', 'resource', 'filter', 'directive'],
 ->
   'use strict'

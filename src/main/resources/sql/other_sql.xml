@@ -8,14 +8,16 @@
       `userInfo`.zip_code zip_code,`province`.name province,`city`.name city,`county`.name
       county
     </sql>
-    <sql id="findFollowingInfoByExceptSelect">FROM follower `follower` LEFT JOIN sec_user `user` ON(`follower`.link_id=`user`.id)
+    <sql id="findFollowingInfoByExceptSelect">FROM follower `follower` LEFT JOIN sec_user `user`
+      ON(`follower`.link_id=`user`.id)
       LEFT JOIN sec_user_info `userInfo` ON(`user`.id=`userInfo`.id)
       LEFT JOIN com_area `province` ON(`userInfo`.province_id=`province`.id)
       LEFT JOIN com_area `city` ON(`userInfo`.city_id=`city`.id)
       LEFT JOIN com_area `county` ON(`userInfo`.county_id=`county`.id)
     </sql>
 
-    <sql id="findFollowerInfoByExceptSelect">FROM follower `follower` LEFT JOIN sec_user `user` ON(`follower`.user_id=`user`.id)
+    <sql id="findFollowerInfoByExceptSelect">FROM follower `follower` LEFT JOIN sec_user `user`
+      ON(`follower`.user_id=`user`.id)
       LEFT JOIN sec_user_info `userInfo` ON(`user`.id=`userInfo`.id)
       LEFT JOIN com_area `province` ON(`userInfo`.province_id=`province`.id)
       LEFT JOIN com_area `city` ON(`userInfo`.city_id=`city`.id)
@@ -25,7 +27,8 @@
 
   <sqlGroup name="blog">
     <sql id="findInfoBySelect">
-      SELECT `blog`.*,`user`.id user_id,`user`.full_name full_name,`department`.id department_id,`department`.name department_name
+      SELECT `blog`.*,`user`.id user_id,`user`.full_name full_name,`department`.id department_id,`department`.name
+      department_name
     </sql>
     <sql id="findInfoByExceptSelect">
       FROM blog `blog` LEFT JOIN sec_user `user` ON(`blog`.user_id=`user`.id)

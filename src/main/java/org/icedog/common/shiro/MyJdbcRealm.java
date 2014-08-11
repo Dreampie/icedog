@@ -1,4 +1,5 @@
 package org.icedog.common.shiro;
+
 import cn.dreampie.common.config.AppConstants;
 import cn.dreampie.common.util.SubjectUtils;
 import cn.dreampie.common.util.ValidateUtils;

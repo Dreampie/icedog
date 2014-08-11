@@ -3,7 +3,7 @@
     <a href="/">IceDog</a>
   </div>
   <form name="form" class="form-signin">
-    <div ng-show="!user.isAuthed">
+    <div ng-show="!currentUser.isAuthed">
       <input name="username" value="" ng-model="user.username" AQDERTYU type="text" maxlength="100"
              class="form-control username" placeholder="账户/邮箱/手机" required autofocus>
       <input name="password" value="" ng-model="user.password" type="password" maxlength="50"
@@ -26,13 +26,14 @@
           <small ng-show="form.captcha.$error.number" class="error">This is not a valid captcha</small>
         </div>
       </div>
-      <button type="button" ng-click="signin(user,captcha)" ng-disabled="form.$invalid" class="btn btn-default">登录</button>
+      <button type="button" ng-click="signin(user,captcha)" ng-disabled="form.$invalid" class="btn btn-default">登录
+      </button>
       <p>
         <a href="/forgotPassword" class="grey-link">忘记密码?</a>
       </p>
     </div>
-    <div ng-show="user.isAuthed">
-      <div class="authed">{{user.full_name}}</div>
+    <div ng-show="currentUser.isAuthed">
+      <div class="authed">{{currentUser.full_name}}</div>
       <button type="button" ng-click="signout('/signin')" class="btn btn-default">切换账号</button>
     </div>
   </form>

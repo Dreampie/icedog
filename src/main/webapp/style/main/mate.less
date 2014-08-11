@@ -58,3 +58,13 @@
 .box-shadow(@style, @alpha: 50%) when (isnumber(@alpha)) {
   .box-shadow(@style, rgba(0, 0, 0, @alpha));
 }
+
+.box-shadow(@style, @rgba) {
+  -webkit-box-shadow: @style @rgba;
+  box-shadow: @style @rgba;
+}
+
+.box-shadow(@style1, @rgba1,@style2, @rgba2) {
+  -webkit-box-shadow:inset @style1 @rgba1,@style2 @rgba2;
+  box-shadow:inset @style1 @rgba1,@style2 @rgba2;
+}

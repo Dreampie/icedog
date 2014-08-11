@@ -17,27 +17,25 @@ define ['angular'], ->
   .directive 'backTop', ->
     restrict: 'EA'
     replace: true #replace tag
-    template: '<a class="back-top fa fa-angle-up" href="#"></a>'
+    template: '<a ng-click="goTop()" class="back-top fa fa-angle-up" href="#"></a>'
     link: (scope, element, attrs) ->
       scope.showBack = false
+      scope.goTop = ->
+        $('html, body').animate({scrollTop: '0px'}, 400, 'linear')
+        scope.showBack
 
       $(window).scroll(->
         if ($(window).scrollTop() > 200)
           if (!scope.showBack)
             scope.showBack = true
-            #$(element)['fadeIn'](200)
             $(element).fadeIn(200)
         else
           if scope.showBack
             scope.showBack = false
-            #$(element)['fadeOut'](200)
             $(element).fadeOut(200)
       )
 
-      $(element).click((e)->
-        e.preventDefault()
-        $('html, body').animate({scrollTop: '0px'}, 400, 'linear')
-      )
+
   #captcha
   .directive 'captcha', ->
     restrict: 'EA'

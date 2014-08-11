@@ -9,16 +9,10 @@ define ['angular', 'css!style/app/signin'], ->
   .controller 'AppCtrl', ($scope, Local, Alert, Breadcrumb, UserService)->
     #messageNotification.pushForCurrentRoute('errors.route.changeError', 'error',{},{rejection: ''})
     $scope.local = Local
-
-    $scope.user = UserService.user
-
-    if (!$.support.leadingWhitespace)
-      Alert.addAlert({type: 'danger', msg: "Error - " + Local.get('message', 'errors.browser.ieSupportError')})
-
+    $scope.currentUser = UserService.currentUser
     $scope.breadcrumb = Breadcrumb
-
-    $scope.signout = (outpath,isReload) ->
-      UserService.signout(outpath,isReload)
+    $scope.signout = (outpath, isReload) ->
+      UserService.signout(outpath, isReload)
 
   #HeaderCtrl is Navbar
   .controller 'HeaderCtrl', ($scope, $log, $modal, AppService, UserService) ->

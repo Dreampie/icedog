@@ -1,8 +1,8 @@
-
 <form name="form" class="pure-form pure-form-aligned">
   <div class="pure-control-group">
     <label for="username">Email</label>
-    <input class="pure-u-1-4" id="username" type="email" name="username" ng-model="user.username" required placeholder="Your email">
+    <input class="pure-u-1-4" id="username" type="email" name="username" ng-model="user.username" required
+           placeholder="Your email">
 
     <div ng-show="form.username.$dirty && form.username.$invalid">
       <small ng-show="form.username.$error.required" class="error">Tell us your username</small>
@@ -11,7 +11,8 @@
 
   <div class="pure-control-group">
     <label class="right inline">Password:</label>
-    <input class="pure-u-1-4" type="password" name="password" ng-model="user.password" required placeholder="Your password">
+    <input class="pure-u-1-4" type="password" name="password" ng-model="user.password" required
+           placeholder="Your password">
 
     <div ng-show="form.password.$dirty && form.password.$invalid">
       <small ng-show="form.password.$error.required" class="error">Tell us your password</small>
@@ -21,7 +22,8 @@
 
   <div class="pure-control-group">
     <label class="right inline">Confirm Password:</label>
-    <input class="pure-u-1-4" type="password" name="confirm-password" ng-model="user.confirm_password" required placeholder="Confirm password">
+    <input class="pure-u-1-4" type="password" name="confirm-password" ng-model="user.confirm_password" required
+           placeholder="Confirm password">
 
     <div ng-show="form.password.$dirty && form.password.$invalid">
       <small ng-show="form.password.$error.required" class="error">Tell us your password</small>
@@ -41,7 +43,8 @@
   </div>
 
   <div class="pure-controls">
-    <button ng-click="create(user,captcha)" ng-disabled="form.$invalid" class="pure-button pure-button-primary">Signup</button>
+    <button ng-click="create(user,captcha)" ng-disabled="form.$invalid" class="pure-button pure-button-primary">Signup
+    </button>
   </div>
 
 </form>

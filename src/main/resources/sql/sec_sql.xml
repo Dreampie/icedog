@@ -43,18 +43,18 @@
 
   </sqlGroup>
 
-    <sqlGroup name="menu">
-        <sql id="findRoleByExceptSelect">FROM sec_menu `menu` WHERE `menu`.id IN (SELECT
-            `role_menu`.menu_id FROM sec_role_menu
-            `role_menu` WHERE `role_menu`.role_id=?)
-        </sql>
-    </sqlGroup>
+  <sqlGroup name="menu">
+    <sql id="findRoleByExceptSelect">FROM sec_menu `menu` WHERE `menu`.id IN (SELECT
+      `role_menu`.menu_id FROM sec_role_menu
+      `role_menu` WHERE `role_menu`.role_id=?)
+    </sql>
+  </sqlGroup>
 
-    <sqlGroup name="roleMenu">
+  <sqlGroup name="roleMenu">
 
-    </sqlGroup>
+  </sqlGroup>
 
-    <sqlGroup name="userMenu">
+  <sqlGroup name="userMenu">
 
-    </sqlGroup>
+  </sqlGroup>
 </sqlRoot>

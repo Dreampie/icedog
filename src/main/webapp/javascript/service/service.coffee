@@ -57,7 +57,7 @@ define ['angular'], ->
       (data)->
         if data['authc.FILTERED'] && data.user
           authUtils.changeUser(data.user)
-          console.log currentUser
+          #          console.log currentUser
           if(isReload)
             $window.location.href = outpath || '/'
           else
@@ -75,7 +75,7 @@ define ['angular'], ->
         (data)->
           if(data['signout.FILTERED'])
             authUtils.removeUser()
-            console.log currentUser
+            #            console.log currentUser
             if(isReload)
               $window.location.href = outpath || '/'
             else
@@ -87,6 +87,5 @@ define ['angular'], ->
     signup: (user)->
       User.signup(
         user, (data)->
-
       )
-    user: currentUser
+    currentUser: currentUser

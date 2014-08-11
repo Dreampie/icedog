@@ -23,31 +23,31 @@
 
   <!--gzip compress filter-->
   <!--<filter>-->
-    <!--<filter-name>gzipFilter</filter-name>-->
-    <!--<filter-class>cn.dreampie.common.web.filter.gzip.GZIPFilter</filter-class>-->
+  <!--<filter-name>gzipFilter</filter-name>-->
+  <!--<filter-class>cn.dreampie.common.web.filter.gzip.GZIPFilter</filter-class>-->
   <!--</filter>-->
   <!--<filter-mapping>-->
-    <!--<filter-name>gzipFilter</filter-name>-->
-    <!--<url-pattern>/*</url-pattern>-->
-    <!--<dispatcher>REQUEST</dispatcher>-->
-    <!--<dispatcher>FORWARD</dispatcher>-->
-    <!--<dispatcher>INCLUDE</dispatcher>-->
-    <!--<dispatcher>ERROR</dispatcher>-->
+  <!--<filter-name>gzipFilter</filter-name>-->
+  <!--<url-pattern>/*</url-pattern>-->
+  <!--<dispatcher>REQUEST</dispatcher>-->
+  <!--<dispatcher>FORWARD</dispatcher>-->
+  <!--<dispatcher>INCLUDE</dispatcher>-->
+  <!--<dispatcher>ERROR</dispatcher>-->
   <!--</filter-mapping>-->
   <!--gzip compress filter-->
 
   <!-- cache filter-->
   <!--<filter>-->
-    <!--<filter-name>cacheFilter</filter-name>-->
-    <!--<filter-class>cn.dreampie.common.web.filter.cache.CacheFilter</filter-class>-->
+  <!--<filter-name>cacheFilter</filter-name>-->
+  <!--<filter-class>cn.dreampie.common.web.filter.cache.CacheFilter</filter-class>-->
   <!--</filter>-->
   <!--<filter-mapping>-->
-    <!--<filter-name>cacheFilter</filter-name>-->
-    <!--<url-pattern>/*</url-pattern>-->
-    <!--<dispatcher>REQUEST</dispatcher>-->
-    <!--<dispatcher>FORWARD</dispatcher>-->
-    <!--<dispatcher>INCLUDE</dispatcher>-->
-    <!--<dispatcher>ERROR</dispatcher>-->
+  <!--<filter-name>cacheFilter</filter-name>-->
+  <!--<url-pattern>/*</url-pattern>-->
+  <!--<dispatcher>REQUEST</dispatcher>-->
+  <!--<dispatcher>FORWARD</dispatcher>-->
+  <!--<dispatcher>INCLUDE</dispatcher>-->
+  <!--<dispatcher>ERROR</dispatcher>-->
   <!--</filter-mapping>-->
   <!--cache filter-->
 
