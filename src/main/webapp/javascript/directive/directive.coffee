@@ -8,8 +8,8 @@ define ['angular'], ->
   #test hello tag show and hide
   .directive 'focusMe', ($timeout)->
     link: (scope, element, attrs) ->
-      scope.$watch("focusMe", (value)->
-        if value == "true"
+      scope.$watch(attrs.focusMe, (value)->
+        if value
           $timeout(->
             element[0].focus())
       )

@@ -26,8 +26,16 @@
   -webkit-animation: @name @time @count;
 }
 
+.transition-timing-function(@ease: ease-in-out){
+  -webkit-transition-timing-function:@ease;
+  -moz-transition-timing-function:@ease;
+  -ms-transition-timing-function: @ease;
+  -o-transition-timing-function:@ease;
+  transition-timing-function: @ease;
+}
 // ------------------------ TRANSFORMS
 .transform(@props) {
+  -ms-transform:@props;
   -moz-transform: @arguments;
   -webkit-transform: @arguments;
   -o-transform: @arguments;

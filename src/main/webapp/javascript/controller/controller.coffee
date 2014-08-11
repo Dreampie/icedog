@@ -11,19 +11,18 @@ define ['angular', 'css!style/app/signin'], ->
     $scope.local = Local
     $scope.currentUser = UserService.currentUser
     $scope.breadcrumb = Breadcrumb
-    $scope.signout = (outpath, isReload) ->
-      UserService.signout(outpath, isReload)
+    $scope.signout = (outpath) ->
+      UserService.signout(outpath)
 
   #HeaderCtrl is Navbar
   .controller 'HeaderCtrl', ($scope, $log, $modal, AppService, UserService) ->
     $scope.menus = [
-      {icon: 'user', name: 'About', url: '/about'}
+      {icon: 'info', name: 'About', url: '/about'}
     ]
 
     if UserService.isAuthed
       $scope.menus = UserService.user.menus || $scope.menus
 
-    $scope.showSearchFocus = false
     $scope.searchAll = (content)->
       if content && $.trim(content) != ''
         AppService.searchAll(content)

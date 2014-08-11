@@ -27,6 +27,9 @@ VALUES (sec_role_permission_id_seq.nextval,1,1),(sec_role_permission_id_seq.next
 
        (sec_role_permission_id_seq.nextval,4,5);
 
+INSERT INTO sec_menu(id, name, icon, url, intro,pid,left_code,right_code, created_at)
+VALUES (sec_menu_id_seq.nextval,'Center','user','/center','User Center',0,1,2,current_timestamp);
+
 --user data--
 --create  admin--
 INSERT INTO sec_user(id, username, providername, email, mobile, password, hasher, salt, avatar_url, first_name, last_name, full_name,department_id, created_at)
