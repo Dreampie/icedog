@@ -76,14 +76,15 @@
   //  .transform(translate3d(0px, 0px, 0px) scale3d(1, 1, 1));
   .transition(all, 400ms, cubic-bezier(.694, .0482, .335, 1));
   .transition-timing-function(cubic-bezier(.694, .0482, .335, 1));
+  .head{
+    padding: 25px 0 10px;
+  }
   .fa {
     color: #D98218;
     font-size: 50px;
     text-align: center;
     display: block;
     width: 100%;
-    margin-top: 15px;
-    margin-bottom: 10px;
   }
   h3 {
     text-align: center;
@@ -95,25 +96,28 @@
     list-style: none;
     padding: 0;
     margin: 20px 0 0;
+    li:nth-child(odd) {
+      border-right: 1px solid #1B1B1B;
+    }
     li {
-      width: 100%;
+      background: #545454;
+      display: inline-block;
+      width: 50%;
       color: #fff;
       text-align: center;
-      margin: 25px 0;
       a {
+        color: #fff;
         width: 100%;
         display: block;
-        height: 50px;
-        line-height: 50px;
-        padding: 0 !important;
-        font-size: 15px !important;
-        font-weight: 700 !important;
+        font-size: 14px !important;
         letter-spacing: 0.2em !important;
+        padding: 10px 0;
         .transition(all, 400ms, cubic-bezier(.694, .0482, .335, 1));
         .transition-timing-function(cubic-bezier(.694, .0482, .335, 1));
         &:hover {
-          color: #D98218;
           background: #2A2A2A;
+          text-decoration: none;
+          .transition(all, 0.5s, ease);
         }
       }
     }

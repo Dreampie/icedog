@@ -17,9 +17,21 @@ define ['angular', 'css!style/app/signin'], ->
   #HeaderCtrl is Navbar
   .controller 'HeaderCtrl', ($scope, $log, $modal, AppService, UserService) ->
     $scope.menus = [
-      {icon: 'user', name: 'Center', url: '/center',children: [{icon: 'user', name: 'Center', url: '/center',children:[]}]}
-      {icon: 'info', name: 'About', url: '/about',children: [{icon: 'info', name: 'About', url: '/about',children:[]}]}
+      {icon: 'user', name: 'Center', url: '/center'}
+      {icon: 'info', name: 'About', url: '/about'}
     ]
+    $scope.docks = [
+      {icon: 'user', name: 'Center', url: '/center'}
+      {icon: 'info', name: 'About', url: '/about'}
+    ]
+
+#    $scope.dockMenu=false
+#    $scope.showMenu=false
+#    $scope.showMenuCss=->
+#      show=$scope.dockMenu || $scope.showMenu
+#
+#      if($scope.dockMenu || $scope.showMenu) true
+
 #    console.log $scope.menus[0].children.length
     if UserService.isAuthed
       $scope.menus = UserService.user.menus || $scope.menus

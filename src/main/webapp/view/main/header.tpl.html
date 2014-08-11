@@ -1,26 +1,30 @@
-<div ng-controller="HeaderCtrl">
+<div ng-controller="HeaderCtrl" ng-init="dockMenusHover=false;showMenus=false">
 
   <nav class="left-nav">
     <ul>
       <li class="logo"><a href="/">IceDog</a></li>
-      <li ng-repeat="menu in menus" ng-init="showSubNav$index=false" ng-mouseenter="showSubNav$index=true" ng-mouseleave="showSubNav$index=false">
-        <a ng-href="{{menu.url}}">
-          <span class="fa fa-{{menu.icon}}"></span>{{menu.name}}
+      <li ng-repeat="dock in docks">
+        <a ng-href="{{dock.url}}">
+          <span class="fa fa-{{dock.icon}}"></span>{{dock.name}}
         </a>
-
-        <div ng-if="menu.children.length>0" ng-class="{true: 'sub-nav show-sub-nav', false: 'sub-nav'}[showSubNav$index]">
-          <span class="fa fa-{{menu.icon}}"></span>
-
-          <h3>{{menu.name}}</h3>
-          <ul>
-            <li ng-repeat="submenu in menu.children">
-              <a ng-href="{{submenu.url}}">{{submenu.name}}</a></li>
-          </ul>
-        </div>
-
+      </li>
+      <li ng-mouseenter="dockMenusHover=true" ng-mouseleave="dockMenusHover=false">
+        <a href="#">
+          <span class="fa fa-bars"></span>Menu
+        </a>
       </li>
     </ul>
   </nav>
+
+  <div ng-mouseenter="showMenus=true" ng-mouseleave="showMenus=false" ng-class="{true: 'sub-nav show-sub-nav', false: 'sub-nav'}[dockMenusHover || showMenus]">
+    <span class="fa fa-bars head"></span>
+
+    <h3>Menu</h3>
+    <ul>
+      <li ng-repeat="menu in menus">
+        <a ng-href="{{menu.url}}"><span class="fa fa-{{menu.icon}}"></span>{{menu.name}}</a></li>
+    </ul>
+  </div>
 
   <header headroom tolerance='5' offset='50' class="header headroom" role="banner" ng-init="showSearchFocus=false">
     <div class="search-form">
