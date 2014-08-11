@@ -38,7 +38,7 @@ define ['angular'], ->
     searchAll: (content)->
       console.log content
 
-  .factory 'UserService', ($cookieStore, $location, User, Alert)->
+  .factory 'UserService', ($cookieStore, $location, $window, User, Alert)->
     guestUser = { full_name: '访客', isAuthed: false}
     currentUser = $cookieStore.get('current_user') || guestUser
     #    isAuthenticated = !!(currentUser.id)
@@ -56,14 +56,17 @@ define ['angular'], ->
         angular.extend(currentUser || {}, guestUser)
 
 
-    signin: (user, captcha)->
+    signin: (user, captcha, outpath, isReload)->
       User.signin(user, captcha,
       (data)->
-        if data.user
+        if data['authc.FILTERED'] && data.user
           authUtils.changeUser(data.user)
-          $location.path('/')
+          if(isReload)
+            $window.location.href = outpath || '/'
+          else
+            $location.path(outpath || '/')
         else
-          switch data.shiroLoginFailure
+          switch data['shiroLoginFailure']
             when 'UnknownUserException' then Alert.addAlert({type: 'danger', msg: '账户验证失败或已被禁用!'})
             when 'IncorrectCaptchaException' then Alert.addAlert({type: 'danger', msg: '验证码错误!'})
             else
@@ -74,15 +77,19 @@ define ['angular'], ->
       User.signup(
         user, (data)->
 
-      , (data)->
       )
 
-    signout: (outpath)->
+    signout: (outpath, isReload)->
       User.signout(
         (data)->
-          authUtils.removeUser()
-          $location.path(outpath || '/')
-      , (data)->
+          if(data['signout.FILTERED'])
+            authUtils.removeUser()
+            if(isReload)
+              $window.location.href = outpath || '/'
+            else
+              $location.path(outpath || '/')
+          else
+            Alert.addAlert({type: 'danger', msg: '退出失败!'})
       )
 
     user: currentUser

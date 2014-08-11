@@ -17,8 +17,8 @@ define ['angular', 'css!style/app/signin'], ->
 
     $scope.breadcrumb = Breadcrumb
 
-    $scope.signout =(outpath) ->
-      UserService.signout(outpath)
+    $scope.signout = (outpath,isReload) ->
+      UserService.signout(outpath,isReload)
 
   #HeaderCtrl is Navbar
   .controller 'HeaderCtrl', ($scope, $log, $modal, AppService, UserService) ->
@@ -67,9 +67,8 @@ define ['angular', 'css!style/app/signin'], ->
 
   #SigninCtrl is sign in page
   .controller 'SigninCtrl', ($scope, UserService) ->
-    $scope.isAuthed=UserService.user.isAuthed
     $scope.signin = (user, captcha) ->
       UserService.signin(user, captcha)
-
+  #About me
   .controller 'AboutCtrl', ($scope)->
     $scope.organize = 'Icedog'
