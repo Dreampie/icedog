@@ -41,17 +41,14 @@ define ['angular'], ->
   .factory 'UserService', ($cookieStore, $location, $window, User, Alert)->
     guestUser = { full_name: '访客', isAuthed: false}
     currentUser = $cookieStore.get('current_user') || guestUser
-    #    isAuthenticated = !!(currentUser.id)
 
     authUtils =
       changeUser: (user)->
         if user
-#          isAuthenticated=true
           user.isAuthed = true
           $cookieStore.put('current_user', user)
           angular.extend(currentUser || {}, user)
       removeUser: ->
-#        isAuthenticated=false
         $cookieStore.remove('current_user')
         angular.extend(currentUser || {}, guestUser)
 
@@ -84,6 +81,7 @@ define ['angular'], ->
         (data)->
           if(data['signout.FILTERED'])
             authUtils.removeUser()
+            console.log currentUser
             if(isReload)
               $window.location.href = outpath || '/'
             else
@@ -93,4 +91,3 @@ define ['angular'], ->
       )
 
     user: currentUser
-#    isAuthed:isAuthenticated
