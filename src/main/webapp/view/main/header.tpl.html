@@ -8,7 +8,7 @@
           <span class="fa fa-{{dock.icon}}"></span>{{dock.name}}
         </a>
       </li>
-      <li ng-mouseenter="dockMenusHover=true" ng-mouseleave="dockMenusHover=false">
+      <li >
         <a href="#">
           <span class="fa fa-bars"></span>Menu
         </a>
@@ -16,13 +16,13 @@
     </ul>
   </nav>
 
-  <div ng-mouseenter="showMenus=true" ng-mouseleave="showMenus=false" ng-class="{true: 'sub-nav show-sub-nav', false: 'sub-nav'}[dockMenusHover || showMenus]">
+  <div class="sub-nav">
     <span class="fa fa-bars head"></span>
 
     <h3>Menu</h3>
     <ul>
       <li ng-repeat="menu in menus">
-        <a ng-href="{{menu.url}}"><span class="fa fa-{{menu.icon}}"></span>{{menu.name}}</a></li>
+        <a ng-click="hideMenus()" ng-href="{{menu.url}}"><span class="fa fa-{{menu.icon}}"></span>{{menu.name}}</a></li>
     </ul>
   </div>
 

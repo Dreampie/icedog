@@ -25,14 +25,16 @@ define ['angular', 'css!style/app/signin'], ->
       {icon: 'info', name: 'About', url: '/about'}
     ]
 
-#    $scope.dockMenu=false
-#    $scope.showMenu=false
-#    $scope.showMenuCss=->
-#      show=$scope.dockMenu || $scope.showMenu
-#
-#      if($scope.dockMenu || $scope.showMenu) true
+    $(".left-nav li:last a,.sub-nav").hover(->
+      $(".sub-nav").addClass("show-sub-nav")
+    , ->
+      $(".sub-nav").removeClass("show-sub-nav")
+    )
+    $scope.hideMenus = ->
+      $(".sub-nav").removeClass("show-sub-nav")
 
-#    console.log $scope.menus[0].children.length
+
+    #    console.log $scope.menus[0].children.length
     if UserService.isAuthed
       $scope.menus = UserService.user.menus || $scope.menus
 
