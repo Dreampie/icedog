@@ -103,17 +103,8 @@ public class Controller extends com.jfinal.core.Controller {
 
     if (isParaExists("fontsize")) {
       fontsize = getParaToInt("fontsize");
-      render(new PatchcaRender(minnum, maxnum, width, height, fontsize));
-    } else {
-      if (isParaExists("fontmin")) {
-        fontmin = getParaToInt("fontmin");
-      }
-      if (isParaExists("fontmax")) {
-        fontmax = getParaToInt("fontmax");
-      }
-      render(new PatchcaRender(minnum, maxnum, width, height, fontmin, fontmax));
     }
-
+    render(new PatchcaRender(minnum, maxnum, width, height, fontsize));
   }
 
   @Before({RootValidator.SignupEmailValidator.class, Tx.class})
