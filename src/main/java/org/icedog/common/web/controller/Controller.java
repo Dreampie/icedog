@@ -104,7 +104,10 @@ public class Controller extends com.jfinal.core.Controller {
     if (isParaExists("fontsize")) {
       fontsize = getParaToInt("fontsize");
     }
-    render(new PatchcaRender(minnum, maxnum, width, height, fontsize));
+    PatchcaRender captcha = new PatchcaRender(minnum, maxnum, width, height, fontsize);
+    //透明度  全透明验证码
+    captcha.setAlpha(0f);
+    render(captcha);
   }
 
   @Before({RootValidator.SignupEmailValidator.class, Tx.class})
