@@ -14,6 +14,9 @@ define ['angular', 'css!style/app/signin'], ->
     $scope.signout = (outpath) ->
       UserService.signout(outpath)
 
+#    if !$.support.leadingWhitespace
+#      Alert.addAlert({type: 'danger', msg: '不支持该浏览器，推荐使用最新版本以获得更好的体验!', keep: true})
+
   #HeaderCtrl is Navbar
   .controller 'HeaderCtrl', ($scope, $log, $modal, AppService, UserService) ->
     $scope.menus = [

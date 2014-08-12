@@ -3,20 +3,17 @@
 require.config
   baseUrl: '/'
   paths:
-    'jQuery': ['https://code.jquery.com/jquery-1.11.1.min', 'webjars/jquery/1.11.1/jquery.min']
-    'angular': ['http://cdn.bootcss.com/angular.js/1.3.0-beta.8/angular.min','webjars/angularjs/1.3.0-beta.17/angular.min']
-    'angular-route': ['http://cdn.bootcss.com/angular.js/1.3.0-beta.8/angular-route.min','webjars/angularjs/1.3.0-beta.17/angular-route.min']
-    'angular-resource': ['http://cdn.bootcss.com/angular.js/1.3.0-beta.8/angular-resource.min','webjars/angularjs/1.3.0-beta.17/angular-resource.min']
-    'angular-cookies': ['http://cdn.bootcss.com/angular.js/1.3.0-beta.8/angular-cookies.min','webjars/angularjs/1.3.0-beta.17/angular-cookies.min']
-    'angular-animate': ['http://cdn.bootcss.com/angular.js/1.3.0-beta.8/angular-animate.min','webjars/angularjs/1.3.0-beta.17/angular-animate.min']
+    'jQuery': ['//code.jquery.com/jquery-2.1.1.min', 'webjars/jquery/2.1.1/jquery.min']
+    'angular': ['//cdn.bootcss.com/angular.js/1.3.0-beta.8/angular.min','webjars/angularjs/1.3.0-beta.17/angular.min']
+    'angular-route': ['//cdn.bootcss.com/angular.js/1.3.0-beta.8/angular-route.min','webjars/angularjs/1.3.0-beta.17/angular-route.min']
+    'angular-resource': ['//cdn.bootcss.com/angular.js/1.3.0-beta.8/angular-resource.min','webjars/angularjs/1.3.0-beta.17/angular-resource.min']
+    'angular-cookies': ['//cdn.bootcss.com/angular.js/1.3.0-beta.8/angular-cookies.min','webjars/angularjs/1.3.0-beta.17/angular-cookies.min']
+    'angular-animate': ['//cdn.bootcss.com/angular.js/1.3.0-beta.8/angular-animate.min','webjars/angularjs/1.3.0-beta.17/angular-animate.min']
   #'angular-ui-bootstrap': 'webjars/angular-ui-bootstrap/0.11.0/ui-bootstrap.min'
-    'angular-ui-bootstrap-tpls': 'webjars/angular-ui-bootstrap/0.11.0/ui-bootstrap-tpls.min'
-    'firebase': ['https://cdn.firebase.com/v0/firebase', 'webjars/firebase/1.0.17/firebase']
-    'angularfire': 'webjars/angularFire/0.7.1/angularfire.min'
+    'angular-ui-bootstrap-tpls': ['//cdn.bootcss.com/angular-ui-bootstrap/0.11.0/ui-bootstrap-tpls.min','webjars/angular-ui-bootstrap/0.11.0/ui-bootstrap-tpls.min']
   #'domReady': 'webjars/requirejs-domready/2.0.1/domReady'
-    'headroom': ['http://cdn.jsdelivr.net/headroomjs/0.7.0/headroom.min', 'javascript/lib/headroom.min']
-    'angular-headroom': ['http://cdn.jsdelivr.net/headroomjs/0.7.0/angular.headroom.min',
-                         'javascript/lib/angular.headroom.min']
+    'headroom': ['//cdn.jsdelivr.net/headroomjs/0.7.0/headroom.min', 'javascript/lib/headroom.min']
+    'angular-headroom': ['//cdn.jsdelivr.net/headroomjs/0.7.0/angular.headroom.min','javascript/lib/angular.headroom.min']
 
     'app': 'javascript/app'
     'controller': 'javascript/controller/controller'
@@ -26,8 +23,8 @@ require.config
     'service': 'javascript/service/service'
     'local': 'javascript/common/local'
 
-#    'font-awesome-css':['css!http://cdn.bootcss.com/font-awesome/4.1.0/css/font-awesome.min','css!webjars/font-awesome/4.1.0/css/font-awesome.min']
-#    'bootstrap-css':['css!http://cdn.bootcss.com/bootstrap/3.2.0/css/bootstrap.min','css!webjars/bootstrap/3.2.0/css/bootstrap.min']
+#    'font-awesome-css':['css!//cdn.bootcss.com/font-awesome/4.1.0/css/font-awesome.min','css!webjars/font-awesome/4.1.0/css/font-awesome.min']
+#    'bootstrap-css':['css!//cdn.bootcss.com/bootstrap/3.2.0/css/bootstrap.min','css!webjars/bootstrap/3.2.0/css/bootstrap.min']
   #gt ie 9
 #    'es6-shim': 'webjars/es6-shim/0.12.0/es6-shim'
 #    'json3': 'webjars/json3/3.3.2/json3.min'
@@ -41,7 +38,6 @@ require.config
     'angular-cookies': ['angular']
   #'angular-ui-bootstrap': ['angular']
     'angular-ui-bootstrap-tpls': ['angular']
-    'angularfire': ['angular', 'firebase']
     'angular-headroom': ['angular', 'headroom']
 
 
