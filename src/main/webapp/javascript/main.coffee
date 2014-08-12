@@ -4,11 +4,11 @@ require.config
   baseUrl: '/'
   paths:
     'jQuery': ['https://code.jquery.com/jquery-1.11.1.min', 'webjars/jquery/1.11.1/jquery.min']
-    'angular': 'webjars/angularjs/1.3.0-beta.17/angular.min'
-    'angular-route': 'webjars/angularjs/1.3.0-beta.17/angular-route.min'
-    'angular-resource': 'webjars/angularjs/1.3.0-beta.17/angular-resource.min'
-    'angular-cookies': 'webjars/angularjs/1.3.0-beta.17/angular-cookies.min'
-    'angular-animate': 'webjars/angularjs/1.3.0-beta.17/angular-animate.min'
+    'angular': ['http://cdn.bootcss.com/angular.js/1.3.0-beta.8/angular.min','webjars/angularjs/1.3.0-beta.17/angular.min']
+    'angular-route': ['http://cdn.bootcss.com/angular.js/1.3.0-beta.8/angular-route.min','webjars/angularjs/1.3.0-beta.17/angular-route.min']
+    'angular-resource': ['http://cdn.bootcss.com/angular.js/1.3.0-beta.8/angular-resource.min','webjars/angularjs/1.3.0-beta.17/angular-resource.min']
+    'angular-cookies': ['http://cdn.bootcss.com/angular.js/1.3.0-beta.8/angular-cookies.min','webjars/angularjs/1.3.0-beta.17/angular-cookies.min']
+    'angular-animate': ['http://cdn.bootcss.com/angular.js/1.3.0-beta.8/angular-animate.min','webjars/angularjs/1.3.0-beta.17/angular-animate.min']
   #'angular-ui-bootstrap': 'webjars/angular-ui-bootstrap/0.11.0/ui-bootstrap.min'
     'angular-ui-bootstrap-tpls': 'webjars/angular-ui-bootstrap/0.11.0/ui-bootstrap-tpls.min'
     'firebase': ['https://cdn.firebase.com/v0/firebase', 'webjars/firebase/1.0.17/firebase']
@@ -26,11 +26,13 @@ require.config
     'service': 'javascript/service/service'
     'local': 'javascript/common/local'
 
+#    'font-awesome-css':['css!http://cdn.bootcss.com/font-awesome/4.1.0/css/font-awesome.min','css!webjars/font-awesome/4.1.0/css/font-awesome.min']
+#    'bootstrap-css':['css!http://cdn.bootcss.com/bootstrap/3.2.0/css/bootstrap.min','css!webjars/bootstrap/3.2.0/css/bootstrap.min']
   #gt ie 9
-    'es6-shim': 'webjars/es6-shim/0.12.0/es6-shim'
-    'json3': 'webjars/json3/3.3.2/json3.min'
-    'html5shiv': 'webjars/html5shiv/3.7.2/html5shiv.min'
-    'respond': 'webjars/respond/1.4.2/dest/respond.min'
+#    'es6-shim': 'webjars/es6-shim/0.12.0/es6-shim'
+#    'json3': 'webjars/json3/3.3.2/json3.min'
+#    'html5shiv': 'webjars/html5shiv/3.7.2/html5shiv.min'
+#    'respond': 'webjars/respond/1.4.2/dest/respond.min'
   shim:
     'angular': ['jQuery']
     'angular-animate': ['angular']

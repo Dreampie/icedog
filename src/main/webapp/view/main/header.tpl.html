@@ -3,28 +3,31 @@
   <nav class="left-nav">
     <ul>
       <li class="logo"><a href="/">IceDog</a></li>
-      <li ng-repeat="dock in docks">
-        <a ng-href="{{dock.url}}">
-          <span class="fa fa-{{dock.icon}}"></span>{{dock.name}}
+      <li ng-repeat="menu in menus">
+        <a ng-href="{{menu.url}}">
+          <span class="fa fa-{{menu.icon}}"></span>{{menu.name}}
         </a>
-      </li>
-      <li >
-        <a href="#">
-          <span class="fa fa-bars"></span>Menu
-        </a>
+
+        <div sub-nav menu="menu" children="menu.children" index="$index"></div>
       </li>
     </ul>
   </nav>
 
-  <div class="sub-nav">
-    <span class="fa fa-bars head"></span>
+  <div class="sub-navs">
 
-    <h3>Menu</h3>
-    <ul>
-      <li ng-repeat="menu in menus">
-        <a ng-click="hideMenus()" ng-href="{{menu.url}}"><span class="fa fa-{{menu.icon}}"></span>{{menu.name}}</a></li>
-    </ul>
   </div>
+  <!--子菜单模板-->
+  <script type="text/ng-template" id="sub-nav.tpl.html">
+    <div class="sub-nav"><span class="fa fa-{{menu.icon}} head"></span>
+
+      <h3>{{menu.name}}</h3>
+      <ul>
+        <li ng-repeat="submenu in children"><a ng-click="hiddenSubNav(index)" ng-href="{{submenu.url}}"><span
+            class="fa fa-{{submenu.icon}}"></span>{{submenu.name}}</a></li>
+      </ul>
+    </div>
+  </script>
+
 
   <header headroom tolerance='5' offset='50' class="header headroom" role="banner" ng-init="showSearchFocus=false">
     <div class="search-form">

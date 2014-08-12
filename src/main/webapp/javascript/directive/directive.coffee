@@ -13,6 +13,22 @@ define ['angular'], ->
           $timeout(->
             element[0].focus())
       )
+  .directive 'subNav', ($compile, $templateCache)->
+    replace: true
+    scope:
+      menu: '=menu'
+      children: '=children'
+      index: '=index'
+    link: (scope, element, attrs)->
+      $(".sub-navs").append($compile($templateCache.get('sub-nav.tpl.html'))(scope))
+
+      $(".left-nav li:eq(" + (scope.index + 1) + ") a,.sub-navs .sub-nav:eq(" + scope.index + ")").hover(->
+        $(".sub-navs .sub-nav:eq(" + scope.index + ")").addClass("show-sub-nav")
+      , ->
+        $(".sub-navs .sub-nav:eq(" + scope.index + ")").removeClass("show-sub-nav")
+      )
+      scope.hiddenSubNav = (index)->
+        $(".sub-navs .sub-nav:eq(" + index + ")").removeClass("show-sub-nav")
 
   .directive 'backTop', ->
     restrict: 'EA'
