@@ -24,11 +24,14 @@ define ['angular'], ->
 
       $(".left-nav li:eq(" + (scope.index + 1) + ") a,.sub-navs .sub-nav:eq(" + scope.index + ")").hover(->
         $(".sub-navs .sub-nav:eq(" + scope.index + ")").addClass("show-sub-nav")
+#        $(".mainer").addClass("show-mainer")
       , ->
         $(".sub-navs .sub-nav:eq(" + scope.index + ")").removeClass("show-sub-nav")
+#        $(".mainer").removeClass("show-mainer")
       )
       scope.hiddenSubNav = (index)->
         $(".sub-navs .sub-nav:eq(" + index + ")").removeClass("show-sub-nav")
+#        $(".mainer").removeClass("show-mainer")
 
   .directive 'backTop', ->
     restrict: 'EA'

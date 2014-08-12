@@ -72,11 +72,11 @@
   position: fixed;
   text-align: left;
   top: 0;
-  z-index: 0;
+  z-index: 999;
   //  .transform(translate3d(0px, 0px, 0px) scale3d(1, 1, 1));
   .transition(all, 400ms, cubic-bezier(.694, .0482, .335, 1));
   .transition-timing-function(cubic-bezier(.694, .0482, .335, 1));
-  .head{
+  .head {
     padding: 25px 0 10px;
   }
   .fa {
@@ -128,6 +128,10 @@
 .show-sub-nav {
   .transform(translate3d(450px, 0px, 0px) scale3d(1, 1, 1));
 }
+//
+//.show-mainer {
+//  .transform(translate3d(350px, 0px, 0px) scale3d(1, 1, 1));
+//}
 
 .headroom {
   .transition(all, 200ms, linear)
