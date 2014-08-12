@@ -8,7 +8,7 @@
           <span class="fa fa-{{menu.icon}}"></span>{{menu.name}}
         </a>
 
-        <div sub-nav menu="menu" children="menu.children" index="$index"></div>
+        <div ng-if="menu.children.length>0" sub-nav menu="menu" children="menu.children" index="$index"></div>
       </li>
     </ul>
   </nav>
