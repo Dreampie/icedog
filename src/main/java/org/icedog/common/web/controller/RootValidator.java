@@ -12,6 +12,30 @@ import org.icedog.function.user.model.User;
  * Created by wangrenhui on 14-1-2.
  */
 public class RootValidator {
+  static String indexView = "view/index.html";
+
+  public static class ForgetValidator extends Validator {
+    protected void validate(Controller c) {
+      boolean emailEmpty = ValidateUtils.me().isNullOrEmpty(c.getPara("user.email"));
+      if (!emailEmpty && !ValidateUtils.me().isEmail(c.getPara("user.email"))) addError("emailMsg", "邮箱格式验证失败");
+
+      User u = User.dao.findFirstBy("`user`.email=? AND `user`.deleted_at is null", c.getPara("user.email"));
+      if (ValidateUtils.me().isNullOrEmpty(u)) addError("emailMsg", "该邮箱不存在");
+
+      boolean captchaEmpty = ValidateUtils.me().isNullOrEmpty(c.getPara("captcha"));
+      if (captchaEmpty) addError("captchaMsg", "验证码不能为空");
+      if (!captchaEmpty && !SubjectUtils.me().doCaptcha(c.getPara("captcha"))) addError("captchaMsg", "验证码验证失败");
+    }
+
+    protected void handleError(Controller c) {
+      c.keepModel(User.class);
+
+      if (ThreadLocalUtil.isJson())
+        c.renderJson();
+      else
+        c.render(indexView);
+    }
+  }
 
   public static class SignupEmailValidator extends Validator {
     protected void validate(Controller c) {

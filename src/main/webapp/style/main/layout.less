@@ -69,19 +69,25 @@
   }
 }
 
+.btn.disabled, .btn[disabled], fieldset[disabled] .btn {
+  cursor: not-allowed;
+  pointer-events: none;
+  opacity: 0.65;
+  filter: alpha(opacity=65);
+  -webkit-box-shadow: none;
+  box-shadow: none
+}
+
 .btn-default {
-  color: #333;
-  background-color: #e7e7e7;
-  border-color: #dadada;
+  color: #333333;
+  background-color: #d3d3d3;
+  border-color: #bbbbbb;
   border-radius: 0px;
   &:hover {
     color: #333;
     background-color: #d3d3d3;
     border-color: #bbb;
   }
-  //  color: #ffffff;
-  //  background-color: #c17702;
-  //  border-color: #935b01;
 }
 
 .back-top {
