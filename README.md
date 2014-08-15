@@ -27,3 +27,4 @@ shiro+权限系统+freemarker-shiro标签支持，以及其他改进
 可直接使用mvn jetty：run  使用嵌入式数据库h2，数据库可以自动验证生成初始化数据
 
 如有问题请及时联系我 在线访问：http://www.dreampie.cn
+![Icedog](http://static.oschina.net/uploads/space/2014/0812/165023_hxZO_946569.png "ICEDOG")
