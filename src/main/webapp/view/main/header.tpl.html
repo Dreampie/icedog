@@ -32,7 +32,7 @@
   <header headroom tolerance='5' offset='50' class="header headroom" role="banner" ng-init="showSearchFocus=false">
     <div class="search-form">
       <form name="searchForm" role="search">
-        <input type="text" name="searchContent" ng-show="showSearchFocus" ng-model="searchContent" required
+        <input type="text" name="searchContent" ng-show="showSearchFocus" ng-blur="showSearchFocus=false" ng-model="searchContent" required
                focus-me="showSearchFocus">
       </form>
     </div>

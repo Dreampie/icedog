@@ -6,9 +6,8 @@ define ['angular', 'css!style/app/signin'], ->
   #common controller
   angular.module('controller')
   #AppCtrl is base controller
-  .controller 'AppCtrl', ($scope, Local, Alert, Breadcrumb, UserService)->
-    #messageNotification.pushForCurrentRoute('errors.route.changeError', 'error',{},{rejection: ''})
-    $scope.local = Local
+  .controller 'AppCtrl', ($scope, Message, Alert, Breadcrumb, UserService)->
+#    $scope.message = Message
     $scope.currentUser = UserService.currentUser
     $scope.breadcrumb = Breadcrumb
     $scope.signout = (outpath) ->
@@ -22,8 +21,8 @@ define ['angular', 'css!style/app/signin'], ->
     $scope.menus = [
       {icon: 'user', name: 'Center', url: '/center', children: [{icon: 'user', name: 'Center1', url: '/center'}
                                                                   {icon: 'info', name: 'About1', url: '/about'}]}
-      {icon: 'info', name: 'About', url: '/about', children: [{icon: 'user', name: 'Center2', url: '/center'}
-                                                                {icon: 'info', name: 'About2', url: '/about'}]}
+      {icon: 'calendar', name: 'Calendar', url: '/calendar'}
+      {icon: 'info', name: 'About', url: '/about'}
     ]
 
     #    console.log $scope.menus[0].children.length
@@ -52,17 +51,17 @@ define ['angular', 'css!style/app/signin'], ->
       'haha']
 
   #SignupCtrl is sign up page
-  .controller 'SignupCtrl', ($scope, Email) ->
-    $scope.user =
-      username: "example@hello.com"
-      password: "123456"
-
-    $scope.create = (user, captcha) ->
-      $scope.email = new Email()
-      $scope.email.user = user
-      $scope.email.captcha = captcha
-
-      console.log $scope.email
+#  .controller 'SignupCtrl', ($scope, Email) ->
+#    $scope.user =
+#      username: "example@hello.com"
+#      password: "123456"
+#
+#    $scope.create = (user, captcha) ->
+#      $scope.email = new Email()
+#      $scope.email.user = user
+#      $scope.email.captcha = captcha
+#
+#      console.log $scope.email
 
 
   #SigninCtrl is sign in page

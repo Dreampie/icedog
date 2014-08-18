@@ -84,8 +84,8 @@ define ['angular'], ->
             Alert.addAlert({type: 'danger', msg: '退出失败!'})
       )
 
-    signup: (user)->
-      User.signup(
-        user, (data)->
-      )
+#    signup: (user)->
+#      User.signup(
+#        user, (data)->
+#      )
     currentUser: currentUser

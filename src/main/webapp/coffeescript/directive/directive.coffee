@@ -11,8 +11,10 @@ define ['angular'], ->
       scope.$watch(attrs.focusMe, (value)->
         if value
           $timeout(->
-            element[0].focus())
+            element[0].focus()
+          ,100)
       )
+
   .directive 'subNav', ($compile, $templateCache)->
     replace: true
     scope:
@@ -31,6 +33,7 @@ define ['angular'], ->
       )
       scope.hiddenSubNav = (index)->
         $(".sub-navs .sub-nav:eq(" + index + ")").removeClass("show-sub-nav")
+        index
 #        $(".mainer").removeClass("show-mainer")
 
   .directive 'backTop', ->

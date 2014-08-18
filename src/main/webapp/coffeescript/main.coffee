@@ -14,7 +14,7 @@ require.config
   #'domReady': 'webjars/requirejs-domready/2.0.1/domReady'
     'headroom': ['//cdn.jsdelivr.net/headroomjs/0.7.0/headroom.min', 'javascript/lib/headroom.min']
     'angular-headroom': ['//cdn.jsdelivr.net/headroomjs/0.7.0/angular.headroom.min','javascript/lib/angular.headroom.min']
-
+    'angular-ui-calendar':['//cdn.bootcss.com/angular-ui-calendar/0.8.0/calendar.min','webjars/angular-ui-calendar/0.9.0-beta.1/calendar']
     'app': 'javascript/app'
     'controller': 'javascript/controller/controller'
     'directive': 'javascript/directive/directive'
@@ -23,13 +23,6 @@ require.config
     'service': 'javascript/service/service'
     'local': 'javascript/common/local'
 
-#    'font-awesome-css':['css!//cdn.bootcss.com/font-awesome/4.1.0/css/font-awesome.min','css!webjars/font-awesome/4.1.0/css/font-awesome.min']
-#    'bootstrap-css':['css!//cdn.bootcss.com/bootstrap/3.2.0/css/bootstrap.min','css!webjars/bootstrap/3.2.0/css/bootstrap.min']
-  #gt ie 9
-#    'es6-shim': 'webjars/es6-shim/0.12.0/es6-shim'
-#    'json3': 'webjars/json3/3.3.2/json3.min'
-#    'html5shiv': 'webjars/html5shiv/3.7.2/html5shiv.min'
-#    'respond': 'webjars/respond/1.4.2/dest/respond.min'
   shim:
     'angular': ['jQuery']
     'angular-animate': ['angular']
@@ -38,6 +31,7 @@ require.config
     'angular-cookies': ['angular']
   #'angular-ui-bootstrap': ['angular']
     'angular-ui-bootstrap-tpls': ['angular']
+    'angular-ui-calendar': ['angular']
     'angular-headroom': ['angular', 'headroom']
 
 
@@ -49,6 +43,7 @@ require.config
       'css': 'webjars/require-css/0.1.4/css' #or whatever the path to require-css is
 
 require ['app'], ->
-  angular.element(document).ready ->
+  $ ->
     angular.bootstrap document, ['app']
-    angular.element('html').addClass('ng-app: app')
+    $('html').attr('ng-app','app')
+

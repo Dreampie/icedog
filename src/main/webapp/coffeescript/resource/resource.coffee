@@ -12,8 +12,8 @@ define ['angular', 'angular-resource'], ->
         {username: user.username, password: user.password, captcha: captcha}).success(success).error(error)
     signout: (success, error)->
       $http.get('/signout').success(success).error(error)
-    signup: (user, success, error)->
-      $http.post('/signup', {user: user}).success(success).error(error)
+#    signup: (user, success, error)->
+#      $http.post('/signup', {user: user}).success(success).error(error)
     get: (user, success, error)->
       $http.get('/user/get/' + user.id).success(success).error(error)
     save: (user, success, error)->

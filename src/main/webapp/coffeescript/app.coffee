@@ -8,7 +8,7 @@ define ['angular', 'angular-route', 'angular-cookies', 'angular-animate', 'angul
      'filter', 'directive'])
 
   #config app
-  angular.module('app').constant 'LOCAL', {
+  .constant 'CONFIG', {
     'resource':
       'image': '/image'
       'javascript': '/javascript'
@@ -39,18 +39,18 @@ define ['angular', 'angular-route', 'angular-cookies', 'angular-animate', 'angul
         $.param(data)
 
     #异常过滤
-    $httpProvider.interceptors.push ($q, $location, Local, Alert)->
+    $httpProvider.interceptors.push ($q, $location, Message, Alert)->
       responseError: (response) ->
         switch response.status
           when 401 then $location.path('/signin')
-          when 403 then Alert.addAlert({type: 'danger', msg: 403 + " - " + Local.get('message',
+          when 403 then Alert.addAlert({type: 'danger', msg: 403 + " - " + Message.get('message',
             'errors.route.403Error')})
-          when 404 then Alert.addAlert({type: 'danger', msg: 404 + " - " + Local.get('message',
+          when 404 then Alert.addAlert({type: 'danger', msg: 404 + " - " + Message.get('message',
             'errors.route.404Error')})
-          when 500 then Alert.addAlert({type: 'danger', msg: 500 + " - " + Local.get('message',
+          when 500 then Alert.addAlert({type: 'danger', msg: 500 + " - " + Message.get('message',
             'errors.route.500Error')})
           else
-            Alert.addAlert({type: 'danger', msg: "Error - " + Local.get('message', 'errors.route.unknownError')})
+            Alert.addAlert({type: 'danger', msg: "Error - " + Message.get('message', 'errors.route.unknownError')})
 
         $q.reject(response)
 
@@ -64,11 +64,13 @@ define ['angular', 'angular-route', 'angular-cookies', 'angular-animate', 'angul
       templateUrl: 'view/app/signin.html', controller: 'SigninCtrl'
     .when '/about',
       templateUrl: 'view/app/about.html', controller: 'AboutCtrl'
+    .when '/calendar',
+      templateUrl: 'view/app/schedule/calendar.html', controller: 'CalendarCtrl'
     .otherwise
         redirectTo: '/'
 
 
-  .run ($rootScope, $location, Local, Alert) ->
+  .run ($rootScope, $location, Message, Alert) ->
     $rootScope.path = $location.path();
 
     $rootScope.$on('$routeChangeSuccess', (newVal) ->
@@ -77,5 +79,5 @@ define ['angular', 'angular-route', 'angular-cookies', 'angular-animate', 'angul
     )
 
     $rootScope.$on('$routeChangeError', (newVal) ->
-      Alert.addAlert({type: 'danger', msg: "Error - " + Local.get('message', 'errors.route.changeError')})
+      Alert.addAlert({type: 'danger', msg: "Error - " + Message.get('message', 'errors.route.changeError')})
     )
