@@ -8,7 +8,7 @@ define ['angular', 'angular-route', 'angular-cookies', 'angular-animate', 'angul
      'filter', 'directive'])
 
   #config app
-  .constant 'CONFIG', {
+  .constant 'CONFIG',
     'resource':
       'image': '/image'
       'javascript': '/javascript'
@@ -21,7 +21,7 @@ define ['angular', 'angular-route', 'angular-cookies', 'angular-animate', 'angul
       'errors.route.500Error': 'Server error'
       'errors.route.unknownError': 'Unknown error'
       'errors.browser.ieSupportError': 'Not support the Internet explorer browser version below 8'
-  }
+
   .config ($routeProvider, $locationProvider, $httpProvider) ->
     #use the HTML5 History API
     $locationProvider.html5Mode(true)
@@ -55,23 +55,60 @@ define ['angular', 'angular-route', 'angular-cookies', 'angular-animate', 'angul
         $q.reject(response)
 
 
-    $routeProvider
-    .when '/',
-      templateUrl: 'view/app/home.html', controller: 'HomeCtrl'
-    .when '/signup',
-      templateUrl: 'view/app/signup.html', controller: 'SignupCtrl'
-    .when '/signin',
-      templateUrl: 'view/app/signin.html', controller: 'SigninCtrl'
-    .when '/about',
-      templateUrl: 'view/app/about.html', controller: 'AboutCtrl'
-    .when '/calendar',
-      templateUrl: 'view/app/schedule/calendar.html', controller: 'CalendarCtrl'
-    .otherwise
-        redirectTo: '/'
+    #    $routeProvider
+    #    .when '/',
+    #      templateUrl: 'view/app/home.html', controller: 'HomeCtrl'
+    #    .when '/signup',
+    #      templateUrl: 'view/app/signup.html', controller: 'SignupCtrl'
+    #    .when '/signin',
+    #      templateUrl: 'view/app/signin.html', controller: 'SigninCtrl'
+    #    .when '/about',
+    #      templateUrl: 'view/app/about.html', controller: 'AboutCtrl'
+    #    .when '/calendar',
+    #      templateUrl: 'view/app/schedule/calendar.html', controller: 'CalendarCtrl'
+    #    .otherwise
+    #        redirectTo: '/'
+    resolver = (requires)->
+      resolver: ($q, $rootScope)->
+        defer = $q.defer()
+        require requires, ->
+          $rootScope.$apply ->
+            defer.resolve()
+        defer.promise
 
+    router =
+      default: '/'
+      other:
+        '/':
+          templateUrl: 'view/app/home.html',controller: 'HomeCtrl'
+
+        '/about':
+          templateUrl: 'view/app/about.html',controller: 'AboutCtrl'
+
+        '/calendar':
+          templateUrl: 'view/app/schedule/calendar.html',controller: 'CalendarCtrl',requires: ['javascript/controller/schedule']
+
+
+    if router.other
+      angular.forEach(router.other, (conf, path)->
+        if !conf.requires
+          $routeProvider
+          .when path,
+            templateUrl: conf.templateUrl, controller: conf.controller
+        else
+          $routeProvider
+          .when path,
+            templateUrl: conf.templateUrl, controller: conf.controller, resolve: resolver(conf.requires)
+      )
+    if router.default
+      $routeProvider.otherwise
+        redirectTo: router.default
 
   .run ($rootScope, $location, Message, Alert) ->
     $rootScope.path = $location.path();
+    $rootScope.$on('$routeChangeStart', (newVal) ->
+      console.log newVal
+    )
 
     $rootScope.$on('$routeChangeSuccess', (newVal) ->
       $('html, body').animate({scrollTop: '0px'}, 400, 'linear')
@@ -81,3 +118,4 @@ define ['angular', 'angular-route', 'angular-cookies', 'angular-animate', 'angul
     $rootScope.$on('$routeChangeError', (newVal) ->
       Alert.addAlert({type: 'danger', msg: "Error - " + Message.get('message', 'errors.route.changeError')})
     )
+

@@ -3,3 +3,4 @@ define ['controller','angular-ui-calendar'], ->
   #common controller
   angular.module('controller')
   .controller 'CalendarCtrl',($scope)->
+    $scope.ok='baby'

@@ -16,6 +16,7 @@ require.config
     'angular-headroom': ['//cdn.jsdelivr.net/headroomjs/0.7.0/angular.headroom.min','javascript/lib/angular.headroom.min']
     'angular-ui-calendar':['//cdn.bootcss.com/angular-ui-calendar/0.8.0/calendar.min','webjars/angular-ui-calendar/0.9.0-beta.1/calendar']
     'app': 'javascript/app'
+    'route':'javascript/route'
     'controller': 'javascript/controller/controller'
     'directive': 'javascript/directive/directive'
     'filter': 'javascript/filter/filter'
