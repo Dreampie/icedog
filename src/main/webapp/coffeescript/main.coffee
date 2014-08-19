@@ -2,6 +2,7 @@
 
 require.config
   baseUrl: '/'
+  urlArgs: 'v=1.0'
   paths:
     'jQuery': ['//code.jquery.com/jquery-2.1.1.min', 'webjars/jquery/2.1.1/jquery.min']
     'angular': ['//cdn.bootcss.com/angular.js/1.3.0-beta.8/angular.min','webjars/angularjs/1.3.0-beta.17/angular.min']
