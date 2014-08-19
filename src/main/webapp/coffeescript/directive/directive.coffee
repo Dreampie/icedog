@@ -2,9 +2,6 @@ define ['angular'], ->
   'use strict'
   angular.module('directive', [])
 
-
-  #common directive
-  angular.module('directive')
   #test hello tag show and hide
   .directive 'focusMe', ($timeout)->
     link: (scope, element, attrs) ->

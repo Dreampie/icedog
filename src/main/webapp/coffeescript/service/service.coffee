@@ -2,9 +2,6 @@ define ['angular'], ->
   'use strict'
   angular.module('service', [])
 
-
-  #common service
-  angular.module('service')
   #Breadcrumb  is site map
   .factory 'Breadcrumb', ($rootScope, $location, $log) ->
     data = []

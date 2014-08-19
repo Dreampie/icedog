@@ -2,9 +2,6 @@ define ['angular', 'css!style/app/signin'], ->
   'use strict'
   angular.module('controller', [])
 
-
-  #common controller
-  angular.module('controller')
   #AppCtrl is base controller
   .controller 'AppCtrl', ($scope, Message, Alert, Breadcrumb, UserService)->
 #    $scope.message = Message

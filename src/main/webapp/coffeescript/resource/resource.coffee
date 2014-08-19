@@ -2,9 +2,6 @@ define ['angular', 'angular-resource'], ->
   'use strict'
   angular.module('resource', ['ngResource'])
 
-
-  #common service
-  angular.module('resource')
   #user model
   .factory 'User', ($http)->
     signin: (user, captcha, success, error)->

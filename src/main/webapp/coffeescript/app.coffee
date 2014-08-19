@@ -54,68 +54,41 @@ define ['angular', 'angular-route', 'angular-cookies', 'angular-animate', 'angul
 
         $q.reject(response)
 
+    $routeProvider
+    .when '/',
+      templateUrl: 'view/app/home.html', controller: 'HomeCtrl'
+    .when '/signup',
+      templateUrl: 'view/app/signup.html', controller: 'SignupCtrl'
+    .when '/signin',
+      templateUrl: 'view/app/signin.html', controller: 'SigninCtrl'
+    .when '/about',
+      templateUrl: 'view/app/about.html', controller: 'AboutCtrl'
+    .when '/calendar',
+      templateUrl: 'view/app/schedule/calendar.html',  require: ['javascript/controller/schedule']
+    .otherwise
+        redirectTo: '/'
 
-    #    $routeProvider
-    #    .when '/',
-    #      templateUrl: 'view/app/home.html', controller: 'HomeCtrl'
-    #    .when '/signup',
-    #      templateUrl: 'view/app/signup.html', controller: 'SignupCtrl'
-    #    .when '/signin',
-    #      templateUrl: 'view/app/signin.html', controller: 'SigninCtrl'
-    #    .when '/about',
-    #      templateUrl: 'view/app/about.html', controller: 'AboutCtrl'
-    #    .when '/calendar',
-    #      templateUrl: 'view/app/schedule/calendar.html', controller: 'CalendarCtrl'
-    #    .otherwise
-    #        redirectTo: '/'
-    resolver = (requires)->
-      resolver: ($q, $rootScope)->
-        defer = $q.defer()
-        require requires, ->
-          $rootScope.$apply ->
-            defer.resolve()
-        defer.promise
+  .run ($q, $rootScope, $location, Message, Alert) ->
+    $rootScope.path = $location.path()
 
-    router =
-      default: '/'
-      other:
-        '/':
-          templateUrl: 'view/app/home.html',controller: 'HomeCtrl'
-
-        '/about':
-          templateUrl: 'view/app/about.html',controller: 'AboutCtrl'
-
-        '/calendar':
-          templateUrl: 'view/app/schedule/calendar.html',controller: 'CalendarCtrl',requires: ['javascript/controller/schedule']
-
-
-    if router.other
-      angular.forEach(router.other, (conf, path)->
-        if !conf.requires
-          $routeProvider
-          .when path,
-            templateUrl: conf.templateUrl, controller: conf.controller
-        else
-          $routeProvider
-          .when path,
-            templateUrl: conf.templateUrl, controller: conf.controller, resolve: resolver(conf.requires)
-      )
-    if router.default
-      $routeProvider.otherwise
-        redirectTo: router.default
-
-  .run ($rootScope, $location, Message, Alert) ->
-    $rootScope.path = $location.path();
-    $rootScope.$on('$routeChangeStart', (newVal) ->
-      console.log newVal
+    $rootScope.$on('$routeChangeStart', (e, target) ->
+      route = target && target.$$route
+      if route && target.require
+        route.resolve = route.resolve || {}
+        route.resolve.require = ->
+          defer = $q.defer()
+          require target.require,->
+            $rootScope.$apply ->
+              defer.resolve()
+          defer.promise
     )
 
-    $rootScope.$on('$routeChangeSuccess', (newVal) ->
+    $rootScope.$on('$routeChangeSuccess', (e, target) ->
       $('html, body').animate({scrollTop: '0px'}, 400, 'linear')
       $rootScope.path = $location.path()
     )
 
-    $rootScope.$on('$routeChangeError', (newVal) ->
+    $rootScope.$on('$routeChangeError', (e, target) ->
       Alert.addAlert({type: 'danger', msg: "Error - " + Message.get('message', 'errors.route.changeError')})
     )
 
