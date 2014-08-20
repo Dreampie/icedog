@@ -26,16 +26,17 @@
   -webkit-animation: @name @time @count;
 }
 
-.transition-timing-function(@ease: ease-in-out){
-  -webkit-transition-timing-function:@ease;
-  -moz-transition-timing-function:@ease;
+.transition-timing-function(@ease: ease-in-out) {
+  -webkit-transition-timing-function: @ease;
+  -moz-transition-timing-function: @ease;
   -ms-transition-timing-function: @ease;
-  -o-transition-timing-function:@ease;
+  -o-transition-timing-function: @ease;
   transition-timing-function: @ease;
 }
+
 // ------------------------ TRANSFORMS
 .transform(@props) {
-  -ms-transform:@props;
+  -ms-transform: @props;
   -moz-transform: @arguments;
   -webkit-transform: @arguments;
   -o-transform: @arguments;
@@ -73,6 +74,15 @@
 //}
 
 .box-shadow(@style1, @rgba1,@style2, @rgba2) {
-  -webkit-box-shadow:inset @style1 @rgba1,@style2 @rgba2;
-  box-shadow:inset @style1 @rgba1,@style2 @rgba2;
+  -webkit-box-shadow: inset @style1 @rgba1,@style2 @rgba2;
+  box-shadow: inset @style1 @rgba1,@style2 @rgba2;
+}
+
+//-----------------column flow
+.column-width(@width) {
+  -moz-column-width: @width;
+  -ms-column-width: @width;
+  -webkit-column-width: @width;
+  -o-column-width: @width;
+  column-width: @width;
 }
