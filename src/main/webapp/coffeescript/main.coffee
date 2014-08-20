@@ -24,7 +24,6 @@ require.config
     'resource': 'javascript/resource/resource'
     'service': 'javascript/service/service'
     'local': 'javascript/common/local'
-
   shim:
     'angular': ['jQuery']
     'angular-animate': ['angular']
@@ -44,8 +43,7 @@ require.config
     '*':
       'css': 'webjars/require-css/0.1.4/css' #or whatever the path to require-css is
 
-require ['app'], ->
+require ['app','javascript/controller/schedule'], ->
   $ ->
     angular.bootstrap document, ['app']
     $('html').attr('ng-app','app')
-

@@ -54,6 +54,15 @@ define ['angular', 'angular-route', 'angular-cookies', 'angular-animate', 'angul
 
         $q.reject(response)
 
+#    resolver=(deps)->
+#      resolve:
+#        delay: ($q,$rootScope)->
+#          defer = $q.defer()
+#          require deps,->
+#            $rootScope.$apply ->
+#              defer.resolve()
+#          defer.promise
+
     $routeProvider
     .when '/',
       templateUrl: 'view/app/home.html', controller: 'HomeCtrl'
@@ -64,24 +73,26 @@ define ['angular', 'angular-route', 'angular-cookies', 'angular-animate', 'angul
     .when '/about',
       templateUrl: 'view/app/about.html', controller: 'AboutCtrl'
     .when '/calendar',
-      templateUrl: 'view/app/schedule/calendar.html',  require: ['javascript/controller/schedule']
+      templateUrl: 'view/app/schedule/calendar.html',controller: 'CalendarCtrl'
+#      ,resolver ['javascript/controller/schedule']
+#      require: ['javascript/controller/schedule']
     .otherwise
         redirectTo: '/'
 
   .run ($q, $rootScope, $location, Message, Alert) ->
     $rootScope.path = $location.path()
 
-    $rootScope.$on('$routeChangeStart', (e, target) ->
-      route = target && target.$$route
-      if route && target.require
-        route.resolve = route.resolve || {}
-        route.resolve.require = ->
-          defer = $q.defer()
-          require target.require,->
-            $rootScope.$apply ->
-              defer.resolve()
-          defer.promise
-    )
+#    $rootScope.$on('$routeChangeStart', (e, target) ->
+#      route = target && target.$$route
+#      if route && target.require
+#        route.resolve = route.resolve || {}
+#        route.resolve.require = ->
+#          defer = $q.defer()
+#          require target.require,->
+#            $rootScope.$apply ->
+#              defer.resolve()
+#          defer.promise
+#    )
 
     $rootScope.$on('$routeChangeSuccess', (e, target) ->
       $('html, body').animate({scrollTop: '0px'}, 400, 'linear')

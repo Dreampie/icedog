@@ -1,7 +1,8 @@
-define ['controller', 'angular-ui-calendar'], (ctrl)->
+define ['controller', 'angular-ui-calendar'], (ctrls)->
   'use strict'
   #common controller
-  ctrl.controller 'CalendarCtrl', ($scope)->
+  angular.module('controller')
+  .controller 'CalendarCtrl', ($scope)->
     $scope.test = 'hi'
   .controller 'ScheduleCtrl', ($scope)->
     $scope.a = 1
