@@ -27,12 +27,14 @@ import com.jfinal.config.*;
 import com.jfinal.core.Const;
 import com.jfinal.ext.interceptor.SessionInViewInterceptor;
 import com.jfinal.ext.plugin.tablebind.SimpleNameStyles;
+import com.jfinal.i18n.I18N;
 import com.jfinal.log.Logger;
 import com.jfinal.plugin.activerecord.CaseInsensitiveContainerFactory;
 import com.jfinal.plugin.activerecord.dialect.AnsiSqlDialect;
 import com.jfinal.plugin.druid.DruidPlugin;
 import com.jfinal.plugin.ehcache.EhCachePlugin;
 import com.jfinal.render.FreeMarkerRender;
+import freemarker.template.TemplateModelException;
 import org.icedog.common.shiro.MyJdbcAuthzService;
 
 import java.util.Locale;
@@ -155,9 +157,14 @@ public class AppConfig extends JFinalConfig {
   @Override
   public void afterJFinalStart() {
     super.afterJFinalStart();
-    FreeMarkerRender.setProperties(loadPropertyFile("freemarker.properties"));
-    FreeMarkerRender.getConfiguration().setSharedVariable("shiro", new ShiroTags());
-    FreeMarkerRender.getConfiguration().setSharedVariable("resource", new ResourceTags());
+//    FreeMarkerRender.setProperties(loadPropertyFile("freemarker.properties"));
+//    FreeMarkerRender.getConfiguration().setSharedVariable("shiro", new ShiroTags());
+//    FreeMarkerRender.getConfiguration().setSharedVariable("resource", new ResourceTags());
+//    try {
+//      FreeMarkerRender.getConfiguration().setSharedVariable("i18n", I18N.me());
+//    } catch (TemplateModelException e) {
+//      e.printStackTrace();
+//    }
   }
 
   /**
