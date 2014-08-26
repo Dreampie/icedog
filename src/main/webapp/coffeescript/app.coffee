@@ -54,6 +54,7 @@ define ['angular', 'angular-route', 'angular-cookies', 'angular-animate', 'angul
 
         $q.reject(response)
 
+    #lazy  load controller
 #    resolver=(deps)->
 #      resolve:
 #        delay: ($q,$rootScope)->

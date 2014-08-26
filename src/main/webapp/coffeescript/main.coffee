@@ -47,3 +47,5 @@ require ['app','javascript/controller/schedule'], ->
   $ ->
     angular.bootstrap document, ['app']
     $('html').attr('ng-app','app')
+    #require  other modules
+    require ['javascript/controller/schedule']
