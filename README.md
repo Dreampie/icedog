@@ -3,7 +3,7 @@ dreampie
 
 dreampie.cn
 
-使用jfinal框架开源工具包https://github.com/Dreampie/jfinal-dreampie,http://search.maven.org/  输入jfianl-draempie 搜索
+使用jfinal框架开源工具包https://github.com/Dreampie/jfinal-dreampie,可以在maven中央库 http://search.maven.org/  输入jfianl-draempie 搜索
 
 并提供akka异步执行集成，多数据源自动orm映射，flyway数据库脚本升级，
 shiro+权限系统+freemarker-shiro标签支持，以及其他改进
