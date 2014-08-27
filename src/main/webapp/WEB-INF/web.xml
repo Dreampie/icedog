@@ -51,7 +51,7 @@
   <!--</filter-mapping>-->
   <!--cache filter-->
 
-  <!--普通用户-->
+  <!--权限过滤 start-->
   <filter>
     <filter-name>shiroFilter</filter-name>
     <filter-class>org.apache.shiro.web.servlet.ShiroFilter</filter-class>
@@ -65,24 +65,6 @@
     <dispatcher>ERROR</dispatcher>
   </filter-mapping>
   <!--权限过滤器 end-->
-
-  <!--atmoshere-->
-  <servlet>
-    <description>AtmosphereServlet</description>
-    <servlet-name>AtmosphereServlet</servlet-name>
-    <servlet-class>org.atmosphere.cpr.AtmosphereServlet</servlet-class>
-    <!-- Use it with mvn jetty:run -->
-    <init-param>
-      <param-name>org.atmosphere.cpr.packages</param-name>
-      <param-value>cn.dreampie.common.plugin.atmosphere</param-value>
-    </init-param>
-    <load-on-startup>0</load-on-startup>
-    <async-supported>true</async-supported>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>AtmosphereServlet</servlet-name>
-    <url-pattern>/im/*</url-pattern>
-  </servlet-mapping>
 
   <!--jfinal start-->
   <filter>

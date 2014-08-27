@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>icedog</groupId>
   <artifactId>icedog</artifactId>
-  <packaging>war</packaging>
+  <packaging>jar</packaging>
   <version>1.0-SNAPSHOT</version>
   <name>icedog Maven Webapp</name>
   <url>http://maven.apache.org</url>
@@ -13,7 +13,7 @@
     <project.reporting.outputEncoding>utf-8</project.reporting.outputEncoding>
     <!-- For the Maven Jetty plugin (mvn jetty:run) -->
     <jetty.version>9.1.1.v20140108</jetty.version>
-    <jfinal-dreampie.version>0.2.2</jfinal-dreampie.version>
+    <jfinal-dreampie.version>0.2.3</jfinal-dreampie.version>
     <jquery.version>2.1.1</jquery.version>
     <angular.version>1.3.0-beta.17</angular.version>
     <bootstrap.version>3.2.0</bootstrap.version>
