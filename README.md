@@ -1,7 +1,7 @@
 dreampie
 ========
 
-dreampie.cn  支持我请在上角点  Star，thanks
+dreampie.cn  支持我请在右上角点  Star，thanks
 
 使用jfinal框架开源工具包https://github.com/Dreampie/jfinal-dreampie,  可以在maven中央库 http://search.maven.org/  输入jfianl-draempie 搜索
 
