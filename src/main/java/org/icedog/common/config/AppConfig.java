@@ -111,7 +111,7 @@ public class AppConfig extends JFinalConfig {
     plugins.add(tableBindDefault);
 
     //sql语句plugin
-    plugins.add(new SqlInXmlPlugin("/sql"));
+    plugins.add(new SqlInXmlPlugin());
     //ehcache缓存
     plugins.add(new EhCachePlugin());
     //shiro权限框架
