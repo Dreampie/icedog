@@ -39,7 +39,16 @@ define ['angular', 'angular-route', 'angular-cookies', 'angular-animate', 'angul
         $.param(data)
 
     #异常过滤
-    $httpProvider.interceptors.push ($q, $location, Message, Alert)->
+    $httpProvider.interceptors.push ($rootScope,$q, $location, Message, Alert)->
+
+      request: (config)->
+        $rootScope.inloading=true
+        config
+
+      response:(response)->
+        $rootScope.inloading=false
+        response
+
       responseError: (response) ->
         switch response.status
           when 401 then $location.path('/signin')
@@ -83,17 +92,8 @@ define ['angular', 'angular-route', 'angular-cookies', 'angular-animate', 'angul
   .run ($q, $rootScope, $location, Message, Alert) ->
     $rootScope.path = $location.path()
 
-#    $rootScope.$on('$routeChangeStart', (e, target) ->
-#      route = target && target.$$route
-#      if route && target.require
-#        route.resolve = route.resolve || {}
-#        route.resolve.require = ->
-#          defer = $q.defer()
-#          require target.require,->
-#            $rootScope.$apply ->
-#              defer.resolve()
-#          defer.promise
-#    )
+    $rootScope.$on('$routeChangeStart', (e, target) ->
+    )
 
     $rootScope.$on('$routeChangeSuccess', (e, target) ->
       $('html, body').animate({scrollTop: '0px'}, 400, 'linear')

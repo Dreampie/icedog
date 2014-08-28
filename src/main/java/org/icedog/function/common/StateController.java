@@ -4,6 +4,7 @@ import cn.dreampie.common.config.AppConstants;
 import cn.dreampie.common.util.ValidateUtils;
 import com.jfinal.plugin.ehcache.CacheName;
 import org.icedog.common.web.controller.Controller;
+import org.icedog.function.common.model.State;
 
 /**
  * Created by wangrenhui on 14-1-3.

@@ -43,6 +43,8 @@ require.config
     '*':
       'css': 'webjars/require-css/0.1.4/css' #or whatever the path to require-css is
 
+  waitSeconds: 2
+
 require ['app','javascript/controller/schedule'], ->
   $ ->
     angular.bootstrap document, ['app']

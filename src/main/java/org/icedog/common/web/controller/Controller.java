@@ -46,8 +46,6 @@ public class Controller extends com.jfinal.core.Controller {
   /**
    * 根目录
    */
-//  @Before(EvictInterceptor.class)
-//  @CacheName("index")
   public void index() {
     dynaRender(indexView);
   }

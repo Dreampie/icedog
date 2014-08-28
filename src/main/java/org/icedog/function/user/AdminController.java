@@ -12,7 +12,7 @@ import com.jfinal.plugin.activerecord.Page;
 import com.jfinal.plugin.activerecord.tx.Tx;
 import com.jfinal.plugin.ehcache.CacheName;
 import org.icedog.common.web.controller.Controller;
-import org.icedog.function.common.State;
+import org.icedog.function.common.model.State;
 import org.icedog.function.user.model.*;
 
 import java.util.Date;

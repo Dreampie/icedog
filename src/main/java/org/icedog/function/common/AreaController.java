@@ -1,32 +1,33 @@
 package org.icedog.function.common;
 
 import cn.dreampie.common.config.AppConstants;
+import cn.dreampie.common.util.tree.TreeUtils;
 import com.jfinal.plugin.ehcache.CacheName;
 import org.icedog.common.web.controller.Controller;
+import org.icedog.function.common.model.Area;
 
 /**
  * Created by wangrenhui on 14-1-3.
  */
 public class AreaController extends Controller {
 
-  public void index() {
-    dynaRender("/view/index.ftl");
-  }
-
   @CacheName(AppConstants.DEFAULT_CACHENAME)
-  public void own() {
-    setAttr("areas", Area.dao.paginateBy(getParaToInt(0, 1), 15, "`area`.deleted_at is NULL"));
-    dynaRender("/view/index.ftl");
-  }
+  public void query() {
+    String where = "";
+    Integer pid = getParaToInt("pid");
+    if (pid != null && pid > 0) {
+      where += " `area`.pid =" + pid;
+    }
+    Boolean isdelete = getParaToBoolean("isdelete");
+    if (isdelete != null && isdelete) {
+      where += " AND `area`.deleted_at is NULL";
+    }
 
-  @CacheName(AppConstants.DEFAULT_CACHENAME)
-  public void whole() {
-    setAttr("areas", Area.dao.findBy("`area`.deleted_at is NULL"));
-    dynaRender("/view/index.ftl");
-  }
-
-  public void children() {
-    setAttr("areas", Area.dao.findBy("`area`.deleted_at is NULL AND `area`.pid =" + getParaToInt(0, 1)));
-    dynaRender("/view/area/index.ftl");
+    Boolean istree = getParaToBoolean("istree");
+    if (istree != null && istree) {
+      setAttr("areas", TreeUtils.toTree(Area.dao.findBy(where)));
+    } else {
+      setAttr("areas", Area.dao.findBy(where));
+    }
   }
 }

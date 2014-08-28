@@ -35,7 +35,30 @@ define ['angular'], ->
     searchAll: (content)->
       console.log content
 
-  .factory 'UserService', ($cookieStore, $location, $window, User, Alert)->
+
+  .factory 'AreaService', ($cookieStore, Area) ->
+    allAreas = $cookieStore.get('allAreas') || {isLoad: false}
+
+    areaUtils =
+      changeArea: (areas)->
+        if areas
+          areas.isLoad = true
+          $cookieStore.put('allAreas', areas)
+          angular.extend(allAreas || {}, areas)
+#      getArea:(id...)->
+#        if !allAreas.isLoad
+
+    loadArea: (area)->
+      Area.query(area,
+      (data)->
+        if(data.areas)
+          areaUtils.changeArea data.areas
+      )
+    removeArea: ->
+      $cookieStore.remove('allAreas')
+      angular.extend(allAreas || {}, {isLoad: false})
+
+  .factory 'UserService', ($cookieStore, $location, $window, User, Alert, AreaService)->
     currentUser = $cookieStore.get('current_user') || { full_name: '访客', isAuthed: false}
 
     authUtils =
@@ -47,7 +70,7 @@ define ['angular'], ->
       removeUser: ->
         $cookieStore.remove('current_user')
         angular.extend(currentUser || {}, { full_name: '访客', isAuthed: false})
-
+        AreaService.removeArea()
 
     signin: (user, captcha, outpath, isReload)->
       User.signin(user, captcha,
@@ -72,6 +95,7 @@ define ['angular'], ->
         (data)->
           if(data['signout.FILTERED'])
             authUtils.removeUser()
+
             #            console.log currentUser
             if(isReload)
               $window.location.href = outpath || '/'

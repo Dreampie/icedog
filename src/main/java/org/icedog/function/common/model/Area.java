@@ -1,4 +1,4 @@
-package org.icedog.function.common;
+package org.icedog.function.common.model;
 
 import cn.dreampie.common.model.Model;
 import cn.dreampie.common.util.tree.TreeNode;

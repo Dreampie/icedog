@@ -2,6 +2,9 @@ define ['angular', 'angular-resource'], ->
   'use strict'
   angular.module('resource', ['ngResource'])
 
+  .factory 'Area', ($http)->
+    query: (area = {pid: -1, isdelete: false, istree: false}, success, error)->
+      $http.get('/area/query', {pid: area.pid, isdelete: area.isdelete, istree: area.istree}).success(success).error(error)
   #user model
   .factory 'User', ($http)->
     signin: (user, captcha, success, error)->
