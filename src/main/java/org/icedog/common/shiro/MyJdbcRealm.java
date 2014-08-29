@@ -51,7 +51,7 @@ public class MyJdbcRealm extends AuthorizingRealm {
 //      Session session = SecurityUtils.getSubject().getSession();
 //      session.setAttribute(AppConstants.TEMP_USER, user);
       SimpleAuthenticationInfo info = new SimpleAuthenticationInfo(user, user.getStr("password"), getName());
-      clearCachedAuthorizationInfo(info.getPrincipals());
+//      clearCachedAuthorizationInfo(info.getPrincipals());
       return info;
     } else {
       return null;

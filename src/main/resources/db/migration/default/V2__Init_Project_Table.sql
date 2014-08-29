@@ -5,7 +5,7 @@ CREATE TABLE project (
   id   BIGINT  NOT NULL DEFAULT NEXTVAL('project_id_seq') PRIMARY KEY,
   name VARCHAR(50) NOT NULL COMMENT '项目名称',
   remark TEXT COMMENT '备注',
-  cost INT NOT NULL COMMENT '成本'
+  cost INT NOT NULL COMMENT '成本',
   payback_at TIMESTAMP NOT NULL COMMENT '回本期',
   begin_at TIMESTAMP NOT NULL COMMENT '项目开始时间',
   end_at  TIMESTAMP NOT NULL COMMENT '项目结束时间',
