@@ -16,6 +16,8 @@ require.config
     'headroom': ['//cdn.jsdelivr.net/headroomjs/0.7.0/headroom.min', 'javascript/lib/headroom.min']
     'angular-headroom': ['//cdn.jsdelivr.net/headroomjs/0.7.0/angular.headroom.min','javascript/lib/angular.headroom.min']
     'angular-ui-calendar':['//cdn.bootcss.com/angular-ui-calendar/0.8.0/calendar.min','webjars/angular-ui-calendar/0.9.0-beta.1/calendar']
+    'nprogress':'webjars/nprogress/0.1.2/nprogress'
+
     'app': 'javascript/app'
     'route':'javascript/route'
     'controller': 'javascript/controller/controller'
@@ -35,7 +37,7 @@ require.config
     'angular-ui-calendar': ['angular']
     'angular-headroom': ['angular', 'headroom']
 
-
+    'nprogress':['css!webjars/nprogress/0.1.2/nprogress']
     'controller': ['css!webjars/bootstrap/3.2.0/css/bootstrap.min',
                    'css!webjars/font-awesome/4.1.0/css/font-awesome.min',
                    'css!style/main/layout']
@@ -47,7 +49,9 @@ require.config
 
 require ['app','javascript/controller/schedule'], ->
   $ ->
+    NProgress.start()
     angular.bootstrap document, ['app']
     $('html').attr('ng-app','app')
+    NProgress.done()
     #require  other modules
     require ['javascript/controller/schedule']

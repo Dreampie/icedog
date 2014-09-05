@@ -1,6 +1,6 @@
 define ['angular', 'angular-route', 'angular-cookies', 'angular-animate', 'angular-ui-bootstrap-tpls',
         'angular-headroom', 'local',
-        'controller', 'service', 'resource', 'filter', 'directive'],
+        'controller', 'service', 'resource', 'filter', 'directive','nprogress'],
 ->
   'use strict'
   angular.module('app',
@@ -42,11 +42,11 @@ define ['angular', 'angular-route', 'angular-cookies', 'angular-animate', 'angul
     $httpProvider.interceptors.push ($rootScope,$q, $location, Message, Alert)->
 
       request: (config)->
-        $rootScope.inloading=true
+        NProgress.start()
         config
 
       response:(response)->
-        $rootScope.inloading=false
+        NProgress.done()
         response
 
       responseError: (response) ->

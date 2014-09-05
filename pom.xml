@@ -132,6 +132,11 @@
       <artifactId>angular-ui-calendar</artifactId>
       <version>${angular-ui-calendar.version}</version>
     </dependency>
+    <dependency>
+      <groupId>org.webjars</groupId>
+      <artifactId>nprogress</artifactId>
+      <version>0.1.2</version>
+    </dependency>
   </dependencies>
 
 
