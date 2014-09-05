@@ -123,9 +123,9 @@ public class AppConfig extends JFinalConfig {
     //quartz
 //    plugins.add(new QuartzPlugin());
 
-    plugins.add(new LessCssPlugin());
+    plugins.add(new LessCssPlugin("/lesscss/","/style/"));
 
-    plugins.add(new CoffeeScriptPlugin());
+    plugins.add(new CoffeeScriptPlugin("/coffeescript/","/javascript/"));
 
   }
 
