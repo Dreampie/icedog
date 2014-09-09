@@ -49,6 +49,7 @@ require.config
 
 require ['app','javascript/controller/schedule'], ->
   $ ->
+    NProgress.configure({ showSpinner: false })
     NProgress.start()
     angular.bootstrap document, ['app']
     $('html').attr('ng-app','app')
