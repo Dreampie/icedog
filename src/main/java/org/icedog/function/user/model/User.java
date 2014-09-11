@@ -1,9 +1,9 @@
 package org.icedog.function.user.model;
 
-import cn.dreampie.common.plugin.sqlinxml.SqlKit;
-import cn.dreampie.common.util.SubjectUtils;
-import cn.dreampie.common.util.ValidateUtils;
-import com.jfinal.ext.plugin.tablebind.TableBind;
+import cn.dreampie.ValidateKit;
+import cn.dreampie.shiro.core.SubjectKit;
+import cn.dreampie.sqlinxml.SqlKit;
+import cn.dreampie.tablebind.TableBind;
 import com.jfinal.plugin.activerecord.Page;
 
 import java.util.Date;
@@ -12,11 +12,11 @@ import java.util.Date;
  * Created by wangrenhui on 14-1-3.
  */
 @TableBind(tableName = "sec_user")
-public class User extends cn.dreampie.common.model.User<User> {
+public class User extends cn.dreampie.shiro.model.User<User> {
   public static User dao = new User();
 
   public User addUserInfo(UserInfo userInfo) {
-    if (ValidateUtils.me().isNullOrEmpty(userInfo)) {
+    if (ValidateKit.isNullOrEmpty(userInfo)) {
       userInfo = new UserInfo();
       userInfo.set("user_id", this.get("id"));
     }
@@ -26,9 +26,9 @@ public class User extends cn.dreampie.common.model.User<User> {
   }
 
   public User addRole(Role role) {
-    if (ValidateUtils.me().isNullOrEmpty(role)) {
+    if (ValidateKit.isNullOrEmpty(role)) {
       role = Role.dao.findFirstBy("`role`.value='R_USER'");
-      if (ValidateUtils.me().isNullOrEmpty(role)) {
+      if (ValidateKit.isNullOrEmpty(role)) {
         throw new NullPointerException("角色不存在");
       }
     }
@@ -48,7 +48,7 @@ public class User extends cn.dreampie.common.model.User<User> {
   }
 
   public Follower getFollowing() {
-    User user = SubjectUtils.me().getUser();
+    User user = SubjectKit.getUser();
     if (this.get("following") == null) {
       Follower following = Follower.dao.findFirstBy("`follower`.user_id =" + user.get("id") + " AND `follower`.link_id =" + this.get("id"));
       if (following != null) {

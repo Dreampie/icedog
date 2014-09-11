@@ -1,40 +1,36 @@
 package org.icedog.common.config;
 
-import cn.dreampie.common.config.AutoBindRoutes;
-import cn.dreampie.common.config.JFinalConfig;
-import cn.dreampie.common.log.Slf4jLogFactory;
-import cn.dreampie.common.plugin.akka.AkkaPlugin;
-import cn.dreampie.common.plugin.coffeescript.CoffeeScriptPlugin;
-import cn.dreampie.common.plugin.db.FlywayPlugin;
-import cn.dreampie.common.plugin.lesscss.LessCssPlugin;
-import cn.dreampie.common.plugin.mail.MailerPlugin;
-import cn.dreampie.common.plugin.shiro.freemarker.ShiroTags;
-import cn.dreampie.common.plugin.shiro.plugin.ShiroInterceptor;
-import cn.dreampie.common.plugin.shiro.plugin.ShiroPlugin;
-import cn.dreampie.common.plugin.sqlinxml.SqlInXmlPlugin;
-import cn.dreampie.common.plugin.tablebind.AutoMultiSourceTableBindPlugin;
-import cn.dreampie.common.web.handler.AccessDeniedHandler;
-import cn.dreampie.common.web.handler.FakeStaticHandler;
-import cn.dreampie.common.web.handler.ResourceHandler;
-import cn.dreampie.common.web.handler.SkipHandler;
-import cn.dreampie.common.web.handler.xss.AttackHandler;
-import cn.dreampie.common.web.interceptor.UrlInterceptor;
-import cn.dreampie.common.web.render.JsonErrorRenderFactory;
-import cn.dreampie.common.web.resource.freemarker.ResourceTags;
+
+import cn.dreampie.akka.AkkaPlugin;
+import cn.dreampie.coffeescript.CoffeeScriptPlugin;
+import cn.dreampie.flyway.FlywayPlugin;
+import cn.dreampie.lesscss.LessCssPlugin;
+import cn.dreampie.log.Slf4jLogFactory;
+import cn.dreampie.mail.MailerPlugin;
+import cn.dreampie.shiro.core.ShiroInterceptor;
+import cn.dreampie.shiro.core.ShiroPlugin;
+import cn.dreampie.sqlinxml.SqlInXmlPlugin;
+import cn.dreampie.tablebind.SimpleNameStyles;
+import cn.dreampie.tablebind.TableBindPlugin;
+import cn.dreampie.web.JFConfig;
+import cn.dreampie.web.handler.AccessDeniedHandler;
+import cn.dreampie.web.handler.FakeStaticHandler;
+import cn.dreampie.web.handler.ResourceHandler;
+import cn.dreampie.web.handler.SkipHandler;
+import cn.dreampie.web.handler.xss.AttackHandler;
+import cn.dreampie.web.render.JsonErrorRenderFactory;
+import cn.dreampie.web.route.AutoBindRoutes;
 import com.alibaba.druid.filter.stat.StatFilter;
 import com.alibaba.druid.wall.WallFilter;
 import com.jfinal.config.*;
 import com.jfinal.core.Const;
 import com.jfinal.ext.interceptor.SessionInViewInterceptor;
-import com.jfinal.ext.plugin.tablebind.SimpleNameStyles;
 import com.jfinal.i18n.I18N;
 import com.jfinal.log.Logger;
 import com.jfinal.plugin.activerecord.CaseInsensitiveContainerFactory;
 import com.jfinal.plugin.activerecord.dialect.AnsiSqlDialect;
 import com.jfinal.plugin.druid.DruidPlugin;
 import com.jfinal.plugin.ehcache.EhCachePlugin;
-import com.jfinal.render.FreeMarkerRender;
-import freemarker.template.TemplateModelException;
 import org.icedog.common.shiro.MyJdbcAuthzService;
 
 import java.util.Locale;
@@ -46,7 +42,7 @@ import java.util.Locale;
  * Time: 下午6:28
  * API引导式配置
  */
-public class AppConfig extends JFinalConfig {
+public class AppConfig extends JFConfig {
   /**
    * 供Shiro插件使用。
    */
@@ -102,7 +98,7 @@ public class AppConfig extends JFinalConfig {
     plugins.add(druidDefault);
 
     //Model自动绑定表插件
-    AutoMultiSourceTableBindPlugin tableBindDefault = new AutoMultiSourceTableBindPlugin(druidDefault, SimpleNameStyles.LOWER);
+    TableBindPlugin tableBindDefault = new TableBindPlugin(druidDefault, SimpleNameStyles.LOWER);
     tableBindDefault.setContainerFactory(new CaseInsensitiveContainerFactory(true)); //忽略字段大小写
 //    tableBindDefault.addExcludePaths("cn.dreampie.function.shop");
     tableBindDefault.setShowSql(getPropertyToBoolean("devMode", false));
@@ -120,12 +116,10 @@ public class AppConfig extends JFinalConfig {
     plugins.add(new AkkaPlugin());
     //emailer插件
     plugins.add(new MailerPlugin());
-    //quartz
-//    plugins.add(new QuartzPlugin());
 
-    plugins.add(new LessCssPlugin("/lesscss/","/style/"));
+    plugins.add(new LessCssPlugin("/lesscss/", "/style/"));
 
-    plugins.add(new CoffeeScriptPlugin("/coffeescript/","/javascript/"));
+    plugins.add(new CoffeeScriptPlugin("/coffeescript/", "/javascript/"));
 
   }
 
@@ -134,18 +128,16 @@ public class AppConfig extends JFinalConfig {
    */
   public void configInterceptor(Interceptors interceptors) {
     interceptors.add(new ShiroInterceptor());
+    //开发时不用开启  避免不能试试看到数据效果
 //    interceptors.add(new CacheRemoveInterceptor());
 //    interceptors.add(new CacheInterceptor());
     interceptors.add(new SessionInViewInterceptor());
-//    interceptors.add(new TxByRegex("^(/[a-z0-9]*/)*(save|update|delete|drop)[a-z0-9/]*$",false));
-//    interceptors.add(new UrlInterceptor());
   }
 
   /**
    * 配置处理器
    */
   public void configHandler(Handlers handlers) {
-//        handlers.add(new FakeStaticHandler("/page", ".ftl", "/view/layout/", new String[]{"/javascript/", "/images/", "/css/", "/libs/"},new String[]{"/im/"}));
     handlers.add(new FakeStaticHandler());
     handlers.add(new AccessDeniedHandler("/**/*.ftl"));
     handlers.add(new ResourceHandler("/javascript/**", "/images/**", "/css/**", "/lib/**", "/**/*.html"));
@@ -157,14 +149,6 @@ public class AppConfig extends JFinalConfig {
   @Override
   public void afterJFinalStart() {
     super.afterJFinalStart();
-//    FreeMarkerRender.setProperties(loadPropertyFile("freemarker.properties"));
-//    FreeMarkerRender.getConfiguration().setSharedVariable("shiro", new ShiroTags());
-//    FreeMarkerRender.getConfiguration().setSharedVariable("resource", new ResourceTags());
-//    try {
-//      FreeMarkerRender.getConfiguration().setSharedVariable("i18n", I18N.me());
-//    } catch (TemplateModelException e) {
-//      e.printStackTrace();
-//    }
   }
 
   /**

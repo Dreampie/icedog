@@ -1,9 +1,9 @@
 package org.icedog.function.common.model;
 
-import cn.dreampie.common.model.Model;
-import cn.dreampie.common.util.tree.TreeNode;
+import cn.dreampie.tablebind.TableBind;
+import cn.dreampie.tree.TreeNode;
+import cn.dreampie.web.model.Model;
 import com.google.common.collect.Lists;
-import com.jfinal.ext.plugin.tablebind.TableBind;
 
 import java.util.List;
 

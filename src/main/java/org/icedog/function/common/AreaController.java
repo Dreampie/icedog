@@ -1,8 +1,8 @@
 package org.icedog.function.common;
 
-import cn.dreampie.common.config.AppConstants;
-import cn.dreampie.common.util.tree.TreeUtils;
+import cn.dreampie.tree.TreeNodeKit;
 import com.jfinal.plugin.ehcache.CacheName;
+import org.icedog.common.config.AppConstants;
 import org.icedog.common.web.controller.Controller;
 import org.icedog.function.common.model.Area;
 
@@ -25,7 +25,7 @@ public class AreaController extends Controller {
 
     Boolean istree = getParaToBoolean("istree");
     if (istree != null && istree) {
-      setAttr("areas", TreeUtils.toTree(Area.dao.findBy(where)));
+      setAttr("areas", TreeNodeKit.toTree(Area.dao.findBy(where)));
     } else {
       setAttr("areas", Area.dao.findBy(where));
     }

@@ -1,7 +1,8 @@
 package org.icedog.function.user.model;
 
-import cn.dreampie.common.model.Model;
-import com.jfinal.ext.plugin.tablebind.TableBind;
+import cn.dreampie.tablebind.TableBind;
+import cn.dreampie.web.model.Model;
+
 import com.jfinal.plugin.activerecord.Db;
 
 import java.util.List;

@@ -1,10 +1,11 @@
 package org.icedog.function.user.model;
 
-import cn.dreampie.common.model.Model;
-import cn.dreampie.common.plugin.sqlinxml.SqlKit;
-import cn.dreampie.common.util.ValidateUtils;
-import cn.dreampie.common.util.tree.TreeNode;
-import com.jfinal.ext.plugin.tablebind.TableBind;
+import cn.dreampie.ValidateKit;
+import cn.dreampie.sqlinxml.SqlKit;
+import cn.dreampie.tablebind.TableBind;
+import cn.dreampie.web.model.Model;
+import cn.dreampie.tree.TreeNode;
+
 import com.jfinal.plugin.activerecord.Db;
 
 import java.util.List;
@@ -49,7 +50,7 @@ public class Role extends Model<Role> implements TreeNode<Role> {
   }
 
   public Role addPermission(Permission permission) {
-    if (ValidateUtils.me().isNullOrEmpty(permission)) {
+    if (ValidateKit.isNullOrEmpty(permission)) {
       throw new NullPointerException("操作权限不存在");
     }
     RolePermission rolePermission = new RolePermission();

@@ -1,8 +1,8 @@
 package org.icedog.function.common;
 
-import cn.dreampie.common.config.AppConstants;
-import cn.dreampie.common.util.ValidateUtils;
+import cn.dreampie.ValidateKit;
 import com.jfinal.plugin.ehcache.CacheName;
+import org.icedog.common.config.AppConstants;
 import org.icedog.common.web.controller.Controller;
 import org.icedog.function.common.model.State;
 
@@ -25,7 +25,7 @@ public class StateController extends Controller {
   public void one() {
     String type = getPara("state.type");
     String value = getPara("state.value");
-    if (!ValidateUtils.me().isNullOrEmpty(type) && !ValidateUtils.me().isNullOrEmpty(value) && ValidateUtils.me().isPositiveNumber(value)) {
+    if (!ValidateKit.isNullOrEmpty(type) && !ValidateKit.isNullOrEmpty(value) && ValidateKit.isPositiveNumber(value)) {
       setAttr("state", State.dao.findFirstBy("`state`.type=? AND `state`.value=?", type, value));
     }
     dynaRender("/view/index.ftl");

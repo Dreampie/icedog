@@ -1,26 +1,10 @@
 package org.icedog.common.web.controller;
 
-import cn.dreampie.common.config.AppConstants;
-import cn.dreampie.common.plugin.mail.Mailer;
-import cn.dreampie.common.plugin.mail.MailerTemplate;
-import cn.dreampie.common.plugin.patchca.PatchcaRender;
-import cn.dreampie.common.plugin.shiro.hasher.Hasher;
-import cn.dreampie.common.plugin.shiro.hasher.HasherInfo;
-import cn.dreampie.common.plugin.shiro.hasher.HasherUtils;
-import cn.dreampie.common.util.SubjectUtils;
-import cn.dreampie.common.util.TimeUtils;
-import cn.dreampie.common.util.ValidateUtils;
-import cn.dreampie.common.web.thread.ThreadLocalUtil;
-import com.jfinal.aop.Before;
-import com.jfinal.plugin.activerecord.tx.Tx;
-import org.icedog.function.user.model.Token;
+import cn.dreampie.web.filter.ThreadLocalKit;
+import cn.dreampie.captcha.CaptchaRender;
 import org.icedog.function.user.model.User;
-import org.joda.time.DateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.util.Date;
-import java.util.UUID;
 
 /**
  * Controller
@@ -30,14 +14,14 @@ public class Controller extends com.jfinal.core.Controller {
   protected Logger logger = LoggerFactory.getLogger(getClass());
 
   public void dynaRender() {
-    if (ThreadLocalUtil.isJson())
+    if (ThreadLocalKit.isJson())
       super.renderJson();
     else
       super.render(indexView);
   }
 
   public void dynaRender(String view) {
-    if (ThreadLocalUtil.isJson())
+    if (ThreadLocalKit.isJson())
       super.renderJson();
     else
       super.render(view);
@@ -72,7 +56,7 @@ public class Controller extends com.jfinal.core.Controller {
     if (isParaExists("fontsize")) {
       fontsize = getParaToInt("fontsize");
     }
-    PatchcaRender captcha = new PatchcaRender(minnum, maxnum, width, height, fontsize);
+    CaptchaRender captcha = new CaptchaRender(minnum, maxnum, width, height, fontsize);
     //透明度  全透明验证码
     captcha.setAlpha(0f);
     render(captcha);
@@ -80,7 +64,7 @@ public class Controller extends com.jfinal.core.Controller {
 
 //  public void tosignup() {
 //    String uuid = getPara("token");
-//    if (uuid != null && ValidateUtils.me().isUUID(uuid)) {
+//    if (uuid != null && ValidateKit.isUUID(uuid)) {
 //
 //      Token token = Token.dao.findFirstBy("`token`.uuid='" + uuid + "' AND `token`.expiration_at>'" + TimeUtils.me().toString(DateTime.now()) + "' AND `token`.used_to=0");
 ////            if (token == null) {
@@ -100,7 +84,7 @@ public class Controller extends com.jfinal.core.Controller {
 //        User regUser = new User();
 //        regUser.set("email", token.get("username"));
 //        setAttr("email", regUser.get("email"));
-//        SubjectUtils.me().getSession().setAttribute(AppConstants.TEMP_USER, regUser);
+//        SubjectKit.getSession().setAttribute(AppConstants.TEMP_USER, regUser);
 //        dynaRender("/view/signup.ftl");
 //        return;
 //      }
@@ -135,7 +119,7 @@ public class Controller extends com.jfinal.core.Controller {
 //  @Before({RootValidator.SignupValidator.class, Tx.class})
 //  public void signup() {
 //    User regUser = getModel(User.class);
-////        Object u = SubjectUtils.me().getSession().getAttribute(AppConstants.TEMP_USER);
+////        Object u = SubjectKit.getSession().getAttribute(AppConstants.TEMP_USER);
 //
 ////        regUser.set("email", ((User) u).get("email"));
 //    regUser.set("email", getAttr("email"));
@@ -157,9 +141,9 @@ public class Controller extends com.jfinal.core.Controller {
 //      regUser.addUserInfo(null).addRole(null);
 //      setAttr("state", "success");
 //      if (autoLogin) {
-//        if (SubjectUtils.me().login(regUser.getStr("username"), passwordInfo.getHashText(), User.dao.findFirstBy("username=?", regUser.get("username")))) {
+//        if (SubjectKit.login(regUser.getStr("username"), passwordInfo.getHashText(), User.dao.findFirstBy("username=?", regUser.get("username")))) {
 //          //添加到session
-//          SubjectUtils.me().getSession().setAttribute(AppConstants.CURRENT_USER, regUser);
+//          SubjectKit.getSession().setAttribute(AppConstants.CURRENT_USER, regUser);
 //          dynaRender();
 //          return;
 //        }

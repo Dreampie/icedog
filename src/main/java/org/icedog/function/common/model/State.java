@@ -1,7 +1,7 @@
 package org.icedog.function.common.model;
 
-import cn.dreampie.common.model.Model;
-import com.jfinal.ext.plugin.tablebind.TableBind;
+import cn.dreampie.tablebind.TableBind;
+import cn.dreampie.web.model.Model;
 
 /**
  * Created by wangrenhui on 14-4-16.

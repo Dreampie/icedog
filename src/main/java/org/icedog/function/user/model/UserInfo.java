@@ -1,6 +1,6 @@
 package org.icedog.function.user.model;
 
-import com.jfinal.ext.plugin.tablebind.TableBind;
+import cn.dreampie.tablebind.TableBind;
 import com.jfinal.plugin.activerecord.Model;
 
 /**

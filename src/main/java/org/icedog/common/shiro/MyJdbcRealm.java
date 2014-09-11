@@ -1,15 +1,12 @@
 package org.icedog.common.shiro;
 
-import cn.dreampie.common.config.AppConstants;
-import cn.dreampie.common.util.SubjectUtils;
-import cn.dreampie.common.util.ValidateUtils;
-import org.apache.shiro.SecurityUtils;
+import cn.dreampie.ValidateKit;
+import cn.dreampie.shiro.core.SubjectKit;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.cache.Cache;
 import org.apache.shiro.realm.AuthorizingRealm;
-import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.subject.SimplePrincipalCollection;
 import org.icedog.function.user.model.Permission;
@@ -40,9 +37,9 @@ public class MyJdbcRealm extends AuthorizingRealm {
 //      return new SimpleAuthenticationInfo(MyAnonymousFilter.getUsername(), passwordService.encryptPassword(MyAnonymousFilter.getPassword()), getName());
 //    } else {
     String username = userToken.getUsername();
-    if (ValidateUtils.me().isEmail(username)) {
+    if (ValidateKit.isEmail(username)) {
       user = User.dao.findFirstBy(" `user`.email =? AND `user`.deleted_at is null", username);
-    } else if (ValidateUtils.me().isMobile(username)) {
+    } else if (ValidateKit.isMobile(username)) {
       user = User.dao.findFirstBy(" `user`.mobile =? AND `user`.deleted_at is null", username);
     } else {
       user = User.dao.findFirstBy(" `user`.username =? AND `user`.deleted_at is null", username);
@@ -81,7 +78,7 @@ public class MyJdbcRealm extends AuthorizingRealm {
       roles = Role.dao.findUserBy("", user.getLong("id"));
 //        }
     } else {
-      SubjectUtils.me().getSubject().logout();
+      SubjectKit.getSubject().logout();
     }
 
     loadRole(roleSet, permissionSet, roles);

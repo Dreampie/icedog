@@ -1,8 +1,8 @@
 package org.icedog.common.shiro;
 
-import cn.dreampie.common.plugin.shiro.plugin.AuthzHandler;
-import cn.dreampie.common.plugin.shiro.plugin.JdbcAuthzService;
-import cn.dreampie.common.plugin.shiro.plugin.JdbcPermissionAuthzHandler;
+import cn.dreampie.shiro.core.JdbcAuthzService;
+import cn.dreampie.shiro.core.handler.AuthzHandler;
+import cn.dreampie.shiro.core.handler.JdbcPermissionAuthzHandler;
 import org.icedog.function.user.model.Permission;
 import org.icedog.function.user.model.Role;
 

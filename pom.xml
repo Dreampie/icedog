@@ -13,7 +13,14 @@
     <project.reporting.outputEncoding>utf-8</project.reporting.outputEncoding>
     <!-- For the Maven Jetty plugin (mvn jetty:run) -->
     <jetty.version>9.1.1.v20140108</jetty.version>
-    <jfinal-dreampie.version>0.2.3</jfinal-dreampie.version>
+    <jfinal-shiro.version>0.1</jfinal-shiro.version>
+    <jfinal-coffeescript.version>0.1</jfinal-coffeescript.version>
+    <jfinal-lesscss.version>0.1</jfinal-lesscss.version>
+    <jfinal-tablebind.version>0.1</jfinal-tablebind.version>
+    <jfinal-sqlinxml.version>0.1</jfinal-sqlinxml.version>
+    <jfinal-flyway.version>0.1</jfinal-flyway.version>
+    <jfinal-mailer.version>0.1</jfinal-mailer.version>
+    <jfinal-captcha.version>0.1</jfinal-captcha.version>
     <jquery.version>2.1.1</jquery.version>
     <angular.version>1.3.0-beta.17</angular.version>
     <bootstrap.version>3.2.0</bootstrap.version>
@@ -24,13 +31,69 @@
     <angular-ui-bootstrap.version>0.11.0-2</angular-ui-bootstrap.version>
     <angular-ui-calendar.version>0.9.0-beta.1</angular-ui-calendar.version>
     <angularFire.version>0.7.1</angularFire.version>
+    <druid.version>1.0.9</druid.version>
+    <h2.version>1.4.181</h2.version>
   </properties>
 
   <dependencies>
     <dependency>
       <groupId>cn.dreampie</groupId>
-      <artifactId>jfinal-dreampie</artifactId>
-      <version>${jfinal-dreampie.version}</version>
+      <artifactId>jfinal-shiro</artifactId>
+      <version>${jfinal-shiro.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>cn.dreampie</groupId>
+      <artifactId>jfinal-tablebind</artifactId>
+      <version>${jfinal-tablebind.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>cn.dreampie</groupId>
+      <artifactId>jfinal-mailer</artifactId>
+      <version>${jfinal-mailer.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>cn.dreampie</groupId>
+      <artifactId>jfinal-flyway</artifactId>
+      <version>${jfinal-flyway.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>cn.dreampie</groupId>
+      <artifactId>jfinal-sqlinxml</artifactId>
+      <version>${jfinal-sqlinxml.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>cn.dreampie</groupId>
+      <artifactId>jfinal-captcha</artifactId>
+      <version>${jfinal-captcha.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.alibaba</groupId>
+      <artifactId>druid</artifactId>
+      <version>${druid.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>cn.dreampie</groupId>
+      <artifactId>jfinal-coffeescript</artifactId>
+      <version>${jfinal-coffeescript.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.h2database</groupId>
+      <artifactId>h2</artifactId>
+      <version>${h2.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>cn.dreampie</groupId>
+      <artifactId>jfinal-lesscss</artifactId>
+      <version>${jfinal-lesscss.version}</version>
     </dependency>
     <!--webjars-->
     <dependency>
@@ -78,38 +141,38 @@
     </dependency>
     <!--&lt;!&ndash; 让IE6-8 支持 CSS3 Media Query&ndash;&gt;-->
     <!--<dependency>-->
-      <!--<groupId>org.webjars</groupId>-->
-      <!--<artifactId>respond</artifactId>-->
-      <!--<version>1.4.2</version>-->
+    <!--<groupId>org.webjars</groupId>-->
+    <!--<artifactId>respond</artifactId>-->
+    <!--<version>1.4.2</version>-->
     <!--</dependency>-->
     <!--<dependency>-->
-      <!--<groupId>org.webjars</groupId>-->
-      <!--<artifactId>es6-shim</artifactId>-->
-      <!--<version>0.12.0</version>-->
+    <!--<groupId>org.webjars</groupId>-->
+    <!--<artifactId>es6-shim</artifactId>-->
+    <!--<version>0.12.0</version>-->
     <!--</dependency>-->
     <!--&lt;!&ndash;让IE6~8支持CSS3伪类和属性选择器&ndash;&gt;-->
     <!--<dependency>-->
-      <!--<groupId>org.webjars</groupId>-->
-      <!--<artifactId>selectivizr</artifactId>-->
-      <!--<version>1.0.2</version>-->
+    <!--<groupId>org.webjars</groupId>-->
+    <!--<artifactId>selectivizr</artifactId>-->
+    <!--<version>1.0.2</version>-->
     <!--</dependency>-->
     <!--&lt;!&ndash;ie9 json&ndash;&gt;-->
     <!--<dependency>-->
-      <!--<groupId>org.webjars</groupId>-->
-      <!--<artifactId>json3</artifactId>-->
-      <!--<version>3.3.2</version>-->
+    <!--<groupId>org.webjars</groupId>-->
+    <!--<artifactId>json3</artifactId>-->
+    <!--<version>3.3.2</version>-->
     <!--</dependency>-->
     <!--&lt;!&ndash; 让IE系列支持HTML5标签&ndash;&gt;-->
     <!--<dependency>-->
-      <!--<groupId>org.webjars</groupId>-->
-      <!--<artifactId>html5shiv</artifactId>-->
-      <!--<version>3.7.2</version>-->
+    <!--<groupId>org.webjars</groupId>-->
+    <!--<artifactId>html5shiv</artifactId>-->
+    <!--<version>3.7.2</version>-->
     <!--</dependency>-->
     <!--&lt;!&ndash; 缩略图占位插件&ndash;&gt;-->
     <!--<dependency>-->
-      <!--<groupId>org.webjars</groupId>-->
-      <!--<artifactId>holderjs</artifactId>-->
-      <!--<version>2.3.0</version>-->
+    <!--<groupId>org.webjars</groupId>-->
+    <!--<artifactId>holderjs</artifactId>-->
+    <!--<version>2.3.0</version>-->
     <!--</dependency>-->
     <!--realtime-->
     <dependency>

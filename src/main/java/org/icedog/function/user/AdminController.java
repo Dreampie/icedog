@@ -1,16 +1,19 @@
 package org.icedog.function.user;
 
-import cn.dreampie.common.config.AppConstants;
-import cn.dreampie.common.ehcache.CacheNameRemove;
-import cn.dreampie.common.util.SortUtils;
-import cn.dreampie.common.util.SubjectUtils;
-import cn.dreampie.common.util.ValidateUtils;
-import cn.dreampie.common.util.tree.TreeUtils;
+import cn.dreampie.ValidateKit;
+import cn.dreampie.shiro.core.SubjectKit;
+import cn.dreampie.shiro.hasher.Hasher;
+import cn.dreampie.shiro.hasher.HasherInfo;
+import cn.dreampie.shiro.hasher.HasherKit;
+import cn.dreampie.tree.TreeNodeKit;
+import cn.dreampie.web.cache.CacheRemove;
 import com.google.common.collect.Lists;
 import com.jfinal.aop.Before;
 import com.jfinal.plugin.activerecord.Page;
 import com.jfinal.plugin.activerecord.tx.Tx;
 import com.jfinal.plugin.ehcache.CacheName;
+import org.icedog.common.config.AppConstants;
+import org.icedog.common.kit.ModelSortKit;
 import org.icedog.common.web.controller.Controller;
 import org.icedog.function.common.model.State;
 import org.icedog.function.user.model.*;
@@ -29,7 +32,7 @@ public class AdminController extends Controller {
 
   @CacheName(AppConstants.DEFAULT_CACHENAME)
   public void user() {
-    User user = SubjectUtils.me().getUser();
+    User user = SubjectKit.getUser();
     keepPara("user_search");
 
     //查询当前用户的角色
@@ -51,7 +54,7 @@ public class AdminController extends Controller {
     //只能查询当前用户以下的角色
     String where = " `user`.id <> " + user.get("id") + " AND `userRole`.role_id in (" + roleIds + ")";
     String user_search = getPara("user_search");
-    if (!ValidateUtils.me().isNullOrEmpty(user_search)) {
+    if (!ValidateKit.isNullOrEmpty(user_search)) {
       where += " AND (INSTR(`user`.username,'" + user_search + "')>0 OR  INSTR(`user`.full_name,'" + user_search + "')>0 "
           + "OR  INSTR(`user`.mobile,'" + user_search + "')>0 OR  INSTR(`province`.name,'" + user_search + "')>0 "
           + "OR  INSTR(`city`.name,'" + user_search + "')>0 OR  INSTR(`county`.name,'" + user_search + "')>0 "
@@ -59,17 +62,17 @@ public class AdminController extends Controller {
           + "OR INSTR(`user`.created_at,'" + user_search + "')>0 OR INSTR(`user`.email,'" + user_search + "')>0) ";
     }
 //        String start_at = getPara("start_at");
-//        if (ValidateUtils.me().isDateTime(start_at)) {
+//        if (ValidateKit.isDateTime(start_at)) {
 //            where += " AND `user`.created_at >= '" + start_at + "'";
 //        }
 //
 //        String end_at = getPara("end_time");
-//        if (ValidateUtils.me().isDateTime(end_at)) {
+//        if (ValidateKit.isDateTime(end_at)) {
 //            where += " AND `user`.created_at <= '" + end_at + "'";
 //        }
 //
 //        Boolean deleted = getParaToBoolean("deleted");
-//        if (!ValidateUtils.me().isNullOrEmpty(deleted) && deleted) {
+//        if (!ValidateKit.isNullOrEmpty(deleted) && deleted) {
 //            where += " AND `user`.deleted_at is not null";
 //        } else {
 //            where += " AND `user`.deleted_at is null";
@@ -77,7 +80,7 @@ public class AdminController extends Controller {
 
 
     Page<User> users = User.dao.paginateInfoBy(getParaToInt(0, 1), getParaToInt("pageSize", 15), where);
-    Map userGroup = SortUtils.me().sort(users.getList(), "last_name");
+    Map userGroup = ModelSortKit.sort(users.getList(), "last_name");
 
     setAttr("roles", roles);
     setAttr("users", users);
@@ -86,7 +89,7 @@ public class AdminController extends Controller {
     dynaRender("/view/admin/user.ftl");
   }
 
-  @CacheNameRemove(name = AppConstants.DEFAULT_CACHENAME)
+  @CacheRemove(name = AppConstants.DEFAULT_CACHENAME)
   @Before({AdminValidator.deleteUserValidator.class, Tx.class})
   public void deleteUser() {
     keepModel(User.class);
@@ -106,7 +109,7 @@ public class AdminController extends Controller {
   }
 
 
-  @CacheNameRemove(name = AppConstants.DEFAULT_CACHENAME)
+  @CacheRemove(name = AppConstants.DEFAULT_CACHENAME)
   @Before({AdminValidator.UpdateRoleValidator.class, Tx.class})
   public void updateRole() {
     keepModel(UserRole.class);
@@ -115,7 +118,7 @@ public class AdminController extends Controller {
     boolean result = true;
     List<UserRole> aroles = UserRole.dao.findBy("`userRole`.user_id=" + userRole.get("user_id"));
     boolean mustAdd = true;
-    if (!ValidateUtils.me().isNullOrEmpty(aroles)) {
+    if (!ValidateKit.isNullOrEmpty(aroles)) {
       //delete
       for (UserRole ar : aroles) {
         if (ar.get("role_id") != userRole.get("role_id")) {
@@ -138,12 +141,12 @@ public class AdminController extends Controller {
     dynaRender("/view/admin/user.ftl");
   }
 
-  @CacheNameRemove(name = AppConstants.DEFAULT_CACHENAME)
+  @CacheRemove(name = AppConstants.DEFAULT_CACHENAME)
   @Before({AdminValidator.UpdatePwdValidator.class, Tx.class})
   public void updatePwd() {
     keepModel(User.class);
     User user = getModel(User.class);
-    cn.dreampie.common.plugin.shiro.hasher.HasherInfo passwordInfo = cn.dreampie.common.plugin.shiro.hasher.HasherUtils.me().hash(user.getStr("password"), cn.dreampie.common.plugin.shiro.hasher.Hasher.DEFAULT);
+   HasherInfo passwordInfo = HasherKit.hash(user.getStr("password"), Hasher.DEFAULT);
     user.set("password", passwordInfo.getHashResult());
     user.set("hasher", passwordInfo.getHasher().value());
     user.set("salt", passwordInfo.getSalt());
@@ -157,7 +160,7 @@ public class AdminController extends Controller {
 
   @CacheName(AppConstants.DEFAULT_CACHENAME)
   public void role() {
-    User user = SubjectUtils.me().getUser();
+    User user = SubjectKit.getUser();
     keepPara("user_search");
 
     //查询当前用户的角色
@@ -165,13 +168,13 @@ public class AdminController extends Controller {
     //当前用户的子集角色
     List<Role> roles = Role.dao.findChildrenById("`role`.deleted_at is null", userRole.get("role_id"));
     roles.add(0, user.getRole());
-    if (!ValidateUtils.me().isNullOrEmpty(roles))
+    if (!ValidateKit.isNullOrEmpty(roles))
       setAttr("role", user.getRole());
 
 
     List<Permission> authories = Permission.dao.findBy("`permission`.deleted_at is NULL");
-    setAttr("rolestree", TreeUtils.toTree(roles));
-    setAttr("permissionestree", TreeUtils.toTreeLevel(authories, 2));
+    setAttr("rolestree", TreeNodeKit.toTree(roles));
+    setAttr("permissionestree", TreeNodeKit.toTreeLevel(authories, 2));
 
     dynaRender("/view/admin/role.ftl");
   }
@@ -186,7 +189,7 @@ public class AdminController extends Controller {
     dynaRender("/view/admin/role.ftl");
   }
 
-  @CacheNameRemove(name = AppConstants.DEFAULT_CACHENAME)
+  @CacheRemove(name = AppConstants.DEFAULT_CACHENAME)
   @Before({AdminValidator.RoleSaveValidator.class, Tx.class})
   public void roleSave() {
     Role role = getModel(Role.class);
@@ -196,13 +199,13 @@ public class AdminController extends Controller {
     } else
       parent = Role.dao.findById(role.getParentId());
     boolean result = false;
-    if (!ValidateUtils.me().isNullOrEmpty(parent)) {
+    if (!ValidateKit.isNullOrEmpty(parent)) {
       Role.dao.updateBy("`role`.left_code=`role`.left_code+2", "`role`.left_code>=" + parent.get("right_code"));
       Role.dao.updateBy("`role`.right_code=`role`.right_code+2", "`role`.right_code>=" + parent.get("right_code"));
       role.set("left_code", parent.getLong("right_code"));
       role.set("right_code", parent.getLong("right_code") + 1);
       role.set("created_at", new Date());
-      if (ValidateUtils.me().isNullOrEmpty(role.get("id"))) {
+      if (ValidateKit.isNullOrEmpty(role.get("id"))) {
         role.remove("id");
       }
       result = role.save();
@@ -216,11 +219,11 @@ public class AdminController extends Controller {
     dynaRender("/view/admin/role.ftl");
   }
 
-  @CacheNameRemove(name = AppConstants.DEFAULT_CACHENAME)
+  @CacheRemove(name = AppConstants.DEFAULT_CACHENAME)
   @Before({AdminValidator.RoleUpdateValidator.class, Tx.class})
   public void roleUpdate() {
     Role role = getModel(Role.class);
-    if (ValidateUtils.me().isNullOrEmpty(role.get("pid"))) {
+    if (ValidateKit.isNullOrEmpty(role.get("pid"))) {
       role.remove("pid");
     }
     role.set("updated_at", new Date());
@@ -232,14 +235,14 @@ public class AdminController extends Controller {
     dynaRender("/view/admin/role.ftl");
   }
 
-  @CacheNameRemove(name = AppConstants.DEFAULT_CACHENAME)
+  @CacheRemove(name = AppConstants.DEFAULT_CACHENAME)
   @Before({AdminValidator.RoleDeleteValidator.class, Tx.class})
   public void roleDrop() {
 
     Integer id = getParaToInt("role.id");
     Role role = Role.dao.findById(id);
     boolean result = false;
-    if (!ValidateUtils.me().isNullOrEmpty(role)) {
+    if (!ValidateKit.isNullOrEmpty(role)) {
       Role.dao.updateBy("`role`.left_code=`role`.left_code-2", "`role`.left_code>=" + role.get("left_code"));
       Role.dao.updateBy("`role`.right_code=`role`.right_code-2", "`role`.right_code>=" + role.get("right_code"));
 
@@ -257,7 +260,7 @@ public class AdminController extends Controller {
     dynaRender("/view/admin/role.ftl");
   }
 
-  @CacheNameRemove(name = AppConstants.DEFAULT_CACHENAME)
+  @CacheRemove(name = AppConstants.DEFAULT_CACHENAME)
   @Before({AdminValidator.PermSaveValidator.class, Tx.class})
   public void permSave() {
     Permission permission = getModel(Permission.class);
@@ -267,13 +270,13 @@ public class AdminController extends Controller {
     } else
       parent = Permission.dao.findById(permission.getParentId());
     boolean result = false;
-    if (!ValidateUtils.me().isNullOrEmpty(parent)) {
+    if (!ValidateKit.isNullOrEmpty(parent)) {
       Permission.dao.updateBy("`permission`.left_code=`permission`.left_code+2", "`permission`.left_code>=" + parent.get("right_code"));
       Permission.dao.updateBy("`permission`.right_code=`permission`.right_code+2", "`permission`.right_code>=" + parent.get("right_code"));
       permission.set("left_code", parent.getLong("right_code"));
       permission.set("right_code", parent.getLong("right_code") + 1);
       permission.set("created_at", new Date());
-      if (ValidateUtils.me().isNullOrEmpty(permission.get("id"))) {
+      if (ValidateKit.isNullOrEmpty(permission.get("id"))) {
         permission.remove("id");
       }
       result = permission.save();
@@ -288,11 +291,11 @@ public class AdminController extends Controller {
     dynaRender("/view/admin/role.ftl");
   }
 
-  @CacheNameRemove(name = AppConstants.DEFAULT_CACHENAME)
+  @CacheRemove(name = AppConstants.DEFAULT_CACHENAME)
   @Before({AdminValidator.PermUpdateValidator.class, Tx.class})
   public void permUpdate() {
     Permission permission = getModel(Permission.class);
-    if (ValidateUtils.me().isNullOrEmpty(permission.get("pid"))) {
+    if (ValidateKit.isNullOrEmpty(permission.get("pid"))) {
       permission.remove("pid");
     }
     permission.set("updated_at", new Date());
@@ -304,14 +307,14 @@ public class AdminController extends Controller {
     dynaRender("/view/admin/role.ftl");
   }
 
-  @CacheNameRemove(name = AppConstants.DEFAULT_CACHENAME)
+  @CacheRemove(name = AppConstants.DEFAULT_CACHENAME)
   @Before({AdminValidator.PermDeleteValidator.class, Tx.class})
   public void permDrop() {
 
     Integer id = getParaToInt("permission.id");
     Permission permission = Permission.dao.findById(id);
     boolean result = false;
-    if (!ValidateUtils.me().isNullOrEmpty(permission)) {
+    if (!ValidateKit.isNullOrEmpty(permission)) {
       Permission.dao.updateBy("`permission`.left_code=`permission`.left_code-2", "`permission`.left_code>=" + permission.get("left_code"));
       Permission.dao.updateBy("`permission`.right_code=`permission`.right_code-2", "`permission`.right_code>=" + permission.get("right_code"));
       result = permission.delete();
@@ -327,7 +330,7 @@ public class AdminController extends Controller {
     dynaRender("/view/admin/role.ftl");
   }
 
-  @CacheNameRemove(name = AppConstants.DEFAULT_CACHENAME)
+  @CacheRemove(name = AppConstants.DEFAULT_CACHENAME)
   @Before({AdminValidator.RolePermsValidator.class, Tx.class})
   public void permsAdd() {
     String[] idsPara = getParaValues("permission.id");

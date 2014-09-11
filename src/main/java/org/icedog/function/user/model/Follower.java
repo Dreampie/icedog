@@ -1,9 +1,9 @@
 package org.icedog.function.user.model;
 
-import cn.dreampie.common.model.Model;
-import cn.dreampie.common.plugin.sqlinxml.SqlKit;
-import cn.dreampie.common.util.SubjectUtils;
-import com.jfinal.ext.plugin.tablebind.TableBind;
+import cn.dreampie.shiro.core.SubjectKit;
+import cn.dreampie.sqlinxml.SqlKit;
+import cn.dreampie.tablebind.TableBind;
+import cn.dreampie.web.model.Model;
 import com.jfinal.plugin.activerecord.Page;
 
 /**
@@ -14,7 +14,7 @@ public class Follower extends Model<Follower> {
   public static Follower dao = new Follower();
 
   public boolean getFollowed() {
-    User user = (User) SubjectUtils.me().getUser();
+    User user = (User) SubjectKit.getUser();
     if (this.get("followed") == null) {
       Follower following = Follower.dao.findFirstBy("`follower`.user_id =" + user.get("id") + " AND `follower`.link_id =" + this.get("id"));
       if (following != null) {

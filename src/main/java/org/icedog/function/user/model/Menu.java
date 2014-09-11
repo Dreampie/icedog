@@ -1,9 +1,9 @@
 package org.icedog.function.user.model;
 
-import cn.dreampie.common.model.Model;
-import cn.dreampie.common.util.tree.TreeNode;
-import com.jfinal.ext.plugin.sqlinxml.SqlKit;
-import com.jfinal.ext.plugin.tablebind.TableBind;
+import cn.dreampie.sqlinxml.SqlKit;
+import cn.dreampie.tablebind.TableBind;
+import cn.dreampie.tree.TreeNode;
+import cn.dreampie.web.model.Model;
 
 import java.util.List;
 
