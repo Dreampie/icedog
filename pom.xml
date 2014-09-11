@@ -27,10 +27,8 @@
     <font-awesome.version>4.1.0</font-awesome.version>
     <requirejs.version>2.1.14-1</requirejs.version>
     <require-css.version>0.1.4</require-css.version>
-    <firebase.version>1.0.17</firebase.version>
     <angular-ui-bootstrap.version>0.11.0-2</angular-ui-bootstrap.version>
     <angular-ui-calendar.version>0.9.0-beta.1</angular-ui-calendar.version>
-    <angularFire.version>0.7.1</angularFire.version>
     <druid.version>1.0.9</druid.version>
     <h2.version>1.4.181</h2.version>
   </properties>
@@ -139,52 +137,7 @@
       <artifactId>requirejs</artifactId>
       <version>${requirejs.version}</version>
     </dependency>
-    <!--&lt;!&ndash; 让IE6-8 支持 CSS3 Media Query&ndash;&gt;-->
-    <!--<dependency>-->
-    <!--<groupId>org.webjars</groupId>-->
-    <!--<artifactId>respond</artifactId>-->
-    <!--<version>1.4.2</version>-->
-    <!--</dependency>-->
-    <!--<dependency>-->
-    <!--<groupId>org.webjars</groupId>-->
-    <!--<artifactId>es6-shim</artifactId>-->
-    <!--<version>0.12.0</version>-->
-    <!--</dependency>-->
-    <!--&lt;!&ndash;让IE6~8支持CSS3伪类和属性选择器&ndash;&gt;-->
-    <!--<dependency>-->
-    <!--<groupId>org.webjars</groupId>-->
-    <!--<artifactId>selectivizr</artifactId>-->
-    <!--<version>1.0.2</version>-->
-    <!--</dependency>-->
-    <!--&lt;!&ndash;ie9 json&ndash;&gt;-->
-    <!--<dependency>-->
-    <!--<groupId>org.webjars</groupId>-->
-    <!--<artifactId>json3</artifactId>-->
-    <!--<version>3.3.2</version>-->
-    <!--</dependency>-->
-    <!--&lt;!&ndash; 让IE系列支持HTML5标签&ndash;&gt;-->
-    <!--<dependency>-->
-    <!--<groupId>org.webjars</groupId>-->
-    <!--<artifactId>html5shiv</artifactId>-->
-    <!--<version>3.7.2</version>-->
-    <!--</dependency>-->
-    <!--&lt;!&ndash; 缩略图占位插件&ndash;&gt;-->
-    <!--<dependency>-->
-    <!--<groupId>org.webjars</groupId>-->
-    <!--<artifactId>holderjs</artifactId>-->
-    <!--<version>2.3.0</version>-->
-    <!--</dependency>-->
-    <!--realtime-->
-    <dependency>
-      <groupId>org.webjars</groupId>
-      <artifactId>firebase</artifactId>
-      <version>${firebase.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.webjars</groupId>
-      <artifactId>angularFire</artifactId>
-      <version>${angularFire.version}</version>
-    </dependency>
+
     <dependency>
       <groupId>org.webjars</groupId>
       <artifactId>require-css</artifactId>
