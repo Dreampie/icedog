@@ -143,7 +143,7 @@ public class UserController extends Controller {
     dynaRender("/view/user/follower.ftl");
   }
 
-  @CacheRemove(name = AppConstants.DEFAULT_CACHENAME)
+  @CacheRemove(name = AppConstants.DEFAULT_CACHENAME,keys = {"search"})
   public void addFollowing() {
     keepModel(Follower.class);
 

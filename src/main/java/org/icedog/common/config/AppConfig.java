@@ -54,17 +54,9 @@ public class AppConfig extends JFConfig {
   public void configConstant(Constants constants) {
     loadPropertyFile("application.properties");
     constants.setDevMode(getPropertyToBoolean("devMode", false));
-//        constants.setEncoding("UTF-8");
-//        I18N.init("messages", Locale.CHINA, Const.DEFAULT_I18N_MAX_AGE_OF_COOKIE);
-
     //set log to slf4j
     Logger.setLoggerFactory(new Slf4jLogFactory());
     constants.setErrorRenderFactory(new JsonErrorRenderFactory());
-//    constants.setI18n("messages", Locale.CHINA, Const.DEFAULT_I18N_MAX_AGE_OF_COOKIE);
-//        constants.setError401View("/view/login.ftl");
-//        constants.setError403View("/view/layout/403.ftl");
-//        constants.setError404View("/view/layout/404.ftl");
-//        constants.setError500View("/view/layout/500.ftl");
   }
 
   /**
@@ -101,6 +93,7 @@ public class AppConfig extends JFConfig {
     TableBindPlugin tableBindDefault = new TableBindPlugin(druidDefault, SimpleNameStyles.LOWER);
     tableBindDefault.setContainerFactory(new CaseInsensitiveContainerFactory(true)); //忽略字段大小写
 //    tableBindDefault.addExcludePaths("cn.dreampie.function.shop");
+    tableBindDefault.addIncludePaths("cn.dreampie.function.default");
     tableBindDefault.setShowSql(getPropertyToBoolean("devMode", false));
     //非mysql的数据库方言
     tableBindDefault.setDialect(new AnsiSqlDialect());
@@ -116,9 +109,9 @@ public class AppConfig extends JFConfig {
     plugins.add(new AkkaPlugin());
     //emailer插件
     plugins.add(new MailerPlugin());
-
+    //lesscsss编译插件
     plugins.add(new LessCssPlugin("/lesscss/", "/style/"));
-
+    //coffeescript编译插件
     plugins.add(new CoffeeScriptPlugin("/coffeescript/", "/javascript/"));
 
   }

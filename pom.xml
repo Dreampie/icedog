@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>icedog</groupId>
   <artifactId>icedog</artifactId>
-  <packaging>jar</packaging>
+  <packaging>war</packaging>
   <version>1.0-SNAPSHOT</version>
   <name>icedog Maven Webapp</name>
   <url>http://maven.apache.org</url>
