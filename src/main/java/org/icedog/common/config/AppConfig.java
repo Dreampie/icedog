@@ -93,7 +93,7 @@ public class AppConfig extends JFConfig {
     TableBindPlugin tableBindDefault = new TableBindPlugin(druidDefault, SimpleNameStyles.LOWER);
     tableBindDefault.setContainerFactory(new CaseInsensitiveContainerFactory(true)); //忽略字段大小写
 //    tableBindDefault.addExcludePaths("cn.dreampie.function.shop");
-    tableBindDefault.addIncludePaths("cn.dreampie.function.default");
+//    tableBindDefault.addIncludePaths("cn.dreampie.function.default");
     tableBindDefault.setShowSql(getPropertyToBoolean("devMode", false));
     //非mysql的数据库方言
     tableBindDefault.setDialect(new AnsiSqlDialect());
@@ -134,7 +134,7 @@ public class AppConfig extends JFConfig {
     handlers.add(new FakeStaticHandler());
     handlers.add(new AccessDeniedHandler("/**/*.ftl"));
     handlers.add(new ResourceHandler("/javascript/**", "/images/**", "/css/**", "/lib/**", "/**/*.html"));
-    handlers.add(new SkipHandler("/im/**"));
+    handlers.add(new SkipHandler("/notice/**"));
     //防xss攻击
     handlers.add(new AttackHandler());
   }

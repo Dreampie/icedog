@@ -3,18 +3,18 @@ define ['angular', 'css!style/app/signin'], ->
   angular.module('controller', [])
 
   #AppCtrl is base controller
-  .controller 'AppCtrl', ($scope, Message, Alert, Breadcrumb, UserService)->
+  .controller 'AppCtrl', ($scope, Message, Alert, BreadcrumbSrv, UserSrv)->
 #    $scope.message = Message
-    $scope.currentUser = UserService.currentUser
-    $scope.breadcrumb = Breadcrumb
+    $scope.currentUser = UserSrv.currentUser
+    $scope.breadcrumb = BreadcrumbSrv
     $scope.signout = (outpath) ->
-      UserService.signout(outpath)
+      UserSrv.signout(outpath)
 
 #    if !$.support.leadingWhitespace
 #      Alert.addAlert({type: 'danger', msg: '不支持该浏览器，推荐使用最新版本以获得更好的体验!', keep: true})
 
   #HeaderCtrl is Navbar
-  .controller 'HeaderCtrl', ($scope, $log, $modal, AppService, UserService) ->
+  .controller 'HeaderCtrl', ($scope, $log, $modal, AppSrv, UserSrv) ->
     $scope.menus = [
       {icon: 'user', name: 'Center', url: '/center', children: [{icon: 'user', name: 'Center1', url: '/center'}
                                                                   {icon: 'info', name: 'About1', url: '/about'}]}
@@ -23,12 +23,12 @@ define ['angular', 'css!style/app/signin'], ->
     ]
 
     #    console.log $scope.menus[0].children.length
-    if UserService.isAuthed
-      $scope.menus = UserService.user.menus || $scope.menus
+    if UserSrv.isAuthed
+      $scope.menus = UserSrv.user.menus || $scope.menus
 
     $scope.searchAll = (content)->
       if content && $.trim(content) != ''
-        AppService.searchAll(content)
+        AppSrv.searchAll(content)
 
 
   #FooterCtrl is Version
@@ -62,9 +62,9 @@ define ['angular', 'css!style/app/signin'], ->
 
 
   #SigninCtrl is sign in page
-  .controller 'SigninCtrl', ($scope, UserService) ->
+  .controller 'SigninCtrl', ($scope, UserSrv) ->
     $scope.signin = (user, captcha) ->
-      UserService.signin(user, captcha)
+      UserSrv.signin(user, captcha)
   #About me
   .controller 'AboutCtrl', ($scope)->
     $scope.organize = 'Icedog'

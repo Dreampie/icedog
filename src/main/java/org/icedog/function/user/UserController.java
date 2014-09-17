@@ -12,6 +12,8 @@ import com.jfinal.plugin.activerecord.tx.Tx;
 import org.icedog.common.config.AppConstants;
 import org.icedog.common.kit.ModelSortKit;
 import org.icedog.common.web.controller.Controller;
+import org.icedog.common.web.websocket.Message;
+import org.icedog.common.web.websocket.NoticeServer;
 import org.icedog.function.user.model.Follower;
 import org.icedog.function.user.model.User;
 
@@ -143,7 +145,7 @@ public class UserController extends Controller {
     dynaRender("/view/user/follower.ftl");
   }
 
-  @CacheRemove(name = AppConstants.DEFAULT_CACHENAME,keys = {"search"})
+  @CacheRemove(name = AppConstants.DEFAULT_CACHENAME, keys = {"search"})
   public void addFollowing() {
     keepModel(Follower.class);
 

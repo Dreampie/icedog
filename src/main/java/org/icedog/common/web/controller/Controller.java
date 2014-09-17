@@ -163,6 +163,7 @@ public class Controller extends com.jfinal.core.Controller {
   public void forget(){
     User u=getModel(User.class);
     User user = User.dao.findFirstBy(" `user`.email =? AND `user`.deleted_at is null", u.get("email"));
+
   }
 
 

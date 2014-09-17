@@ -3,7 +3,7 @@ define ['angular'], ->
   angular.module('service', [])
 
   #Breadcrumb  is site map
-  .factory 'Breadcrumb', ($rootScope, $location, $log) ->
+  .factory 'BreadcrumbSrv', ($rootScope, $location, $log) ->
     data = []
 
     $rootScope.$on '$routeChangeSuccess', ->
@@ -31,12 +31,34 @@ define ['angular'], ->
     first: ->
       data[0] || {}
 
-  .factory 'AppService', ->
+  .factory 'AppSrv', ->
     searchAll: (content)->
       console.log content
 
+  .factory 'WebSocketSrv', ($timeout, $location, $log) ->
+    connect: (url)->
+      if !window.WebSocket
+        $log.error 'cannot open websocket'
+        return
+      wsClient = new WebSocket(url)
 
-  .factory 'AreaService', ($cookieStore, Area) ->
+      wsClient.onopen = (event) ->
+        wsClient.readySate = true
+
+      wsClient.onmessage = (event)->
+        msg = JSON.parse(event.data)
+        $log.info(msg)
+
+      wsClient.onclose = (event) ->
+        wsClient.readySate = false
+        $log.info("close websocket")
+
+      wsClient.onerror = (event)->
+        wsClient.readySate = false
+        $log.error(event.data)
+      wsClient
+
+  .factory 'AreaSrv', ($cookieStore, Area) ->
     allAreas = $cookieStore.get('allAreas') || {isLoad: false}
 
     areaUtils =
@@ -45,8 +67,8 @@ define ['angular'], ->
           areas.isLoad = true
           $cookieStore.put('allAreas', areas)
           angular.extend(allAreas || {}, areas)
-#      getArea:(id...)->
-#        if !allAreas.isLoad
+    #      getArea:(id...)->
+    #        if !allAreas.isLoad
 
     loadArea: (area)->
       Area.query(area,
@@ -58,7 +80,7 @@ define ['angular'], ->
       $cookieStore.remove('allAreas')
       angular.extend(allAreas || {}, {isLoad: false})
 
-  .factory 'UserService', ($cookieStore, $location, $window, User, Alert, AreaService)->
+  .factory 'UserSrv', ($cookieStore, $location, $window, User, Alert, WebSocketSrv)->
     currentUser = $cookieStore.get('current_user') || { full_name: '访客', isAuthed: false}
 
     authUtils =
@@ -70,13 +92,14 @@ define ['angular'], ->
       removeUser: ->
         $cookieStore.remove('current_user')
         angular.extend(currentUser || {}, { full_name: '访客', isAuthed: false})
-        AreaService.removeArea()
 
     signin: (user, captcha, outpath, isReload)->
       User.signin(user, captcha,
       (data)->
         if data['authc.FILTERED'] && data.user
           authUtils.changeUser(data.user)
+          #登录成功  连接websocket
+          WebSocketSrv.connect("ws://localhost:9090/notice/"+data.user.id)
           #          console.log currentUser
           if(isReload)
             $window.location.href = outpath || '/'
@@ -96,7 +119,7 @@ define ['angular'], ->
           if(data['signout.FILTERED'])
             authUtils.removeUser()
 
-            #            console.log currentUser
+            #  console.log currentUser
             if(isReload)
               $window.location.href = outpath || '/'
             else
