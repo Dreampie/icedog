@@ -1,11 +1,12 @@
-define ['angular', 'angular-route', 'angular-cookies', 'angular-animate', 'angular-ui-bootstrap-tpls',
-        'angular-headroom', 'local',
-        'controller', 'service', 'resource', 'filter', 'directive','nprogress'],
+define ['angular', 'angular-route', 'angular-cookies', 'angular-animate', 'angular-ui-bootstrap-tpls','angular-headroom', 'local',
+        'controller', 'service', 'resource', 'filter', 'directive',
+        'angular-marked', 'nprogress', 'highlightjs'],
 ->
   'use strict'
   angular.module('app',
-    ['ngRoute', 'ngCookies', 'ngAnimate' , 'ui.bootstrap', 'headroom', 'local', 'controller', 'service', 'resource',
-     'filter', 'directive'])
+    ['ngRoute', 'ngCookies', 'ngAnimate' , 'ui.bootstrap', 'headroom', 'local',
+     'controller', 'service', 'resource','filter', 'directive',
+     'hc.marked'])
 
   #config app
   .constant 'CONFIG',
@@ -22,7 +23,7 @@ define ['angular', 'angular-route', 'angular-cookies', 'angular-animate', 'angul
       'errors.route.unknownError': 'Unknown error'
       'errors.browser.ieSupportError': 'Not support the Internet explorer browser version below 8'
 
-  .config ($routeProvider, $locationProvider, $httpProvider) ->
+  .config ($routeProvider, $locationProvider, $httpProvider, markedProvider) ->
     #use the HTML5 History API
     $locationProvider.html5Mode(true)
 
@@ -39,13 +40,12 @@ define ['angular', 'angular-route', 'angular-cookies', 'angular-animate', 'angul
         $.param(data)
 
     #异常过滤
-    $httpProvider.interceptors.push ($rootScope,$q, $location, Message, Alert)->
-
+    $httpProvider.interceptors.push ($rootScope, $q, $location, Message, Alert)->
       request: (config)->
         NProgress.start()
         config
 
-      response:(response)->
+      response: (response)->
         NProgress.done()
         response
 
@@ -64,14 +64,14 @@ define ['angular', 'angular-route', 'angular-cookies', 'angular-animate', 'angul
         $q.reject(response)
 
     #lazy  load controller
-#    resolver=(deps)->
-#      resolve:
-#        delay: ($q,$rootScope)->
-#          defer = $q.defer()
-#          require deps,->
-#            $rootScope.$apply ->
-#              defer.resolve()
-#          defer.promise
+    #    resolver=(deps)->
+    #      resolve:
+    #        delay: ($q,$rootScope)->
+    #          defer = $q.defer()
+    #          require deps,->
+    #            $rootScope.$apply ->
+    #              defer.resolve()
+    #          defer.promise
 
     $routeProvider
     .when '/',
@@ -82,12 +82,20 @@ define ['angular', 'angular-route', 'angular-cookies', 'angular-animate', 'angul
       templateUrl: 'view/app/signin.html', controller: 'SigninCtrl'
     .when '/about',
       templateUrl: 'view/app/about.html', controller: 'AboutCtrl'
+    .when 'editor',
+      templateUrl: 'view/app/editor.html', controller: 'EditorCtrl'
     .when '/calendar',
-      templateUrl: 'view/app/schedule/calendar.html',controller: 'CalendarCtrl'
+      templateUrl: 'view/app/schedule/calendar.html', controller: 'CalendarCtrl'
 #      ,resolver ['javascript/controller/schedule']
 #      require: ['javascript/controller/schedule']
     .otherwise
         redirectTo: '/'
+
+    markedProvider.setOptions
+      gfm: true
+      tables: true
+      highlight: (code)->
+        hljs.highlightAuto(code).value
 
   .run ($q, $rootScope, $location, Message, Alert) ->
     $rootScope.path = $location.path()

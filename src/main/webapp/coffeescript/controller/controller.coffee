@@ -20,6 +20,7 @@ define ['angular', 'css!style/app/signin'], ->
                                                                   {icon: 'info', name: 'About1', url: '/about'}]}
       {icon: 'calendar', name: 'Calendar', url: '/calendar'}
       {icon: 'info', name: 'About', url: '/about'}
+      {icon: 'pencil-square-o', name: 'Editor', url: '/editor'}
     ]
 
     #    console.log $scope.menus[0].children.length
@@ -65,6 +66,9 @@ define ['angular', 'css!style/app/signin'], ->
   .controller 'SigninCtrl', ($scope, UserSrv) ->
     $scope.signin = (user, captcha) ->
       UserSrv.signin(user, captcha)
+
+  .controller 'EditorCtrl',($scope)->
+    $scope.md='*This* **is** [markdown](https://daringfireball.net/projects/markdown/)'
   #About me
   .controller 'AboutCtrl', ($scope)->
     $scope.organize = 'Icedog'

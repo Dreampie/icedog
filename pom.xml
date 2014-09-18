@@ -35,6 +35,10 @@
     <!-- Java EE 7 -->
     <javaee.api.version>7.0</javaee.api.version>
     <fastjson.version>1.1.41</fastjson.version>
+    <!--markdown compiler-->
+    <marked.version>0.3.2-1</marked.version>
+    <!--code high light-->
+    <highlightjs.version>8.0-3</highlightjs.version>
   </properties>
 
   <dependencies>
@@ -170,6 +174,18 @@
       <groupId>com.alibaba</groupId>
       <artifactId>fastjson</artifactId>
       <version>${fastjson.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.webjars</groupId>
+      <artifactId>marked</artifactId>
+      <version>${marked.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.webjars</groupId>
+      <artifactId>highlightjs</artifactId>
+      <version>${highlightjs.version}</version>
     </dependency>
   </dependencies>
 

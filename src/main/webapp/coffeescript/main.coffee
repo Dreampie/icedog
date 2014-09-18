@@ -16,7 +16,10 @@ require.config
     'headroom': ['//cdn.jsdelivr.net/headroomjs/0.7.0/headroom.min', 'javascript/lib/headroom.min']
     'angular-headroom': ['//cdn.jsdelivr.net/headroomjs/0.7.0/angular.headroom.min','javascript/lib/angular.headroom.min']
     'angular-ui-calendar':['//cdn.bootcss.com/angular-ui-calendar/0.8.0/calendar.min','webjars/angular-ui-calendar/0.9.0-beta.1/calendar']
-    'nprogress':'webjars/nprogress/0.1.2/nprogress'
+    'nprogress':['//cdn.bootcss.com/nprogress/0.1.3/nprogress.min','webjars/nprogress/0.1.2/nprogress']
+    'marked':['//cdn.bootcss.com/marked/0.3.2/marked.min','webjars/marked/0.3.2/marked']
+    'angular-marked':'javascript/lib/angular-marked.min'
+    'highlightjs':['//cdn.bootcss.com/highlight.js/8.2/highlight.min','webjars/highlightjs/8.0/highlight.min']
 
     'app': 'javascript/app'
     'route':'javascript/route'
@@ -36,6 +39,8 @@ require.config
     'angular-ui-bootstrap-tpls': ['angular']
     'angular-ui-calendar': ['angular']
     'angular-headroom': ['angular', 'headroom']
+    'angular-marked':['angular','marked']
+    'highlightjs':['css!webjars/highlightjs/8.0/styles/default.min']
 
     'nprogress':['css!webjars/nprogress/0.1.2/nprogress']
     'controller': ['css!webjars/bootstrap/3.2.0/css/bootstrap.min',
@@ -45,7 +50,7 @@ require.config
     '*':
       'css': 'webjars/require-css/0.1.4/css' #or whatever the path to require-css is
 
-  waitSeconds: 2
+  waitSeconds: 1
 
 require ['app','javascript/controller/schedule'], ->
   $ ->
