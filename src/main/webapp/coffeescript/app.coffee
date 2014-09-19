@@ -82,7 +82,7 @@ define ['angular', 'angular-route', 'angular-cookies', 'angular-animate', 'angul
       templateUrl: 'view/app/signin.html', controller: 'SigninCtrl'
     .when '/about',
       templateUrl: 'view/app/about.html', controller: 'AboutCtrl'
-    .when 'editor',
+    .when '/editor',
       templateUrl: 'view/app/editor.html', controller: 'EditorCtrl'
     .when '/calendar',
       templateUrl: 'view/app/schedule/calendar.html', controller: 'CalendarCtrl'
@@ -96,6 +96,7 @@ define ['angular', 'angular-route', 'angular-cookies', 'angular-animate', 'angul
       tables: true
       highlight: (code)->
         hljs.highlightAuto(code).value
+
 
   .run ($q, $rootScope, $location, Message, Alert) ->
     $rootScope.path = $location.path()

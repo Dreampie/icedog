@@ -132,7 +132,7 @@ public class AppConfig extends JFConfig {
    */
   public void configHandler(Handlers handlers) {
     handlers.add(new FakeStaticHandler());
-    handlers.add(new AccessDeniedHandler("/**/*.ftl"));
+//    handlers.add(new AccessDeniedHandler("/**/*.ftl"));
     handlers.add(new ResourceHandler("/javascript/**", "/images/**", "/css/**", "/lib/**", "/**/*.html"));
     handlers.add(new SkipHandler("/notice/**"));
     //防xss攻击
