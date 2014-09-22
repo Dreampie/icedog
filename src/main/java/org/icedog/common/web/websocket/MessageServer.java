@@ -95,7 +95,7 @@ public class MessageServer {
   public static void send(Message message) {
     String receiver = message.getReceiver();
     if (receiver == null || receiver.isEmpty()) {
-      logger.info("Send: {0}", "not receiver");
+      logger.info("Send: {}", "not receiver");
       return;
     }
     try {
@@ -104,7 +104,7 @@ public class MessageServer {
         if (cid.equals(receiver)) {
           users.get(cid).getBasicRemote().sendObject(message);
         }
-        logger.info("Send: {0}", message);
+        logger.info("Send: {}", message);
       }
     } catch (IOException e) {
       logger.error(e.toString());
@@ -118,7 +118,7 @@ public class MessageServer {
          /* Send updates to all open WebSocket sessions */
       for (Session session : users.values()) {
         session.getBasicRemote().sendObject(message);
-        logger.info("SendAll: {0}", message);
+        logger.info("SendAll: {}", message);
       }
     } catch (IOException e) {
       logger.error(e.toString());
