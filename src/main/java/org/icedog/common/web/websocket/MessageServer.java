@@ -72,7 +72,7 @@ public class MessageServer {
     /* Remove this connection from the queue */
     removeSession(session);
     logger.error(t.toString());
-    logger.error("Connection error.");
+    logger.error("Connection error.get error time {}",new Date());
   }
 
   @OnClose
@@ -81,7 +81,7 @@ public class MessageServer {
      /* Remove this connection from the queue */
     removeSession(session);
     logger.info(reason.toString());
-    logger.info("Connection closed.");
+    logger.info("Connection closed.close time {}",new Date());
   }
 
   public boolean removeSession(Session session) {
