@@ -7,6 +7,8 @@ define ['angular', 'angular-resource'], ->
       $http.get('/area/query', {pid: area.pid, isdelete: area.isdelete, istree: area.istree}).success(success).error(error)
   #user model
   .factory 'User', ($http)->
+    authed:(success, error)->
+      $http.post('/authed').success(success).error(error)
     signin: (user, captcha, success, error)->
       $http.post('/signin',
         {username: user.username, password: user.password, captcha: captcha}).success(success).error(error)

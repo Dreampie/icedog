@@ -1,6 +1,6 @@
 define ['angular', 'angular-route', 'angular-cookies', 'angular-animate', 'angular-ui-bootstrap-tpls','angular-headroom', 'local',
         'controller', 'service', 'resource', 'filter', 'directive',
-        'angular-marked', 'nprogress', 'highlightjs'],
+        'angular-marked', 'nprogress'],
 ->
   'use strict'
   angular.module('app',
@@ -95,7 +95,7 @@ define ['angular', 'angular-route', 'angular-cookies', 'angular-animate', 'angul
       gfm: true
       tables: true
       highlight: (code)->
-        hljs.highlightAuto(code).value
+        require('highlightjs').highlightAuto(code).value
 
 
   .run ($q, $rootScope, $location, Message, Alert) ->

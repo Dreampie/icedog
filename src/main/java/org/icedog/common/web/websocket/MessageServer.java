@@ -4,11 +4,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.websocket.*;
-import javax.websocket.server.HandshakeRequest;
 import javax.websocket.server.PathParam;
 import javax.websocket.server.ServerEndpoint;
 import java.io.IOException;
 import java.util.Collection;
+import java.util.Date;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -16,16 +16,17 @@ import java.util.concurrent.ConcurrentHashMap;
  * Created by ice on 14-9-17.
  */
 @ServerEndpoint(
-    value = "/notice/{cid}",
+    value = "/im/{cid}",
     encoders = {MessageEncoder.class},
     decoders = {MessageDecoder.class},
     configurator = MessageConfigurator.class
 )
-public class NoticeServer {
-  private static final Logger logger = LoggerFactory.getLogger(NoticeServer.class);
+public class MessageServer {
+  private static final Logger logger = LoggerFactory.getLogger(MessageServer.class);
   /* Queue for all open WebSocket sessions */
 //  static Queue<Session> sessions = new ConcurrentLinkedQueue<Session>();
   static Map<String, Session> users = new ConcurrentHashMap<String, Session>();
+  public static long timeout = 20 * 60 * 1000;
 
   @OnOpen
   public void open(Session session,
@@ -34,6 +35,7 @@ public class NoticeServer {
 //    HandshakeRequest req = (HandshakeRequest) conf.getUserProperties()
 //        .get("handshakereq");
     try {
+      session.setMaxIdleTimeout(timeout);
       session.getBasicRemote().sendObject(new Message("Welcome"));
     } catch (IOException e) {
       logger.error(e.toString());
@@ -42,7 +44,7 @@ public class NoticeServer {
     }
     /* Register this connection in the queue */
     users.put(cid, session);
-    logger.info("Connection opened.");
+    logger.info("Connection opened.login user id {},login time {}", cid,new Date());
   }
 
 

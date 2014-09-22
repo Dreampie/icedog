@@ -1,63 +1,108 @@
 'use strict'
 
-require.config
+libsources =
+#id like webjars dir
+  version:
+    'require-css': '0.1.4'
+    'jquery': '2.1.1'
+    'angularjs': '1.3.0-beta.8'
+    'angular-ui-bootstrap': '0.11.0'
+    'angular-ui-calendar': '0.8.0'
+    'headroomjs': '0.7.0'
+    'nprogress': '0.1.2'
+    'marked': '0.3.2'
+    'highlightjs': '8.0'
+    'bootstrap': '3.2.0'
+    'font-awesome': '4.1.0'
+  cdn:
+    'jquery': '//cdn.jsdelivr.net/jquery/'
+    'angularjs': '//cdn.bootcss.com/angular.js/'
+    'angular-ui-bootstrap': '//cdn.bootcss.com/angular-ui-bootstrap/'
+    'angular-ui-calendar': '//cdn.bootcss.com/angular-ui-calendar/'
+    'headroomjs': '//cdn.jsdelivr.net/headroomjs/'
+    'nprogress': '//cdn.bootcss.com/nprogress/'
+    'marked': '//cdn.bootcss.com/marked/'
+    'highlightjs': '//cdn.bootcss.com/highlight.js/'
+  jarpath: (requireid, webjarsname)->
+    'webjars/' + requireid + '/' + libsources.version[requireid] + '/' + webjarsname
+#when cdnname  not equal webjarsname  please insert param cdnname
+  jarpaths: (requireid, webjarsname, cdnname)->
+    webjarspath = libsources.jarpath(requireid, webjarsname)
+    if libsources.cdn[requireid]
+      #cdnpath = webjars.cdn[requireid] + webjars.version[requireid] + '/' + (cdnname || webjarsname)
+      [libsources.cdnpath(requireid, cdnname || webjarsname), webjarspath]
+    else
+      webjarspath
+  localjs: (name)->
+    'javascript/' + name
+  localcss: (name)->
+    'style/' + name
+  localpaths: (requireid, localname, cdnname, type = 'js')->
+    localpath = if type == 'css' then libsources.localcss(localname) else libsources.localjs(localname)
+    if libsources.cdn[requireid]
+      #cdnpath = webjars.cdn[requireid] + webjars.version[requireid] + '/' + (cdnname || localname)
+      [libsources.cdnpath(requireid, cdnname || localname), localpath]
+    else
+      localpath
+  cdnpath: (requireid, cdnname)->
+    libsources.cdn[requireid] + libsources.version[requireid] + '/' + cdnname
+
+requirejs.config
   baseUrl: '/'
   urlArgs: 'v=1.0'
+#all of the webjar configs from their webjars-requirejs.js files
   paths:
-    'jQuery': ['//code.jquery.com/jquery-2.1.1.min', 'webjars/jquery/2.1.1/jquery.min']
-    'angular': ['//cdn.bootcss.com/angular.js/1.3.0-beta.8/angular.min','webjars/angularjs/1.3.0-beta.17/angular.min']
-    'angular-route': ['//cdn.bootcss.com/angular.js/1.3.0-beta.8/angular-route.min','webjars/angularjs/1.3.0-beta.17/angular-route.min']
-    'angular-resource': ['//cdn.bootcss.com/angular.js/1.3.0-beta.8/angular-resource.min','webjars/angularjs/1.3.0-beta.17/angular-resource.min']
-    'angular-cookies': ['//cdn.bootcss.com/angular.js/1.3.0-beta.8/angular-cookies.min','webjars/angularjs/1.3.0-beta.17/angular-cookies.min']
-    'angular-animate': ['//cdn.bootcss.com/angular.js/1.3.0-beta.8/angular-animate.min','webjars/angularjs/1.3.0-beta.17/angular-animate.min']
-  #'angular-ui-bootstrap': 'webjars/angular-ui-bootstrap/0.11.0/ui-bootstrap.min'
-    'angular-ui-bootstrap-tpls': ['//cdn.bootcss.com/angular-ui-bootstrap/0.11.0/ui-bootstrap-tpls.min','webjars/angular-ui-bootstrap/0.11.0/ui-bootstrap-tpls.min']
-  #'domReady': 'webjars/requirejs-domready/2.0.1/domReady'
-    'headroom': ['//cdn.jsdelivr.net/headroomjs/0.7.0/headroom.min', 'javascript/lib/headroom.min']
-    'angular-headroom': ['//cdn.jsdelivr.net/headroomjs/0.7.0/angular.headroom.min','javascript/lib/angular.headroom.min']
-    'angular-ui-calendar':['//cdn.bootcss.com/angular-ui-calendar/0.8.0/calendar.min','webjars/angular-ui-calendar/0.9.0-beta.1/calendar']
-    'nprogress':['//cdn.bootcss.com/nprogress/0.1.2/nprogress.min','webjars/nprogress/0.1.2/nprogress']
-    'marked':['//cdn.bootcss.com/marked/0.3.2/marked.min','webjars/marked/0.3.2/marked']
-    'angular-marked':'javascript/lib/angular-marked.min'
-    'highlightjs':['//cdn.bootcss.com/highlight.js/8.2/highlight.min','webjars/highlightjs/8.0/highlight.min']
+    'jQuery': libsources.jarpaths('jquery', 'jquery.min')
+    'angular': libsources.jarpaths('angularjs', 'angular.min')
+    'angular-route': libsources.jarpaths('angularjs', 'angular-route.min')
+    'angular-resource': libsources.jarpaths('angularjs', 'angular-resource.min')
+    'angular-cookies': libsources.jarpaths('angularjs', 'angular-cookies.min')
+    'angular-animate': libsources.jarpaths('angularjs', 'angular-animate.min')
+    'angular-ui-bootstrap-tpls': libsources.jarpaths('angular-ui-bootstrap', 'ui-bootstrap-tpls.min')
+    'headroom': libsources.localpaths('headroomjs', 'lib/headroom.min', 'headroom.min')
+    'angular-headroom': libsources.localpaths('headroomjs', 'lib/angular.headroom.min', 'angular.headroom.min')
+    'angular-ui-calendar': libsources.jarpaths('angular-ui-calendar', 'calendar')
+    'nprogress': libsources.jarpaths('nprogress', 'nprogress', 'nprogress.min')
+    'marked': libsources.jarpaths('marked', 'marked', 'marked.min')
+    'angular-marked': libsources.localpaths('angular-marked', 'lib/angular-marked.min', 'angular-marked.min')
+    'highlightjs': libsources.jarpaths('highlightjs', 'highlight.min')
 
-    'app': 'javascript/app'
-    'route':'javascript/route'
-    'controller': 'javascript/controller/controller'
-    'directive': 'javascript/directive/directive'
-    'filter': 'javascript/filter/filter'
-    'resource': 'javascript/resource/resource'
-    'service': 'javascript/service/service'
-    'local': 'javascript/common/local'
+    'app': libsources.localjs('app')
+    'controller': libsources.localjs('controller/controller')
+    'directive': libsources.localjs('directive/directive')
+    'filter': libsources.localjs('filter/filter')
+    'resource': libsources.localjs('resource/resource')
+    'service': libsources.localjs('service/service')
+    'local': libsources.localjs('common/local')
   shim:
     'angular': ['jQuery']
     'angular-animate': ['angular']
     'angular-route': ['angular']
     'angular-resource': ['angular']
     'angular-cookies': ['angular']
-  #'angular-ui-bootstrap': ['angular']
     'angular-ui-bootstrap-tpls': ['angular']
     'angular-ui-calendar': ['angular']
     'angular-headroom': ['angular', 'headroom']
-    'angular-marked':['angular','marked']
-    'highlightjs':['css!webjars/highlightjs/8.0/styles/default.min']
+    'marked':'exports':'marked'
+    'angular-marked': ['angular', 'marked']
+    'highlightjs': ['css!' + libsources.jarpath('highlightjs', 'styles/default.min')]#webjars/highlightjs/8.0/styles/default.min
 
-    'nprogress':['css!webjars/nprogress/0.1.2/nprogress']
-    'controller': ['css!webjars/bootstrap/3.2.0/css/bootstrap.min',
-                   'css!webjars/font-awesome/4.1.0/css/font-awesome.min',
-                   'css!style/main/layout']
+    'nprogress': ['css!' + libsources.jarpath('nprogress', 'nprogress')]#webjars/nprogress/0.1.2/nprogress
+    'controller': ['css!' + libsources.jarpath('bootstrap', 'css/bootstrap.min'), #webjars/bootstrap/3.2.0/css/bootstrap.min
+                   'css!' + libsources.jarpath('font-awesome', 'css/font-awesome.min'), #webjars/font-awesome/4.1.0/css/font-awesome.min
+                   'css!' + libsources.localcss('main/layout')]#style/main/layout
   map:
     '*':
-      'css': 'webjars/require-css/0.1.4/css' #or whatever the path to require-css is
+      'css': libsources.jarpath('require-css', 'css') #'webjars/require-css/0.1.4/css' #or whatever the path to require-css is
 
 #  waitSeconds: 1
 
-require ['app','javascript/controller/schedule'], ->
+require ['app', 'javascript/controller/schedule'], ->
   $ ->
     NProgress.configure({ showSpinner: false })
     NProgress.start()
     angular.bootstrap document, ['app']
-    $('html').attr('ng-app','app')
+    $('html').attr('ng-app', 'app')
     NProgress.done()
     #require  other modules
     require ['javascript/controller/schedule']

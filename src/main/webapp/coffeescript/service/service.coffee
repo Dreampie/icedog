@@ -80,8 +80,7 @@ define ['angular'], ->
       $cookieStore.remove('allAreas')
       angular.extend(allAreas || {}, {isLoad: false})
 
-  .factory 'UserSrv', ($cookieStore, $location, $window, User, Alert, WebSocketSrv)->
-    currentUser = $cookieStore.get('current_user') || { full_name: '访客', isAuthed: false}
+  .factory 'UserSrv', ($q,$cookieStore, $location, $window, User, Alert, WebSocketSrv)->
 
     authUtils =
       changeUser: (user)->
@@ -89,17 +88,35 @@ define ['angular'], ->
           user.isAuthed = true
           $cookieStore.put('current_user', user)
           angular.extend(currentUser || {}, user)
+          #登录成功  连接websocket
+          WebSocketSrv.connect("ws://localhost:9090/im/" + user.id)
       removeUser: ->
         $cookieStore.remove('current_user')
         angular.extend(currentUser || {}, { full_name: '访客', isAuthed: false})
+      isAuthed: ->
+        defer = $q.defer()
+        User.authed(
+          (data)->
+            defer.resolve(data.isAuthed)
+        , ->
+          defer.reject(false)
+        )
+        defer.promise
+
+    #获取当前登录的用户
+    currentUser = { full_name: '访客', isAuthed: false}
+    isAuthed=authUtils.isAuthed()
+    isAuthed.then(
+      (data)->
+        if data
+          authUtils.changeUser($cookieStore.get('current_user'))
+    )
 
     signin: (user, captcha, outpath, isReload)->
       User.signin(user, captcha,
       (data)->
-        if data['authc.FILTERED'] && data.user
+        if(data['authc.FILTERED'] && data.user)
           authUtils.changeUser(data.user)
-          #登录成功  连接websocket
-          WebSocketSrv.connect("ws://localhost:9090/notice/"+data.user.id)
           #          console.log currentUser
           if(isReload)
             $window.location.href = outpath || '/'
