@@ -15,8 +15,8 @@ public class ModelSortKit extends PinyinSortKit {
   public static Map sort(List<? extends Model> list, String attr) {
     if (list == null)
       return null;
-    Map map = new HashMap();
-    ArrayList arraylist = new ArrayList();
+    Map<String, List<Model>> map = new HashMap<String, List<Model>>();
+    List<Model> arraylist = new ArrayList<Model>();
     String[] alphatableb =
         {
             "A", "B", "C", "D", "E", "F", "G", "H", "I",
@@ -24,13 +24,13 @@ public class ModelSortKit extends PinyinSortKit {
             "S", "T", "U", "V", "W", "X", "Y", "Z"
         };
     for (String a : alphatableb) {
-      for (int i = 0; i < list.size(); i++) {//为了排序都返回大写字母
-        if (a.equals(String2AlphaFirst(list.get(i).get(attr).toString(), "b"))) {
-          arraylist.add(list.get(i));
+      for (Model m : list) {//为了排序都返回大写字母
+        if (a.equals(String2AlphaFirst(m.get(attr).toString(), "b"))) {
+          arraylist.add(m);
         }
       }
       map.put(a, arraylist);
-      arraylist = new ArrayList();
+      arraylist = new ArrayList<Model>();
     }
     return map;
   }

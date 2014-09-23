@@ -59,7 +59,7 @@ public class MyJdbcRealm extends AuthorizingRealm {
   /**
    * 授权查询回调函数, 进行鉴权但缓存中无用户的授权信息时调用.
    *
-   * @param principals
+   * @param principals 用户信息
    * @return
    */
   protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {

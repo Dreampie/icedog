@@ -37,8 +37,6 @@ public class Menu extends Model<Menu> implements TreeNode<Menu> {
   }
 
   public List<Menu> findByRole(String where, Object... paras) {
-
-    List<Menu> result = find(getSelectSql() + SqlKit.sql("menu.findRoleByExceptSelect") + blank + getWhere(where), paras);
-    return result;
+    return find(getSelectSql() + SqlKit.sql("menu.findRoleByExceptSelect") + blank + getWhere(where), paras);
   }
 }

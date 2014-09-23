@@ -13,7 +13,6 @@ import cn.dreampie.sqlinxml.SqlInXmlPlugin;
 import cn.dreampie.tablebind.SimpleNameStyles;
 import cn.dreampie.tablebind.TableBindPlugin;
 import cn.dreampie.web.JFConfig;
-import cn.dreampie.web.handler.AccessDeniedHandler;
 import cn.dreampie.web.handler.FakeStaticHandler;
 import cn.dreampie.web.handler.ResourceHandler;
 import cn.dreampie.web.handler.SkipHandler;
@@ -23,17 +22,13 @@ import cn.dreampie.web.route.AutoBindRoutes;
 import com.alibaba.druid.filter.stat.StatFilter;
 import com.alibaba.druid.wall.WallFilter;
 import com.jfinal.config.*;
-import com.jfinal.core.Const;
 import com.jfinal.ext.interceptor.SessionInViewInterceptor;
-import com.jfinal.i18n.I18N;
 import com.jfinal.log.Logger;
 import com.jfinal.plugin.activerecord.CaseInsensitiveContainerFactory;
 import com.jfinal.plugin.activerecord.dialect.AnsiSqlDialect;
 import com.jfinal.plugin.druid.DruidPlugin;
 import com.jfinal.plugin.ehcache.EhCachePlugin;
 import org.icedog.common.shiro.MyJdbcAuthzService;
-
-import java.util.Locale;
 
 /**
  * Created with IntelliJ IDEA.

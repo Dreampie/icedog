@@ -64,12 +64,10 @@ public class User extends cn.dreampie.shiro.model.User<User> {
   }
 
   public Page<User> paginateInfoBy(int pageNumber, int pageSize, String where, Object... paras) {
-    Page<User> result = dao.paginate(pageNumber, pageSize, SqlKit.sql("user.findInfoBySelect"), SqlKit.sql("user.findInfoByExceptSelect") + getWhere(where), paras);
-    return result;
+    return dao.paginate(pageNumber, pageSize, SqlKit.sql("user.findInfoBySelect"), SqlKit.sql("user.findInfoByExceptSelect") + getWhere(where), paras);
   }
 
   public User findInfoBy(String where, Object... paras) {
-    User result = dao.findFirst(SqlKit.sql("user.findInfoBySelect") + SqlKit.sql("user.findInfoByExceptSelect") + getWhere(where), paras);
-    return result;
+    return dao.findFirst(SqlKit.sql("user.findInfoBySelect") + SqlKit.sql("user.findInfoByExceptSelect") + getWhere(where), paras);
   }
 }

@@ -2,7 +2,6 @@ package org.icedog.function.user.model;
 
 import cn.dreampie.tablebind.TableBind;
 import cn.dreampie.web.model.Model;
-
 import com.jfinal.plugin.activerecord.Db;
 
 import java.util.List;
@@ -15,7 +14,6 @@ public class UserMenu extends Model<UserMenu> {
   public static UserMenu dao = new UserMenu();
 
   public List<String> findMenuIds(String where, Object... paras) {
-    List<String> result = Db.query("SELECT DISTINCT `userMenu`.menu_id " + getExceptSelectSql() + getWhere(where), paras);
-    return result;
+    return Db.query("SELECT DISTINCT `userMenu`.menu_id " + getExceptSelectSql() + getWhere(where), paras);
   }
 }

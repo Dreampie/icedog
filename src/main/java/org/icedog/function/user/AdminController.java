@@ -352,16 +352,16 @@ public class AdminController extends Controller {
     boolean result = true;
     //添加关系
     RolePermission rolePermission = null;
-    for (int i = 0; i < ids.size(); i++) {
+    for (String addId:ids) {
       rolePermission = new RolePermission();
       rolePermission.set("role_id", roleId);
-      rolePermission.set("permission_id", ids.get(i));
+      rolePermission.set("permission_id", addId);
       result = result && rolePermission.save();
     }
     //删除关系
 
-    for (int i = 0; i < permIds.size(); i++) {
-      result = result && RolePermission.dao.dropBy("role_id = ? AND permission_id = ?", roleId, permIds.get(i));
+    for (String pId:permIds) {
+      result = result && RolePermission.dao.dropBy("role_id = ? AND permission_id = ?", roleId, pId);
     }
     if (result) {
       setAttr("state", "success");

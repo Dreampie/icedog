@@ -44,7 +44,7 @@ public class MessageServer {
     }
     /* Register this connection in the queue */
     users.put(cid, session);
-    logger.info("Connection opened.login user id {},login time {}", cid,new Date());
+    logger.info("Connection opened.login user id {},login time {}", cid, new Date());
   }
 
 
@@ -55,7 +55,7 @@ public class MessageServer {
 //    } else if (msg instanceof MessageB) {
 //      // We received a MessageB object...
 //    }
-    if (msg instanceof Message) {
+    if (msg != null) {
       try {
         session.getBasicRemote().sendObject(msg);
       } catch (IOException e) {
@@ -72,7 +72,7 @@ public class MessageServer {
     /* Remove this connection from the queue */
     removeSession(session);
     logger.error(t.toString());
-    logger.error("Connection error.get error time {}",new Date());
+    logger.error("Connection error.get error time {}", new Date());
   }
 
   @OnClose
@@ -81,15 +81,12 @@ public class MessageServer {
      /* Remove this connection from the queue */
     removeSession(session);
     logger.info(reason.toString());
-    logger.info("Connection closed.close time {}",new Date());
+    logger.info("Connection closed.close time {}", new Date());
   }
 
   public boolean removeSession(Session session) {
     Collection<Session> sessions = users.values();
-    if (sessions.contains(session)) {
-      return sessions.remove(session);
-    }
-    return false;
+    return sessions.contains(session) && sessions.remove(session);
   }
 
   public static void send(Message message) {

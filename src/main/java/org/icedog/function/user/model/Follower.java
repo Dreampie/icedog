@@ -26,12 +26,10 @@ public class Follower extends Model<Follower> {
   }
 
   public Page<Follower> paginateFollowingInfoBy(int pageNumber, int pageSize, String where, Object... paras) {
-    Page<Follower> result = dao.paginate(pageNumber, pageSize, SqlKit.sql("follower.findInfoBySelect"), SqlKit.sql("follower.findFollowingInfoByExceptSelect") + getWhere(where), paras);
-    return result;
+    return dao.paginate(pageNumber, pageSize, SqlKit.sql("follower.findInfoBySelect"), SqlKit.sql("follower.findFollowingInfoByExceptSelect") + getWhere(where), paras);
   }
 
   public Page<Follower> paginateFollowerInfoBy(int pageNumber, int pageSize, String where, Object... paras) {
-    Page<Follower> result = dao.paginate(pageNumber, pageSize, SqlKit.sql("follower.findInfoBySelect"), SqlKit.sql("follower.findFollowerInfoByExceptSelect") + getWhere(where), paras);
-    return result;
+    return dao.paginate(pageNumber, pageSize, SqlKit.sql("follower.findInfoBySelect"), SqlKit.sql("follower.findFollowerInfoByExceptSelect") + getWhere(where), paras);
   }
 }

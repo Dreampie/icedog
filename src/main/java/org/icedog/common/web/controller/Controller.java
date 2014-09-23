@@ -1,8 +1,8 @@
 package org.icedog.common.web.controller;
 
+import cn.dreampie.captcha.CaptchaRender;
 import cn.dreampie.shiro.core.SubjectKit;
 import cn.dreampie.web.filter.ThreadLocalKit;
-import cn.dreampie.captcha.CaptchaRender;
 import org.icedog.function.user.model.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

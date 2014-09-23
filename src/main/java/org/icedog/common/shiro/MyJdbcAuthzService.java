@@ -6,9 +6,7 @@ import cn.dreampie.shiro.core.handler.JdbcPermissionAuthzHandler;
 import org.icedog.function.user.model.Permission;
 import org.icedog.function.user.model.Role;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by wangrenhui on 14-1-7.
@@ -17,7 +15,17 @@ public class MyJdbcAuthzService implements JdbcAuthzService {
   @Override
   public Map<String, AuthzHandler> getJdbcAuthz() {
     //加载数据库的url配置
-    Map<String, AuthzHandler> authzJdbcMaps = new HashMap<String, AuthzHandler>();
+    //按长度倒序排列
+    Map<String, AuthzHandler> authzJdbcMaps = Collections.synchronizedMap(new TreeMap<String, AuthzHandler>(
+        new Comparator<String>() {
+          public int compare(String k1, String k2) {
+            int result = k2.length() - k1.length();
+            if (result == 0) {
+              return k1.compareTo(k2);
+            }
+            return result;
+          }
+        }));
 //    Map<String, AuthzHandler> authzJdbcMaps = new TreeMap<String, AuthzHandler>(
 //        new Comparator<String>() {
 //          public int compare(String k1, String k2) {

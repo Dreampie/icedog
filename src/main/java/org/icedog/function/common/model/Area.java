@@ -18,12 +18,12 @@ public class Area extends Model<Area> implements TreeNode<Area> {
 
   @Override
   public long getId() {
-    return new Long(this.getInt("id"));
+    return this.getLong("id");
   }
 
   @Override
   public long getParentId() {
-    return new Long(this.getInt("pid"));
+    return this.getLong("pid");
   }
 
   @Override

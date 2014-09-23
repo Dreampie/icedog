@@ -1,8 +1,8 @@
 package org.icedog.function.user;
 
-import cn.dreampie.web.filter.ThreadLocalKit;
 import cn.dreampie.ValidateKit;
 import cn.dreampie.shiro.core.SubjectKit;
+import cn.dreampie.web.filter.ThreadLocalKit;
 import com.jfinal.core.Controller;
 import com.jfinal.validate.Validator;
 import org.icedog.function.user.model.Permission;
