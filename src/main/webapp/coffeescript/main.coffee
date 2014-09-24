@@ -87,7 +87,7 @@ requirejs.config
     'angular-marked': ['angular', 'marked']
     'highlightjs': ['css!' + libsources.jarpath('highlightjs', 'styles/default.min')]#webjars/highlightjs/8.0/styles/default.min
 
-    'nprogress': ['css!' + libsources.jarpath('nprogress', 'nprogress')]#webjars/nprogress/0.1.2/nprogress
+    'nprogress': ['jQuery','css!' + libsources.jarpath('nprogress', 'nprogress')]#webjars/nprogress/0.1.2/nprogress
     'controller': ['css!' + libsources.jarpath('bootstrap', 'css/bootstrap.min'), #webjars/bootstrap/3.2.0/css/bootstrap.min
                    'css!' + libsources.jarpath('font-awesome', 'css/font-awesome.min'), #webjars/font-awesome/4.1.0/css/font-awesome.min
                    'css!' + libsources.localcss('main/layout')]#style/main/layout
