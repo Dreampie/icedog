@@ -21,6 +21,7 @@
     <jfinal-flyway.version>0.1</jfinal-flyway.version>
     <jfinal-mailer.version>0.1</jfinal-mailer.version>
     <jfinal-captcha.version>0.1</jfinal-captcha.version>
+    <jfinal-quartz.version>0.1</jfinal-quartz.version>
     <jquery.version>2.1.1</jquery.version>
     <angular.version>1.3.0-beta.17</angular.version>
     <bootstrap.version>3.2.0</bootstrap.version>
@@ -42,6 +43,14 @@
   </properties>
 
   <dependencies>
+    <!--junit测试-->
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.11</version>
+      <scope>test</scope>
+    </dependency>
+
     <dependency>
       <groupId>cn.dreampie</groupId>
       <artifactId>jfinal-shiro</artifactId>
@@ -76,6 +85,12 @@
       <groupId>cn.dreampie</groupId>
       <artifactId>jfinal-captcha</artifactId>
       <version>${jfinal-captcha.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>cn.dreampie</groupId>
+      <artifactId>jfinal-quartz</artifactId>
+      <version>${jfinal-quartz.version}</version>
     </dependency>
 
     <dependency>

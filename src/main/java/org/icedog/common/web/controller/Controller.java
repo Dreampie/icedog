@@ -1,11 +1,14 @@
 package org.icedog.common.web.controller;
 
 import cn.dreampie.captcha.CaptchaRender;
+import cn.dreampie.quartz.QuartzFactory;
 import cn.dreampie.shiro.core.SubjectKit;
 import cn.dreampie.web.filter.ThreadLocalKit;
 import org.icedog.function.user.model.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.Date;
 
 /**
  * Controller
@@ -32,6 +35,7 @@ public class Controller extends com.jfinal.core.Controller {
    * 根目录
    */
   public void index() {
+    QuartzFactory.me().startJobOnce(new Date(),1,"test","test",DemoJob.class);
     dynaRender(indexView);
   }
 

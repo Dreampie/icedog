@@ -7,6 +7,7 @@ import cn.dreampie.flyway.FlywayPlugin;
 import cn.dreampie.lesscss.LessCssPlugin;
 import cn.dreampie.log.Slf4jLogFactory;
 import cn.dreampie.mail.MailerPlugin;
+import cn.dreampie.quartz.QuartzPlugin;
 import cn.dreampie.shiro.core.ShiroInterceptor;
 import cn.dreampie.shiro.core.ShiroPlugin;
 import cn.dreampie.sqlinxml.SqlInXmlPlugin;
@@ -108,7 +109,8 @@ public class AppConfig extends JFConfig {
     plugins.add(new LessCssPlugin("/lesscss/", "/style/"));
     //coffeescript编译插件
     plugins.add(new CoffeeScriptPlugin("/coffeescript/", "/javascript/"));
-
+    //quartz 任务
+    plugins.add(new QuartzPlugin());
   }
 
   /**
