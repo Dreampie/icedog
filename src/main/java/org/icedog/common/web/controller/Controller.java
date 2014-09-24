@@ -4,6 +4,8 @@ import cn.dreampie.captcha.CaptchaRender;
 import cn.dreampie.quartz.QuartzFactory;
 import cn.dreampie.shiro.core.SubjectKit;
 import cn.dreampie.web.filter.ThreadLocalKit;
+import cn.dreampie.web.websocket.Message;
+import cn.dreampie.web.websocket.MessageServer;
 import org.icedog.function.user.model.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -35,7 +37,9 @@ public class Controller extends com.jfinal.core.Controller {
    * 根目录
    */
   public void index() {
-    QuartzFactory.me().startJobOnce(new Date(),1,"test","test",DemoJob.class);
+    QuartzFactory.me().startJobOnce(new Date(), 1, "test", "test", DemoJob.class);
+//    if (SubjectKit.isAuthed())
+//      MessageServer.send(new Message(SubjectKit.getUser().get("id").toString(), "message"));
     dynaRender(indexView);
   }
 
