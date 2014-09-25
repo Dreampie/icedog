@@ -81,7 +81,6 @@ define ['angular'], ->
       angular.extend(allAreas || {}, {isLoad: false})
 
   .factory 'UserSrv', ($q,$cookieStore, $location, $window, User, Alert, WebSocketSrv)->
-
     authUtils =
       changeUser: (user)->
         if user
