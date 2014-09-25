@@ -10,6 +10,7 @@ import org.icedog.function.user.model.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.awt.*;
 import java.util.Date;
 
 /**
@@ -49,25 +50,30 @@ public class Controller extends com.jfinal.core.Controller {
    */
   public void patchca() {
     int width = 0, height = 0, minnum = 0, maxnum = 0, fontsize = 0, fontmin = 0, fontmax = 0;
+    CaptchaRender captcha = new CaptchaRender();
     if (isParaExists("width")) {
       width = getParaToInt("width");
     }
     if (isParaExists("height")) {
       height = getParaToInt("height");
     }
+    if (width > 0 && height > 0)
+      captcha.setImgSize(width, height);
     if (isParaExists("minnum")) {
       minnum = getParaToInt("minnum");
     }
     if (isParaExists("maxnum")) {
       maxnum = getParaToInt("maxnum");
     }
-
+    if (minnum > 0 && maxnum > 0)
+      captcha.setFontNum(minnum, maxnum);
     if (isParaExists("fontsize")) {
       fontsize = getParaToInt("fontsize");
     }
-    CaptchaRender captcha = new CaptchaRender(minnum, maxnum, width, height, fontsize);
-    //透明度  全透明验证码
-    captcha.setAlpha(0f);
+    if (fontsize > 0)
+      captcha.setFontSize(fontsize, fontsize);
+    //透明度
+//    captcha.setBgColor(new Color(225, 225, 0, 100));
     render(captcha);
   }
 
