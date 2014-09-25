@@ -59,7 +59,7 @@ define ['angular'], ->
   .directive 'captcha', ->
     restrict: 'EA'
     replace: true #replace tag
-    template: '<img class="captcha" ng-src="/patchca?width=128&height=45&fontsize=30&time={{time}}" ng-click="reload()" >'
+    template: '<img class="captcha" ng-src="/captcha?width=128&height=45&fontsize=30&time={{time}}" ng-click="reload()" >'
 
     link: (scope, element, attrs, controller)->
       scope.time = new Date().getTime()

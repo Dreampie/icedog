@@ -48,7 +48,7 @@ public class Controller extends com.jfinal.core.Controller {
   /**
    * 验证码
    */
-  public void patchca() {
+  public void captcha() {
     int width = 0, height = 0, minnum = 0, maxnum = 0, fontsize = 0, fontmin = 0, fontmax = 0;
     CaptchaRender captcha = new CaptchaRender();
     if (isParaExists("width")) {
@@ -72,6 +72,12 @@ public class Controller extends com.jfinal.core.Controller {
     }
     if (fontsize > 0)
       captcha.setFontSize(fontsize, fontsize);
+    //干扰线数量
+    captcha.setLineNum(4);
+    //噪点数量
+    captcha.setArtifactNum(100);
+    //背景干扰物颜色
+//    captcha.setDrawBgColor(new Color(0,0,0));
     //透明度
 //    captcha.setBgColor(new Color(225, 225, 0, 100));
     render(captcha);
