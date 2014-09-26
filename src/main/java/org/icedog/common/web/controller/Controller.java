@@ -76,9 +76,13 @@ public class Controller extends com.jfinal.core.Controller {
     captcha.setLineNum(4);
     //噪点数量
     captcha.setArtifactNum(100);
+    //使用字符  去掉0和o  避免难以确认
+    captcha.setCode("ABCDEFGHIJKLMNPQRSTUVWXYZ123456789");
+    //验证码在session里的名字 默认 captcha,创建时间为：名字_time
+    captcha.setCaptchaName("captcha");
     //背景干扰物颜色
 //    captcha.setDrawBgColor(new Color(0,0,0));
-    //透明度
+    //背景色 透明度 前三位数字是rgb色，第四个数字是透明度
 //    captcha.setBgColor(new Color(225, 225, 0, 100));
     render(captcha);
   }
