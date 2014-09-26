@@ -80,6 +80,8 @@ public class Controller extends com.jfinal.core.Controller {
 //    captcha.setCode("ABCDEFGHIJKLMNPQRSTUVWXYZ123456789");
     //验证码在session里的名字 默认 captcha,创建时间为：名字_time
 //    captcha.setCaptchaName("captcha");
+    //验证码颜色
+//    captcha.setDrawColor(new Color(255,0,0));
     //背景干扰物颜色
 //    captcha.setDrawBgColor(new Color(0,0,0));
     //背景色 透明度 前三位数字是rgb色，第四个数字是透明度
