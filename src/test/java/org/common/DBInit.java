@@ -1,6 +1,10 @@
 package org.common;
 
 import cn.dreampie.PropertiesKit;
+import cn.dreampie.akka.AkkaPlugin;
+import cn.dreampie.flyway.FlywayPlugin;
+import cn.dreampie.mail.MailerPlugin;
+import cn.dreampie.sqlinxml.SqlInXmlPlugin;
 import cn.dreampie.tablebind.SimpleNameStyles;
 import cn.dreampie.tablebind.TableBindPlugin;
 import com.alibaba.druid.filter.stat.StatFilter;
@@ -44,8 +48,12 @@ public class DBInit {
   }
 
   public void init() {
+    initFlyway();
     druidPlugin = initDruid(dbName);
     tableBindPlugin = initTableBind(druidPlugin);
+    initSqlinxml();
+    initAkka();
+    initMailer();
   }
 
 
@@ -68,6 +76,12 @@ public class DBInit {
     return druidPlugin;
   }
 
+  private FlywayPlugin initFlyway() {
+    FlywayPlugin flywayPlugin = new FlywayPlugin();
+    flywayPlugin.start();
+    return flywayPlugin;
+  }
+
 
   private TableBindPlugin initTableBind(DruidPlugin druidPlugin) {
     //Model自动绑定表插件
@@ -80,6 +94,23 @@ public class DBInit {
     return tableBind;
   }
 
+  private SqlInXmlPlugin initSqlinxml() {
+    SqlInXmlPlugin sqlInXmlPlugin = new SqlInXmlPlugin();
+    sqlInXmlPlugin.start();
+    return sqlInXmlPlugin;
+  }
+
+  private MailerPlugin initMailer() {
+    MailerPlugin mailerPlugin = new MailerPlugin();
+    mailerPlugin.start();
+    return mailerPlugin;
+  }
+
+  private AkkaPlugin initAkka() {
+    AkkaPlugin akkaPlugin = new AkkaPlugin();
+    akkaPlugin.start();
+    return akkaPlugin;
+  }
 
   public Connection getConnection() throws SQLException {
     return druidPlugin.getDataSource().getConnection();
