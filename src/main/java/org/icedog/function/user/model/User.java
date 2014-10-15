@@ -48,9 +48,9 @@ public class User extends cn.dreampie.shiro.model.User<User> {
   }
 
   public Follower getFollowing() {
-    User user = SubjectKit.getUser();
+//    User user = SubjectKit.getUser();
     if (this.get("following") == null) {
-      Follower following = Follower.dao.findFirstBy("`follower`.user_id =" + user.get("id") + " AND `follower`.link_id =" + this.get("id"));
+      Follower following = Follower.dao.findFirstBy("`follower`.user_id =" + this.get("id") + " AND `follower`.link_id =" + this.get("id"));
       if (following != null) {
         this.put("following", following);
       }

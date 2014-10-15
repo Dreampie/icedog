@@ -58,7 +58,7 @@ public class DBInit {
 
 
   private DruidPlugin initDruid(String dbName) {
-    System.out.println(Thread.currentThread().getContextClassLoader().getResource("").getPath());
+//    System.out.println(Thread.currentThread().getContextClassLoader().getResource("").getPath());
     PropertiesKit.me().loadPropertyFile(DB_CONFIG);
     dbName = dbName == null ? "default" : dbName;
     DruidPlugin druidPlugin = new DruidPlugin(
