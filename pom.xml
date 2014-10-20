@@ -33,10 +33,11 @@
     <druid.version>1.0.9</druid.version>
     <h2.version>1.4.181</h2.version>
     <nprogress.version>0.1.2</nprogress.version>
-    <!--markdown compiler-->
-    <marked.version>0.3.2-1</marked.version>
-    <!--code high light-->
-    <highlightjs.version>8.0-3</highlightjs.version>
+    <!--&lt;!&ndash;markdown compiler&ndash;&gt;-->
+    <!--<marked.version>0.3.2-1</marked.version>-->
+    <!--&lt;!&ndash;code high light&ndash;&gt;-->
+    <!--<highlightjs.version>8.0-3</highlightjs.version>-->
+    <servlet.version>3.1.0</servlet.version>
   </properties>
 
   <dependencies>
@@ -168,16 +169,24 @@
       <version>${nprogress.version}</version>
     </dependency>
 
-    <dependency>
-      <groupId>org.webjars</groupId>
-      <artifactId>marked</artifactId>
-      <version>${marked.version}</version>
-    </dependency>
+    <!--<dependency>-->
+      <!--<groupId>org.webjars</groupId>-->
+      <!--<artifactId>marked</artifactId>-->
+      <!--<version>${marked.version}</version>-->
+    <!--</dependency>-->
 
+    <!--<dependency>-->
+      <!--<groupId>org.webjars</groupId>-->
+      <!--<artifactId>highlightjs</artifactId>-->
+      <!--<version>${highlightjs.version}</version>-->
+    <!--</dependency>-->
+
+    <!--servlet-api-->
     <dependency>
-      <groupId>org.webjars</groupId>
-      <artifactId>highlightjs</artifactId>
-      <version>${highlightjs.version}</version>
+      <groupId>javax.servlet</groupId>
+      <artifactId>javax.servlet-api</artifactId>
+      <version>${servlet.version}</version>
+      <scope>provided</scope>
     </dependency>
   </dependencies>
 
@@ -207,6 +216,18 @@
               <value>UTF-8</value>
             </systemProperty>
           </systemProperties>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.tomcat.maven</groupId>
+        <artifactId>tomcat7-maven-plugin</artifactId>
+        <version>2.2</version>
+        <configuration>
+          <!--<url>http://localhost:8080/manager/text</url> &lt;!&ndash; tomcat管理路径 &ndash;&gt;-->
+          <!--<server>myTomcat</server> &lt;!&ndash; 与settings.xml文件中Server的id相同 &ndash;&gt;-->
+          <port>9090</port>
+          <path>/</path>
+          <!-- 应用的部署位置 -->
         </configuration>
       </plugin>
     </plugins>
