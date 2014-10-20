@@ -24,7 +24,7 @@ public class UserTest {
   public void testFindInfoBy() throws Exception {
     User u = User.dao.findFirstBy("`user`.username='admin'");
 
-    System.out.println(JSON.toJSONString(u.getAttrs()));
+    System.out.println(JSON.toJSONString(u));
     Assert.assertNotNull(u);
 //    System.out.println(PathKit.getRootClassPath());
 //    System.out.println(UserTest.class.getResource("/s.f"));
