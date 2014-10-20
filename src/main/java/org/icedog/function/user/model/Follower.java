@@ -22,7 +22,7 @@ public class Follower extends Model<Follower> {
       } else
         this.put("followed", false);
     }
-    return this.get("followed");
+    return this.getBoolean("followed");
   }
 
   public Page<Follower> paginateFollowingInfoBy(int pageNumber, int pageSize, String where, Object... paras) {

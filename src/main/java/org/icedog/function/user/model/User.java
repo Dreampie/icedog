@@ -44,7 +44,7 @@ public class User extends cn.dreampie.shiro.model.User<User> {
       this.put("followed", true);
     } else
       this.put("followed", false);
-    return this.get("followed");
+    return this.getBoolean("followed");
   }
 
   public Follower getFollowing() {
