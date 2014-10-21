@@ -10,7 +10,9 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.io.File;
 import java.net.URL;
+import java.net.URLDecoder;
 import java.util.Enumeration;
 
 public class UserTest {
@@ -24,12 +26,12 @@ public class UserTest {
   public void testFindInfoBy() throws Exception {
     User u = User.dao.findFirstBy("`user`.username='admin'");
 
-    System.out.println(JSON.toJSONString(u));
-    Assert.assertNotNull(u);
+//    System.out.println(JSON.toJSONString(u));
+//    Assert.assertNotNull(u);
 //    System.out.println(PathKit.getRootClassPath());
-//    System.out.println(UserTest.class.getResource("/s.f"));
+//    System.out.println(UserTest.class.getResource("application.properties"));
 
-//    Enumeration<URL> urls = UserTest.class.getClassLoader().getResources("akka.conf");
+//    Enumeration<URL> urls = UserTest.class.getClassLoader().getResources("/quartz/quartz.properties");
 //    while (urls.hasMoreElements()) {
 //      URL url = urls.nextElement();
 //      System.out.println(url.getPath());
@@ -41,6 +43,7 @@ public class UserTest {
 //            .getText("mails/signup_email.ftl"), "173956022@qq.com");
 //    System.out.println(PathKit.getWebRootPath());
 
+    System.out.println(URLDecoder.decode("D:\\Program%20Files", "UTF-8"));
 
   }
 
