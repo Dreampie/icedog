@@ -14,6 +14,7 @@ import cn.dreampie.sqlinxml.SqlInXmlPlugin;
 import cn.dreampie.tablebind.SimpleNameStyles;
 import cn.dreampie.tablebind.TableBindPlugin;
 import cn.dreampie.web.JFConfig;
+import cn.dreampie.web.cache.CacheRemoveInterceptor;
 import cn.dreampie.web.handler.FakeStaticHandler;
 import cn.dreampie.web.handler.ResourceHandler;
 import cn.dreampie.web.handler.SkipHandler;
@@ -28,6 +29,7 @@ import com.jfinal.log.Logger;
 import com.jfinal.plugin.activerecord.CaseInsensitiveContainerFactory;
 import com.jfinal.plugin.activerecord.dialect.AnsiSqlDialect;
 import com.jfinal.plugin.druid.DruidPlugin;
+import com.jfinal.plugin.ehcache.CacheInterceptor;
 import com.jfinal.plugin.ehcache.EhCachePlugin;
 import org.icedog.common.shiro.MyJdbcAuthzService;
 
@@ -119,8 +121,8 @@ public class AppConfig extends JFConfig {
   public void configInterceptor(Interceptors interceptors) {
     interceptors.add(new ShiroInterceptor());
     //开发时不用开启  避免不能试试看到数据效果
-//    interceptors.add(new CacheRemoveInterceptor());
-//    interceptors.add(new CacheInterceptor());
+    interceptors.add(new CacheRemoveInterceptor());
+    interceptors.add(new CacheInterceptor());
     interceptors.add(new SessionInViewInterceptor());
   }
 

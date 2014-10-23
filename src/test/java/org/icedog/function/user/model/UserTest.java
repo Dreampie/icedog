@@ -1,6 +1,7 @@
 package org.icedog.function.user.model;
 
 
+import cn.dreampie.PropertiesKit;
 import cn.dreampie.mail.Mailer;
 import cn.dreampie.mail.MailerTemplate;
 import com.alibaba.fastjson.JSON;
@@ -25,7 +26,8 @@ public class UserTest {
   @Test
   public void testFindInfoBy() throws Exception {
     User u = User.dao.findFirstBy("`user`.username='admin'");
-
+    PropertiesKit.me().loadPropertyFile("application.properties");
+    PropertiesKit.me().loadPropertyFile("application.properties");
 //    System.out.println(JSON.toJSONString(u));
 //    Assert.assertNotNull(u);
 //    System.out.println(PathKit.getRootClassPath());
