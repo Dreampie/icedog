@@ -32,6 +32,7 @@ import com.jfinal.plugin.druid.DruidPlugin;
 import com.jfinal.plugin.ehcache.CacheInterceptor;
 import com.jfinal.plugin.ehcache.EhCachePlugin;
 import org.icedog.common.shiro.MyJdbcAuthzService;
+import org.icedog.common.web.controller.Controller;
 
 /**
  * Created with IntelliJ IDEA.
@@ -62,6 +63,8 @@ public class AppConfig extends JFConfig {
    */
   public void configRoute(Routes routes) {
     this.routes = routes;
+
+
     AutoBindRoutes autoBindRoutes = new AutoBindRoutes();
     routes.add(autoBindRoutes);
   }
