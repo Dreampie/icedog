@@ -4,7 +4,6 @@ import cn.dreampie.captcha.CaptchaRender;
 import cn.dreampie.quartz.QuartzFactory;
 import cn.dreampie.shiro.core.SubjectKit;
 import cn.dreampie.web.filter.ThreadLocalKit;
-import cn.dreampie.web.route.ControllerKey;
 import cn.dreampie.web.websocket.Message;
 import cn.dreampie.web.websocket.MessageServer;
 import org.icedog.function.user.model.User;
@@ -17,9 +16,8 @@ import java.util.Date;
 /**
  * Controller
  */
-@ControllerKey(value = "/x", path = "/view/")
 public class Controller extends com.jfinal.core.Controller {
-  static String indexView = "index.html";
+  static String indexView = "view/index.html";
   protected Logger logger = LoggerFactory.getLogger(getClass());
 
   public void dynaRender() {

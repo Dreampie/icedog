@@ -63,16 +63,6 @@ define ['angular', 'angular-route', 'angular-cookies', 'angular-animate', 'angul
 
         $q.reject(response)
 
-    #lazy  load controller
-    #    resolver=(deps)->
-    #      resolve:
-    #        delay: ($q,$rootScope)->
-    #          defer = $q.defer()
-    #          require deps,->
-    #            $rootScope.$apply ->
-    #              defer.resolve()
-    #          defer.promise
-
     $routeProvider
     .when '/',
       templateUrl: 'view/app/home.html', controller: 'HomeCtrl'
