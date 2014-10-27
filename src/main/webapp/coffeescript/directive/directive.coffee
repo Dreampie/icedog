@@ -71,10 +71,10 @@ define ['angular'], ->
     transclude: true #tag include content reserve
     replace: true #replace hello tag
     scope:
-      name: '=helloName'
+      helloName: '=helloName'
 
     template:
-      '<div><div ng-click="toggle()">{{name}}</div>' +
+      '<div><div ng-click="toggle()">{{helloName}}</div>' +
       '<div ng-show="showMe" ng-transclude></div>' +
       '</div>'
 
