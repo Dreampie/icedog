@@ -37,7 +37,7 @@ define ['angular', 'css!style/app/signin'], ->
     $scope.foot = 'foot'
 
   #HomeCtrl is first page
-  .controller 'HomeCtrl', ($scope, User) ->
+  .controller 'HomeCtrl', ($scope, User,UserSrv) ->
     $scope.name = 'baby'
 
     $scope.awesomeThings = [

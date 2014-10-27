@@ -81,6 +81,10 @@ define ['angular'], ->
       angular.extend(allAreas || {}, {isLoad: false})
 
   .factory 'UserSrv', ($q,$cookieStore, $location, $window, User, Alert, WebSocketSrv)->
+
+    #获取当前登录的用户
+    currentUser = { full_name: '访客', isAuthed: false}
+
     authUtils =
       changeUser: (user)->
         if user
@@ -101,9 +105,6 @@ define ['angular'], ->
           defer.reject(false)
         )
         defer.promise
-
-    #获取当前登录的用户
-    currentUser = { full_name: '访客', isAuthed: false}
     isAuthed=authUtils.isAuthed()
     isAuthed.then(
       (data)->
