@@ -10,7 +10,7 @@
     <listener-class>org.apache.shiro.web.env.EnvironmentLoaderListener</listener-class>
   </listener>
 
-  <!--本地过滤器 start-->
+  <!--本地过滤器  用于request本地化并判断前台需求的返回数据类型 start-->
   <filter>
     <filter-name>ThreadLocalFilter</filter-name>
     <filter-class>cn.dreampie.web.filter.ThreadLocalFilter</filter-class>
