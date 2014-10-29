@@ -123,7 +123,7 @@ public class AppConfig extends JFConfig {
    */
   public void configInterceptor(Interceptors interceptors) {
     interceptors.add(new ShiroInterceptor());
-    //开发时不用开启  避免不能试试看到数据效果
+    //开发时不用开启  避免不能实时看到数据效果
     interceptors.add(new CacheRemoveInterceptor());
     interceptors.add(new CacheInterceptor());
     interceptors.add(new SessionInViewInterceptor());

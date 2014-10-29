@@ -50,3 +50,8 @@ define ['angular'], ->
       if(!$rootScope.alerts[index].keep)
         $timeout.cancel($rootScope.timers[index])
       $rootScope.alerts.splice(index, 1)
+
+  .factory 'permission',($rootScope)->
+    $rootScope.permissiones=[]
+    hasRole:(role)->
+      $rootScope.permissiones
