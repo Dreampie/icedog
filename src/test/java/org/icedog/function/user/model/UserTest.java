@@ -12,9 +12,11 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.io.File;
+import java.io.InputStream;
 import java.net.URL;
 import java.net.URLDecoder;
 import java.util.Enumeration;
+import java.util.Properties;
 
 public class UserTest {
 
@@ -28,7 +30,7 @@ public class UserTest {
     User u = User.dao.findFirstBy("`user`.username='admin'");
     PropertiesKit.me().loadPropertyFile("application.properties");
     PropertiesKit.me().loadPropertyFile("application.properties");
-//    System.out.println(JSON.toJSONString(u));
+    System.out.println(JSON.toJSONString(u.getAttrs()));
 //    Assert.assertNotNull(u);
 //    System.out.println(PathKit.getRootClassPath());
 //    System.out.println(UserTest.class.getResource("application.properties"));
@@ -45,8 +47,11 @@ public class UserTest {
 //            .getText("mails/signup_email.ftl"), "173956022@qq.com");
 //    System.out.println(PathKit.getWebRootPath());
 
-    System.out.println(URLDecoder.decode("D:\\Program%20Files", "UTF-8"));
-
+//    Properties properties = new Properties();
+//    System.out.println(URLDecoder.decode("D:\\Program%20Files", "UTF-8"));
+//    InputStream inputStream = UserTest.class.getResourceAsStream("/akka.conf");
+//    properties.load(inputStream);
+//    System.out.println(properties.getProperty("job.channel.id"));
   }
 
 }
