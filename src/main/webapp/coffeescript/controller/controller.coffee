@@ -8,7 +8,11 @@ define ['angular', 'css!style/app/signin'], ->
     $scope.currentUser = UserSrv.currentUser
     $scope.breadcrumb = BreadcrumbSrv
     $scope.signout = (outpath) ->
-      UserSrv.signout(outpath)
+      UserSrv.signout((data)->
+        $location.path(outpath || '/')
+      ,(data)->
+        Alert.addAlert({type: 'danger', msg: '退出失败!'})
+      )
 
 #    if !$.support.leadingWhitespace
 #      Alert.addAlert({type: 'danger', msg: '不支持该浏览器，推荐使用最新版本以获得更好的体验!', keep: true})
@@ -37,7 +41,7 @@ define ['angular', 'css!style/app/signin'], ->
     $scope.foot = 'foot'
 
   #HomeCtrl is first page
-  .controller 'HomeCtrl', ($scope, User,UserSrv) ->
+  .controller 'HomeCtrl', ($scope, User, UserSrv) ->
     $scope.name = 'baby'
 
     $scope.awesomeThings = [
@@ -63,12 +67,23 @@ define ['angular', 'css!style/app/signin'], ->
 
 
   #SigninCtrl is sign in page
-  .controller 'SigninCtrl', ($scope, UserSrv) ->
+  .controller 'SigninCtrl', ($scope, UserSrv, Alert) ->
+    inpath = null
     $scope.signin = (user, captcha) ->
-      UserSrv.signin(user, captcha)
+      UserSrv.signin(user, captcha, (data)->
+        $location.path(inpath || '/')
+      , (data)->
+        switch data['shiroLoginFailure']
+          when 'UnknownUserException' then Alert.addAlert({type: 'danger', msg: '账户验证失败或已被禁用!'})
+          when 'IncorrectCaptchaException'
+            console.log("change captcha")
+            Alert.addAlert({type: 'danger', msg: '验证码错误!'})
+          else
+            Alert.addAlert({type: 'danger', msg: '账户验证失败或已被禁用!'})
+      )
 
-  .controller 'EditorCtrl',($scope)->
-    $scope.md='*This* **is** [markdown](https://daringfireball.net/projects/markdown/)'
+  .controller 'EditorCtrl', ($scope)->
+    $scope.md = '*This* **is** [markdown](https://daringfireball.net/projects/markdown/)'
   #About me
   .controller 'AboutCtrl', ($scope)->
     $scope.organize = 'Icedog'

@@ -112,37 +112,24 @@ define ['angular'], ->
           authUtils.changeUser($cookieStore.get('current_user'))
     )
 
-    signin: (user, captcha, outpath, isReload)->
+    signin: (user, captcha, success,error)->
       User.signin(user, captcha,
       (data)->
         if(data['authc.FILTERED'] && data.user)
           authUtils.changeUser(data.user)
-          #          console.log currentUser
-          if(isReload)
-            $window.location.href = outpath || '/'
-          else
-            $location.path(outpath || '/')
+          success(data)
         else
-          switch data['shiroLoginFailure']
-            when 'UnknownUserException' then Alert.addAlert({type: 'danger', msg: '账户验证失败或已被禁用!'})
-            when 'IncorrectCaptchaException' then Alert.addAlert({type: 'danger', msg: '验证码错误!'})
-            else
-              Alert.addAlert({type: 'danger', msg: '账户验证失败或已被禁用!'})
+          error(data)
       )
 
-    signout: (outpath, isReload)->
+    signout: (success,error)->
       User.signout(
         (data)->
           if(data['signout.FILTERED'])
             authUtils.removeUser()
-
-            #  console.log currentUser
-            if(isReload)
-              $window.location.href = outpath || '/'
-            else
-              $location.path(outpath || '/')
+            success(data)
           else
-            Alert.addAlert({type: 'danger', msg: '退出失败!'})
+            error(data)
       )
 
 #    signup: (user)->
