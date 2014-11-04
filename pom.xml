@@ -38,6 +38,7 @@
     <!--code high light-->
     <highlightjs.version>8.0-3</highlightjs.version>
     <servlet.version>3.1.0</servlet.version>
+    <logback.version>1.1.2</logback.version>
   </properties>
 
   <dependencies>
@@ -47,6 +48,12 @@
       <artifactId>junit</artifactId>
       <version>4.11</version>
       <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>ch.qos.logback</groupId>
+      <artifactId>logback-classic</artifactId>
+      <version>${logback.version}</version>
     </dependency>
 
     <dependency>
