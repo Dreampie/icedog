@@ -16,7 +16,9 @@
     <File>${log.base}.log</File>
   </appender>
 
-  <logger name="chapters.architecture" level="error"/>
+  <logger name="org.lesscss" level="error"/>
+  <logger name="cn.dreampie.lesscss" level="error"/>
+  <logger name="cn.dreampie.coffeescript" level="error"/>
 
   <root level="DEBUG">
     <appender-ref ref="STDOUT"/>
