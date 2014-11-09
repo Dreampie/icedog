@@ -14,6 +14,6 @@ public class RoleMenu extends Model<RoleMenu> {
   public static RoleMenu dao = new RoleMenu();
 
   public List<String> findMenuIds(String where, Object... paras) {
-    return Db.query("SELECT DISTINCT `roleMenu`.menu_id " + getExceptSelectSql() + getWhere(where), paras);
+    return Db.query("SELECT DISTINCT `roleMenu`.menu_id " + getFromSql() + getWhere(where), paras);
   }
 }

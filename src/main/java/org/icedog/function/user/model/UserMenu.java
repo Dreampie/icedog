@@ -14,6 +14,6 @@ public class UserMenu extends Model<UserMenu> {
   public static UserMenu dao = new UserMenu();
 
   public List<String> findMenuIds(String where, Object... paras) {
-    return Db.query("SELECT DISTINCT `userMenu`.menu_id " + getExceptSelectSql() + getWhere(where), paras);
+    return Db.query("SELECT DISTINCT `userMenu`.menu_id " + getFromSql() + getWhere(where), paras);
   }
 }

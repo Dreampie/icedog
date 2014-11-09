@@ -14,6 +14,6 @@ public class RolePermission extends Model<RolePermission> {
   public static RolePermission dao = new RolePermission();
 
   public List<String> findPermissionIds(String where, Object... paras) {
-    return Db.query("SELECT DISTINCT `rolePermission`.permission_id " + getExceptSelectSql() + getWhere(where), paras);
+    return Db.query("SELECT DISTINCT `rolePermission`.permission_id " + getFromSql() + getWhere(where), paras);
   }
 }
