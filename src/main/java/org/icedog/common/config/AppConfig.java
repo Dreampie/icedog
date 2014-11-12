@@ -1,7 +1,6 @@
 package org.icedog.common.config;
 
 
-import cn.dreampie.akka.AkkaPlugin;
 import cn.dreampie.coffeescript.CoffeeScriptPlugin;
 import cn.dreampie.flyway.FlywayPlugin;
 import cn.dreampie.lesscss.LessCssPlugin;
@@ -107,7 +106,7 @@ public class AppConfig extends JFConfig {
     //shiro权限框架
     plugins.add(new ShiroPlugin(routes, new MyJdbcAuthzService()));
     //akka异步执行插件
-    plugins.add(new AkkaPlugin());
+//    plugins.add(new AkkaPlugin());
     //emailer插件
     plugins.add(new MailerPlugin());
     //lesscsss编译插件

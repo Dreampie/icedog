@@ -1,7 +1,6 @@
 package org.common;
 
 import cn.dreampie.PropertiesKit;
-import cn.dreampie.akka.AkkaPlugin;
 import cn.dreampie.flyway.FlywayPlugin;
 import cn.dreampie.mail.MailerPlugin;
 import cn.dreampie.sqlinxml.SqlInXmlPlugin;
@@ -52,7 +51,7 @@ public class DBInit {
     druidPlugin = initDruid(dbName);
     tableBindPlugin = initTableBind(druidPlugin);
     initSqlinxml();
-    initAkka();
+//    initAkka();
     initMailer();
   }
 
@@ -106,11 +105,11 @@ public class DBInit {
     return mailerPlugin;
   }
 
-  private AkkaPlugin initAkka() {
-    AkkaPlugin akkaPlugin = new AkkaPlugin();
-    akkaPlugin.start();
-    return akkaPlugin;
-  }
+//  private AkkaPlugin initAkka() {
+//    AkkaPlugin akkaPlugin = new AkkaPlugin();
+//    akkaPlugin.start();
+//    return akkaPlugin;
+//  }
 
   public Connection getConnection() throws SQLException {
     return druidPlugin.getDataSource().getConnection();

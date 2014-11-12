@@ -17,8 +17,8 @@
   </appender>
 
   <logger name="org.lesscss" level="error"/>
-  <logger name="cn.dreampie.lesscss" level="error"/>
-  <logger name="cn.dreampie.coffeescript" level="error"/>
+  <logger name="cn.dreampie.lesscss" level="info"/>
+  <logger name="cn.dreampie.coffeescript" level="info"/>
 
   <root level="DEBUG">
     <appender-ref ref="STDOUT"/>
