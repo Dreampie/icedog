@@ -13,15 +13,7 @@
     <project.reporting.outputEncoding>utf-8</project.reporting.outputEncoding>
     <!-- For the Maven Jetty plugin (mvn jetty:run) -->
     <jetty.version>9.1.1.v20140108</jetty.version>
-    <jfinal-shiro.version>0.1</jfinal-shiro.version>
-    <jfinal-coffeescript.version>0.1</jfinal-coffeescript.version>
-    <jfinal-lesscss.version>0.1</jfinal-lesscss.version>
-    <jfinal-tablebind.version>0.1</jfinal-tablebind.version>
-    <jfinal-sqlinxml.version>0.1</jfinal-sqlinxml.version>
-    <jfinal-flyway.version>0.1</jfinal-flyway.version>
-    <jfinal-mailer.version>0.1</jfinal-mailer.version>
-    <jfinal-captcha.version>0.1</jfinal-captcha.version>
-    <jfinal-quartz.version>0.1</jfinal-quartz.version>
+    <jfinal-dreampie.version>1.1</jfinal-dreampie.version>
     <jquery.version>2.1.1</jquery.version>
     <angular.version>1.3.0-beta.17</angular.version>
     <bootstrap.version>3.2.0</bootstrap.version>
@@ -38,7 +30,6 @@
     <!--code high light-->
     <highlightjs.version>8.0-3</highlightjs.version>
     <servlet.version>3.1.0</servlet.version>
-    <logback.version>1.1.2</logback.version>
   </properties>
 
   <dependencies>
@@ -51,51 +42,9 @@
     </dependency>
 
     <dependency>
-      <groupId>ch.qos.logback</groupId>
-      <artifactId>logback-classic</artifactId>
-      <version>${logback.version}</version>
-    </dependency>
-
-    <dependency>
       <groupId>cn.dreampie</groupId>
-      <artifactId>jfinal-shiro</artifactId>
-      <version>${jfinal-shiro.version}</version>
-    </dependency>
-
-    <dependency>
-      <groupId>cn.dreampie</groupId>
-      <artifactId>jfinal-tablebind</artifactId>
-      <version>${jfinal-tablebind.version}</version>
-    </dependency>
-
-    <dependency>
-      <groupId>cn.dreampie</groupId>
-      <artifactId>jfinal-mailer</artifactId>
-      <version>${jfinal-mailer.version}</version>
-    </dependency>
-
-    <dependency>
-      <groupId>cn.dreampie</groupId>
-      <artifactId>jfinal-flyway</artifactId>
-      <version>${jfinal-flyway.version}</version>
-    </dependency>
-
-    <dependency>
-      <groupId>cn.dreampie</groupId>
-      <artifactId>jfinal-sqlinxml</artifactId>
-      <version>${jfinal-sqlinxml.version}</version>
-    </dependency>
-
-    <dependency>
-      <groupId>cn.dreampie</groupId>
-      <artifactId>jfinal-captcha</artifactId>
-      <version>${jfinal-captcha.version}</version>
-    </dependency>
-
-    <dependency>
-      <groupId>cn.dreampie</groupId>
-      <artifactId>jfinal-quartz</artifactId>
-      <version>${jfinal-quartz.version}</version>
+      <artifactId>jfinal-dreampie</artifactId>
+      <version>${jfinal-dreampie.version}</version>
     </dependency>
 
     <dependency>
@@ -105,22 +54,11 @@
     </dependency>
 
     <dependency>
-      <groupId>cn.dreampie</groupId>
-      <artifactId>jfinal-coffeescript</artifactId>
-      <version>${jfinal-coffeescript.version}</version>
-    </dependency>
-
-    <dependency>
       <groupId>com.h2database</groupId>
       <artifactId>h2</artifactId>
       <version>${h2.version}</version>
     </dependency>
 
-    <dependency>
-      <groupId>cn.dreampie</groupId>
-      <artifactId>jfinal-lesscss</artifactId>
-      <version>${jfinal-lesscss.version}</version>
-    </dependency>
     <!--webjars-->
     <dependency>
       <groupId>org.webjars</groupId>

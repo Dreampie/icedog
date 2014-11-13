@@ -51,7 +51,6 @@ public class DBInit {
     druidPlugin = initDruid(dbName);
     tableBindPlugin = initTableBind(druidPlugin);
     initSqlinxml();
-//    initAkka();
     initMailer();
   }
 
