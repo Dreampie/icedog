@@ -1,11 +1,6 @@
 package org.common;
 
 
-import cn.dreampie.mail.AkkaMailer;
-import cn.dreampie.mail.Mailer;
-import cn.dreampie.mail.MailerConf;
-import cn.dreampie.mail.MailerPlugin;
-import cn.dreampie.template.freemarker.FreemarkerLoader;
 import org.apache.commons.mail.*;
 import org.junit.Before;
 import org.junit.Test;
