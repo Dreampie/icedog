@@ -1,9 +1,7 @@
 package org.icedog.common.config;
 
 
-import cn.dreampie.coffeescript.CoffeeScriptPlugin;
 import cn.dreampie.flyway.FlywayPlugin;
-import cn.dreampie.lesscss.LessCssPlugin;
 import cn.dreampie.log.Slf4jLogFactory;
 import cn.dreampie.mail.MailerPlugin;
 import cn.dreampie.quartz.QuartzPlugin;
@@ -110,9 +108,9 @@ public class AppConfig extends JFConfig {
     //emailer插件
     plugins.add(new MailerPlugin());
     //lesscsss编译插件
-    plugins.add(new LessCssPlugin("/lesscss/", "/style/"));
+//    plugins.add(new LessCssPlugin("/lesscss/", "/style/"));
     //coffeescript编译插件
-    plugins.add(new CoffeeScriptPlugin("/coffeescript/", "/javascript/"));
+//    plugins.add(new CoffeeScriptPlugin("/coffeescript/", "/javascript/"));
     //quartz 任务
     plugins.add(new QuartzPlugin());
   }

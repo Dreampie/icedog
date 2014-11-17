@@ -126,25 +126,59 @@
       <version>${highlightjs.version}</version>
     </dependency>
 
-    <dependency>
-      <groupId>javax.servlet</groupId>
-      <artifactId>javax.servlet-api</artifactId>
-      <version>${servlet.version}</version>
-      <scope>provided</scope>
-    </dependency>
-    <!--jdk1.6   不支持servlet3.0-->
     <!--<dependency>-->
     <!--<groupId>javax.servlet</groupId>-->
-    <!--<artifactId>servlet-api</artifactId>-->
-    <!--<version>2.5</version>-->
+    <!--<artifactId>javax.servlet-api</artifactId>-->
+    <!--<version>${servlet.version}</version>-->
     <!--<scope>provided</scope>-->
     <!--</dependency>-->
+    <!--jdk1.6   不支持servlet3.0-->
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>servlet-api</artifactId>
+      <version>2.5</version>
+      <scope>provided</scope>
+    </dependency>
   </dependencies>
 
 
   <build>
     <finalName>icedog</finalName>
     <plugins>
+      <plugin>
+        <groupId>cn.dreampie</groupId>
+        <artifactId>coffeescript-maven-plugin</artifactId>
+        <version>1.0</version>
+        <configuration>
+          <sourceDirectory>${basedir}/src/main/webapp/coffeescript</sourceDirectory>
+          <outputDirectory>${basedir}/src/main/webapp/javascript</outputDirectory>
+          <watch>true</watch>
+        </configuration>
+        <executions>
+          <execution>
+            <goals>
+              <goal>compile</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>cn.dreampie</groupId>
+        <artifactId>lesscss-maven-plugin</artifactId>
+        <version>1.0</version>
+        <configuration>
+          <sourceDirectory>${basedir}/src/main/webapp/lesscss</sourceDirectory>
+          <outputDirectory>${basedir}/src/main/webapp/style</outputDirectory>
+          <watch>true</watch>
+        </configuration>
+        <executions>
+          <execution>
+            <goals>
+              <goal>compile</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
       <plugin>
         <groupId>org.eclipse.jetty</groupId>
         <artifactId>jetty-maven-plugin</artifactId>
@@ -174,8 +208,6 @@
         <artifactId>tomcat7-maven-plugin</artifactId>
         <version>2.2</version>
         <configuration>
-          <!--<url>http://localhost:8080/manager/text</url> &lt;!&ndash;tomcat管理路径 &ndash;&gt;-->
-          <!--<server>myTomcat</server> &lt;!&ndash; 与settings.xml文件中Server的id相同 &ndash;&gt;-->
           <port>9090</port>
           <path>/</path>
           <!-- 应用的部署位置 -->
