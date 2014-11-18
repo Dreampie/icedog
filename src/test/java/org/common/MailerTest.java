@@ -17,26 +17,26 @@ public class MailerTest {
 //    Runnable ra=getSendHtmlRunable("测试", "<a href='www.dreampie.cn'>Dreampie</a>", null, "173956022@qq.com");
 //    Executors.newCachedThreadPool().execute(ra);
 //    System.out.println("------------------------1");
-    new Thread(new Runnable() {
-      @Override
-      public void run() {
-        try {
-          System.out.println("begin");
-          Email email = new SimpleEmail();
-          email.setHostName("smtp.163.com");
-          email.setAuthenticator(new DefaultAuthenticator("wangrenhui1990@163.com", "wangrenhui521"));
-          email.setSSLOnConnect(true);
-          email.setFrom("wangrenhui1990@163.com");
-          email.setSubject("测试");
-          email.setMsg("<a href='www.dreampie.cn'>Dreampie</a>");
-          email.addTo("173956022@qq.com");
-          email.send();
-          System.out.println("end");
-        } catch (EmailException e) {
-          e.printStackTrace();
-        }
-      }
-    }).start();
+//    new Thread(new Runnable() {
+//      @Override
+//      public void run() {
+//        try {
+//          System.out.println("begin");
+//          Email email = new SimpleEmail();
+//          email.setHostName("smtp.163.com");
+//          email.setAuthenticator(new DefaultAuthenticator("wangrenhui1990@163.com", "wangrenhui521"));
+//          email.setSSLOnConnect(true);
+//          email.setFrom("wangrenhui1990@163.com");
+//          email.setSubject("测试");
+//          email.setMsg("<a href='www.dreampie.cn'>Dreampie</a>");
+//          email.addTo("173956022@qq.com");
+//          email.send();
+//          System.out.println("end");
+//        } catch (EmailException e) {
+//          e.printStackTrace();
+//        }
+//      }
+//    }).start();
     System.out.println("------------------------2");
 //    send("测试", "<a href='www.dreampie.cn'>Dreampie</a>", null, "173956022@qq.com");
 //    System.out.println("------------------------3");

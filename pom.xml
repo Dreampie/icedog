@@ -147,6 +147,22 @@
     <plugins>
       <plugin>
         <groupId>cn.dreampie</groupId>
+        <artifactId>flyway-maven-plugin</artifactId>
+        <version>1.0</version>
+        <configuration>
+          <config>${basedir}/src/main/resources/application.properties</config>
+          <location>filesystem:${basedir}/src/main/resources/db/migration/</location>
+        </configuration>
+        <dependencies>
+          <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <version>${h2.version}</version>
+          </dependency>
+        </dependencies>
+      </plugin>
+      <plugin>
+        <groupId>cn.dreampie</groupId>
         <artifactId>coffeescript-maven-plugin</artifactId>
         <version>1.0</version>
         <configuration>

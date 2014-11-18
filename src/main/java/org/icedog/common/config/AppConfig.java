@@ -60,8 +60,6 @@ public class AppConfig extends JFConfig {
    */
   public void configRoute(Routes routes) {
     this.routes = routes;
-
-
     AutoBindRoutes autoBindRoutes = new AutoBindRoutes();
     routes.add(autoBindRoutes);
   }
@@ -72,7 +70,7 @@ public class AppConfig extends JFConfig {
   public void configPlugin(Plugins plugins) {
 
     //数据库版本控制插件
-    plugins.add(new FlywayPlugin());
+//    plugins.add(new FlywayPlugin());
     //配置druid连接池
     DruidPlugin druidDefault = new DruidPlugin(getProperty("db.default.url"), getProperty("db.default.user"), getProperty("db.default.password"), getProperty("db.default.driver"));
     // StatFilter提供JDBC层的统计信息
