@@ -153,6 +153,12 @@
           <sourceDirectory>${basedir}/src/main/webapp/javascript</sourceDirectory>
           <outputDirectory>${basedir}/src/main/webapp/javascript/min</outputDirectory>
           <outputFile>${basedir}/src/main/webapp/javascript/${project.artifactId}-${project.version}.min.js</outputFile>
+          <includeFiles>
+            <includeFile>${basedir}/src/main/webapp/javascript/</includeFile>
+          </includeFiles>
+          <excludeFiles>
+            <excludeFile>${basedir}/src/main/webapp/javascript/service</excludeFile>
+          </excludeFiles>
           <merge>false</merge>
         </configuration>
       </plugin>
