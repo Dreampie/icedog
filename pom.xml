@@ -147,6 +147,17 @@
     <plugins>
       <plugin>
         <groupId>cn.dreampie</groupId>
+        <artifactId>minify-maven-plugin</artifactId>
+        <version>1.0</version>
+        <configuration>
+          <sourceDirectory>${basedir}/src/main/webapp/javascript</sourceDirectory>
+          <outputDirectory>${basedir}/src/main/webapp/javascript/min</outputDirectory>
+          <outputFile>${basedir}/src/main/webapp/javascript/${project.artifactId}-${project.version}.min.js</outputFile>
+          <merge>false</merge>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>cn.dreampie</groupId>
         <artifactId>flyway-maven-plugin</artifactId>
         <version>1.0</version>
         <configuration>
