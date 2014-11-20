@@ -12,13 +12,13 @@ import org.icedog.function.common.model.State;
 public class StateController extends Controller {
 
   public void index() {
-    dynaRender("/view/index.ftl");
+    render("/view/index.ftl");
   }
 
   @CacheName(AppConstants.DEFAULT_CACHENAME)
   public void own() {
     setAttr("states", State.dao.findBy("`state`.deleted_at is NULL"));
-    dynaRender("/view/index.ftl");
+    render("/view/index.ftl");
   }
 
   @CacheName(AppConstants.DEFAULT_CACHENAME)
@@ -28,6 +28,6 @@ public class StateController extends Controller {
     if (!ValidateKit.isNullOrEmpty(type) && !ValidateKit.isNullOrEmpty(value) && ValidateKit.isPositiveNumber(value)) {
       setAttr("state", State.dao.findFirstBy("`state`.type=? AND `state`.value=?", type, value));
     }
-    dynaRender("/view/index.ftl");
+    render("/view/index.ftl");
   }
 }

@@ -27,7 +27,7 @@ import java.util.Map;
  */
 public class AdminController extends Controller {
   public void index() {
-    dynaRender("/view/admin/index.ftl");
+    render("/view/admin/index.ftl");
   }
 
   @CacheName(AppConstants.DEFAULT_CACHENAME)
@@ -86,7 +86,7 @@ public class AdminController extends Controller {
     setAttr("users", users);
     setAttr("userGroup", userGroup);
     setAttr("userStates", State.dao.findBy("`state`.type='user.state'"));
-    dynaRender("/view/admin/user.ftl");
+    render("/view/admin/user.ftl");
   }
 
   @CacheRemove(name = AppConstants.DEFAULT_CACHENAME)
@@ -105,7 +105,7 @@ public class AdminController extends Controller {
       setAttr("state", "success");
     else
       setAttr("state", "failure");
-    dynaRender("/view/admin/user.ftl");
+    render("/view/admin/user.ftl");
   }
 
 
@@ -138,7 +138,7 @@ public class AdminController extends Controller {
       setAttr("state", "success");
     else
       setAttr("state", "failure");
-    dynaRender("/view/admin/user.ftl");
+    render("/view/admin/user.ftl");
   }
 
   @CacheRemove(name = AppConstants.DEFAULT_CACHENAME)
@@ -155,7 +155,7 @@ public class AdminController extends Controller {
       setAttr("state", "success");
     } else
       setAttr("state", "failure");
-    dynaRender("/view/admin/user.ftl");
+    render("/view/admin/user.ftl");
   }
 
   @CacheName(AppConstants.DEFAULT_CACHENAME)
@@ -176,7 +176,7 @@ public class AdminController extends Controller {
     setAttr("rolestree", TreeNodeKit.toTree(roles));
     setAttr("permissionestree", TreeNodeKit.toTreeLevel(authories, 2));
 
-    dynaRender("/view/admin/role.ftl");
+    render("/view/admin/role.ftl");
   }
 
   @CacheName(AppConstants.DEFAULT_CACHENAME)
@@ -186,7 +186,7 @@ public class AdminController extends Controller {
       List<String> permIds = RolePermission.dao.findPermissionIds("`rolePermission`.role_id=" + roleId);
       setAttr("permIds", permIds);
     }
-    dynaRender("/view/admin/role.ftl");
+    render("/view/admin/role.ftl");
   }
 
   @CacheRemove(name = AppConstants.DEFAULT_CACHENAME)
@@ -216,7 +216,7 @@ public class AdminController extends Controller {
     } else {
       setAttr("state", "failure");
     }
-    dynaRender("/view/admin/role.ftl");
+    render("/view/admin/role.ftl");
   }
 
   @CacheRemove(name = AppConstants.DEFAULT_CACHENAME)
@@ -232,7 +232,7 @@ public class AdminController extends Controller {
     } else {
       setAttr("state", "failure");
     }
-    dynaRender("/view/admin/role.ftl");
+    render("/view/admin/role.ftl");
   }
 
   @CacheRemove(name = AppConstants.DEFAULT_CACHENAME)
@@ -257,7 +257,7 @@ public class AdminController extends Controller {
     } else {
       setAttr("state", "failure");
     }
-    dynaRender("/view/admin/role.ftl");
+    render("/view/admin/role.ftl");
   }
 
   @CacheRemove(name = AppConstants.DEFAULT_CACHENAME)
@@ -288,7 +288,7 @@ public class AdminController extends Controller {
     } else {
       setAttr("state", "failure");
     }
-    dynaRender("/view/admin/role.ftl");
+    render("/view/admin/role.ftl");
   }
 
   @CacheRemove(name = AppConstants.DEFAULT_CACHENAME)
@@ -304,7 +304,7 @@ public class AdminController extends Controller {
     } else {
       setAttr("state", "failure");
     }
-    dynaRender("/view/admin/role.ftl");
+    render("/view/admin/role.ftl");
   }
 
   @CacheRemove(name = AppConstants.DEFAULT_CACHENAME)
@@ -327,7 +327,7 @@ public class AdminController extends Controller {
     } else {
       setAttr("state", "failure");
     }
-    dynaRender("/view/admin/role.ftl");
+    render("/view/admin/role.ftl");
   }
 
   @CacheRemove(name = AppConstants.DEFAULT_CACHENAME)
@@ -368,6 +368,6 @@ public class AdminController extends Controller {
     } else {
       setAttr("state", "failure");
     }
-    dynaRender("/view/admin/role.ftl");
+    render("/view/admin/role.ftl");
   }
 }

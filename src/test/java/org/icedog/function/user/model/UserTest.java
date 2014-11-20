@@ -1,6 +1,7 @@
 package org.icedog.function.user.model;
 
 
+import com.jfinal.kit.JsonKit;
 import org.common.DBInit;
 import org.junit.Before;
 import org.junit.Test;
@@ -14,7 +15,8 @@ public class UserTest {
 
   @Test
   public void testFindInfoBy() throws Exception {
-//    User u = User.dao.findFirstBy("`user`.username='admin'");
+    User u = User.dao.findFirstBy("`user`.username='admin'");
+    System.out.println(JsonKit.toJson(u));
 //    PropertiesKit.me().loadPropertyFile("application.properties");
 //    PropertiesKit.me().loadPropertyFile("application.properties");
 //    System.out.println(JSON.toJSONString(u));

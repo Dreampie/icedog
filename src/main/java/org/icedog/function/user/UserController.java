@@ -24,7 +24,7 @@ import java.util.Map;
 public class UserController extends Controller {
 
   public void index() {
-    dynaRender("/view/user/index.ftl");
+    render("/view/user/index.ftl");
   }
 
   public void search() {
@@ -62,7 +62,7 @@ public class UserController extends Controller {
 
     setAttr("users", users);
     setAttr("userGroup", userGroup);
-    dynaRender("/view/user/search.ftl");
+    render("/view/user/search.ftl");
   }
 
   public void following() {
@@ -101,7 +101,7 @@ public class UserController extends Controller {
 
     setAttr("users", followers);
     setAttr("userGroup", userGroup);
-    dynaRender("/view/user/following.ftl");
+    render("/view/user/following.ftl");
   }
 
   public void follower() {
@@ -140,7 +140,7 @@ public class UserController extends Controller {
 
     setAttr("users", followers);
     setAttr("userGroup", userGroup);
-    dynaRender("/view/user/follower.ftl");
+    render("/view/user/follower.ftl");
   }
 
   @CacheRemove(name = AppConstants.DEFAULT_CACHENAME, keys = {"search"})
@@ -156,7 +156,7 @@ public class UserController extends Controller {
       setAttr("state", "success");
     else
       setAttr("state", "failure");
-    dynaRender("/view/user/follower.ftl");
+    render("/view/user/follower.ftl");
   }
 
   @CacheRemove(name = AppConstants.DEFAULT_CACHENAME)
@@ -169,7 +169,7 @@ public class UserController extends Controller {
       setAttr("state", "success");
     else
       setAttr("state", "failure");
-    dynaRender("/view/user/following.ftl");
+    render("/view/user/following.ftl");
   }
 
 
@@ -183,7 +183,7 @@ public class UserController extends Controller {
       setAttr("state", "success");
     else
       setAttr("state", "failure");
-    dynaRender("/view/user/following.ftl");
+    render("/view/user/following.ftl");
   }
 
 
@@ -204,7 +204,7 @@ public class UserController extends Controller {
       setAttr("state", "success");
     } else
       setAttr("state", "failure");
-    dynaRender("/view/user/center.ftl");
+    render("/view/user/center.ftl");
   }
 
   public void center() {
@@ -212,6 +212,6 @@ public class UserController extends Controller {
     if (!ValidateKit.isNullOrEmpty(user)) {
       setAttr("user", user);
     }
-    dynaRender("/view/user/center.ftl");
+    render("/view/user/center.ftl");
   }
 }

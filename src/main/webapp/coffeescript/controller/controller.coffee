@@ -3,7 +3,7 @@ define ['angular', 'css!style/app/signin'], ->
   angular.module('controller', [])
 
   #AppCtrl is base controller
-  .controller 'AppCtrl', ($scope, Message, Alert, BreadcrumbSrv, UserSrv)->
+  .controller 'AppCtrl', ($location,$scope, Message, Alert, BreadcrumbSrv, UserSrv)->
 #    $scope.message = Message
     $scope.currentUser = UserSrv.currentUser
     $scope.breadcrumb = BreadcrumbSrv
@@ -67,7 +67,7 @@ define ['angular', 'css!style/app/signin'], ->
 
 
   #SigninCtrl is sign in page
-  .controller 'SigninCtrl', ($scope, UserSrv, Alert) ->
+  .controller 'SigninCtrl', ($location,$scope, UserSrv, Alert) ->
     inpath = null
     $scope.signin = (user, captcha) ->
       UserSrv.signin(user, captcha, (data)->

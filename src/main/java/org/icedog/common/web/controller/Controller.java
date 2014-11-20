@@ -3,6 +3,7 @@ package org.icedog.common.web.controller;
 import cn.dreampie.captcha.CaptchaRender;
 import cn.dreampie.quartz.QuartzFactory;
 import cn.dreampie.shiro.core.SubjectKit;
+import cn.dreampie.web.JFController;
 import cn.dreampie.web.filter.ThreadLocalKit;
 import cn.dreampie.web.websocket.Message;
 import cn.dreampie.web.websocket.MessageServer;
@@ -16,20 +17,9 @@ import java.util.Date;
 /**
  * Controller
  */
-public class Controller extends com.jfinal.core.Controller {
+public class Controller extends JFController {
   static String indexView = "view/index.html";
   protected Logger logger = LoggerFactory.getLogger(getClass());
-
-  public void dynaRender() {
-    dynaRender(indexView);
-  }
-
-  public void dynaRender(String view) {
-    if (ThreadLocalKit.isJson())
-      super.renderJson();
-    else
-      super.render(view);
-  }
 
   /**
    * 根目录
@@ -38,7 +28,7 @@ public class Controller extends com.jfinal.core.Controller {
     QuartzFactory.me().startJobOnce(new Date(), 1, "test", "test", DemoJob.class);
 //    if (SubjectKit.isAuthed())
 //      MessageServer.send(new Message(SubjectKit.getUser().get("id").toString(), "message"));
-    dynaRender(indexView);
+    render(indexView);
   }
 
 
@@ -92,11 +82,10 @@ public class Controller extends com.jfinal.core.Controller {
 
   public void authed() {
     setAttr("isAuthed", SubjectKit.isAuthed());
-    dynaRender();
+    renderJson();
   }
 
-  /**
-   *
+  /***
    */
   public void forget() {
     User u = getModel(User.class);

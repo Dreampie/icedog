@@ -1,7 +1,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>icedog</groupId>
+  <groupId>cn.dreampie</groupId>
   <artifactId>icedog</artifactId>
   <packaging>war</packaging>
   <version>1.0-SNAPSHOT</version>
@@ -13,6 +13,7 @@
     <project.reporting.outputEncoding>utf-8</project.reporting.outputEncoding>
     <!-- For the Maven Jetty plugin (mvn jetty:run) -->
     <jetty.version>9.1.1.v20140108</jetty.version>
+    <jfinal.version>1.8</jfinal.version>
     <jfinal-dreampie.version>1.1</jfinal-dreampie.version>
     <jquery.version>2.1.1</jquery.version>
     <angular.version>1.3.0-beta.17</angular.version>
@@ -39,6 +40,12 @@
       <artifactId>junit</artifactId>
       <version>4.11</version>
       <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>com.jfinal</groupId>
+      <artifactId>jfinal</artifactId>
+      <version>${jfinal.version}</version>
     </dependency>
 
     <dependency>
@@ -126,42 +133,25 @@
       <version>${highlightjs.version}</version>
     </dependency>
 
-    <!--<dependency>-->
-    <!--<groupId>javax.servlet</groupId>-->
-    <!--<artifactId>javax.servlet-api</artifactId>-->
-    <!--<version>${servlet.version}</version>-->
-    <!--<scope>provided</scope>-->
-    <!--</dependency>-->
-    <!--jdk1.6   不支持servlet3.0-->
     <dependency>
       <groupId>javax.servlet</groupId>
-      <artifactId>servlet-api</artifactId>
-      <version>2.5</version>
+      <artifactId>javax.servlet-api</artifactId>
+      <version>${servlet.version}</version>
       <scope>provided</scope>
     </dependency>
+    <!--jdk1.6   不支持servlet3.0-->
+    <!--<dependency>-->
+    <!--<groupId>javax.servlet</groupId>-->
+    <!--<artifactId>servlet-api</artifactId>-->
+    <!--<version>2.5</version>-->
+    <!--<scope>provided</scope>-->
+    <!--</dependency>-->
   </dependencies>
 
 
   <build>
-    <finalName>icedog</finalName>
+    <finalName>${project.name}</finalName>
     <plugins>
-      <plugin>
-        <groupId>cn.dreampie</groupId>
-        <artifactId>minify-maven-plugin</artifactId>
-        <version>1.0</version>
-        <configuration>
-          <sourceDirectory>${basedir}/src/main/webapp/javascript</sourceDirectory>
-          <outputDirectory>${basedir}/src/main/webapp/javascript/min</outputDirectory>
-          <outputFile>${basedir}/src/main/webapp/javascript/${project.artifactId}-${project.version}.min.js</outputFile>
-          <includeFiles>
-            <includeFile>${basedir}/src/main/webapp/javascript/</includeFile>
-          </includeFiles>
-          <excludeFiles>
-            <excludeFile>${basedir}/src/main/webapp/javascript/service</excludeFile>
-          </excludeFiles>
-          <merge>false</merge>
-        </configuration>
-      </plugin>
       <plugin>
         <groupId>cn.dreampie</groupId>
         <artifactId>flyway-maven-plugin</artifactId>
@@ -181,11 +171,12 @@
       <plugin>
         <groupId>cn.dreampie</groupId>
         <artifactId>coffeescript-maven-plugin</artifactId>
-        <version>1.0</version>
+        <version>1.1</version>
         <configuration>
           <sourceDirectory>${basedir}/src/main/webapp/coffeescript</sourceDirectory>
           <outputDirectory>${basedir}/src/main/webapp/javascript</outputDirectory>
           <watch>true</watch>
+          <compress>true</compress>
         </configuration>
         <executions>
           <execution>
@@ -203,6 +194,7 @@
           <sourceDirectory>${basedir}/src/main/webapp/lesscss</sourceDirectory>
           <outputDirectory>${basedir}/src/main/webapp/style</outputDirectory>
           <watch>true</watch>
+          <compress>true</compress>
         </configuration>
         <executions>
           <execution>
@@ -241,6 +233,7 @@
         <artifactId>tomcat7-maven-plugin</artifactId>
         <version>2.2</version>
         <configuration>
+          <uriEncoding>UTF-8</uriEncoding>
           <port>9090</port>
           <path>/</path>
           <!-- 应用的部署位置 -->
