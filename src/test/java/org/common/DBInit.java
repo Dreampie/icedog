@@ -1,7 +1,6 @@
 package org.common;
 
 import cn.dreampie.PropertiesKit;
-import cn.dreampie.flyway.FlywayPlugin;
 import cn.dreampie.mail.MailerPlugin;
 import cn.dreampie.sqlinxml.SqlInXmlPlugin;
 import cn.dreampie.tablebind.SimpleNameStyles;
@@ -10,7 +9,6 @@ import com.alibaba.druid.filter.stat.StatFilter;
 import com.alibaba.druid.wall.WallFilter;
 import com.jfinal.plugin.activerecord.CaseInsensitiveContainerFactory;
 import com.jfinal.plugin.druid.DruidPlugin;
-import org.flywaydb.core.internal.util.PropertiesUtils;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -47,7 +45,7 @@ public class DBInit {
   }
 
   public void init() {
-    initFlyway();
+//    initFlyway();
     druidPlugin = initDruid(dbName);
     tableBindPlugin = initTableBind(druidPlugin);
     initSqlinxml();
@@ -74,11 +72,11 @@ public class DBInit {
     return druidPlugin;
   }
 
-  private FlywayPlugin initFlyway() {
-    FlywayPlugin flywayPlugin = new FlywayPlugin();
-    flywayPlugin.start();
-    return flywayPlugin;
-  }
+//  private FlywayPlugin initFlyway() {
+//    FlywayPlugin flywayPlugin = new FlywayPlugin();
+//    flywayPlugin.start();
+//    return flywayPlugin;
+//  }
 
 
   private TableBindPlugin initTableBind(DruidPlugin druidPlugin) {

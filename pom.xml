@@ -14,7 +14,7 @@
     <!-- For the Maven Jetty plugin (mvn jetty:run) -->
     <jetty.version>9.1.1.v20140108</jetty.version>
     <jfinal.version>1.8</jfinal.version>
-    <jfinal-dreampie.version>1.1</jfinal-dreampie.version>
+    <jfinal-dreampie.version>1.2</jfinal-dreampie.version>
     <jquery.version>2.1.1</jquery.version>
     <angular.version>1.3.0-beta.17</angular.version>
     <bootstrap.version>3.2.0</bootstrap.version>
