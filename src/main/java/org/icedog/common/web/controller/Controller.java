@@ -1,9 +1,7 @@
 package org.icedog.common.web.controller;
 
 import cn.dreampie.captcha.CaptchaRender;
-import cn.dreampie.quartz.QuartzFactory;
 import cn.dreampie.quartz.QuartzKey;
-import cn.dreampie.quartz.QuartzKit;
 import cn.dreampie.quartz.job.QuartzCronJob;
 import cn.dreampie.quartz.job.QuartzOnceJob;
 import cn.dreampie.shiro.core.SubjectKit;
