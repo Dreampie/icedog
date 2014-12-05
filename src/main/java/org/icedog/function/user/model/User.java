@@ -4,6 +4,7 @@ import cn.dreampie.ValidateKit;
 import cn.dreampie.shiro.core.SubjectKit;
 import cn.dreampie.sqlinxml.SqlKit;
 import cn.dreampie.tablebind.TableBind;
+import cn.dreampie.web.model.Model;
 import com.jfinal.plugin.activerecord.Page;
 
 import java.util.Date;
@@ -12,7 +13,7 @@ import java.util.Date;
  * Created by wangrenhui on 14-1-3.
  */
 @TableBind(tableName = "sec_user")
-public class User extends cn.dreampie.shiro.model.User<User> {
+public class User extends Model<User> {
   public static User dao = new User();
 
   public User addUserInfo(UserInfo userInfo) {

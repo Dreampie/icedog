@@ -152,6 +152,28 @@
   <build>
     <finalName>${project.name}</finalName>
     <plugins>
+      <!--<plugin>-->
+        <!--<groupId>com.github.iron9light</groupId>-->
+        <!--<artifactId>coffeescript-maven-plugin</artifactId>-->
+        <!--<version>1.1.2</version>-->
+        <!--<configuration>-->
+          <!--<srcDir>${basedir}/src/main/webapp/coffeescript</srcDir>-->
+          <!--<outputDir>${basedir}/src/main/webapp/javascript</outputDir>-->
+          <!--<bare>false</bare>-->
+          <!--<modifiedOnly>false</modifiedOnly>-->
+          <!--<allowedDelete>true</allowedDelete>-->
+          <!--<compilerUrl></compilerUrl>-->
+        <!--</configuration>-->
+        <!--<executions>-->
+          <!--<execution>-->
+            <!--<id>coffeescript</id>-->
+            <!--<phase>generate-resources</phase>-->
+            <!--<goals>-->
+              <!--<goal>compile</goal>-->
+            <!--</goals>-->
+          <!--</execution>-->
+        <!--</executions>-->
+      <!--</plugin>-->
       <plugin>
         <groupId>cn.dreampie</groupId>
         <artifactId>flyway-maven-plugin</artifactId>
@@ -171,12 +193,14 @@
       <plugin>
         <groupId>cn.dreampie</groupId>
         <artifactId>coffeescript-maven-plugin</artifactId>
-        <version>1.1</version>
+        <version>2.0</version>
         <configuration>
           <sourceDirectory>${basedir}/src/main/webapp/coffeescript</sourceDirectory>
           <outputDirectory>${basedir}/src/main/webapp/javascript</outputDirectory>
-          <watch>true</watch>
           <compress>true</compress>
+          <args>
+            <arg>-bare</arg>
+          </args>
         </configuration>
         <executions>
           <execution>
@@ -189,17 +213,17 @@
       <plugin>
         <groupId>cn.dreampie</groupId>
         <artifactId>lesscss-maven-plugin</artifactId>
-        <version>1.0</version>
+        <version>2.0</version>
         <configuration>
           <sourceDirectory>${basedir}/src/main/webapp/lesscss</sourceDirectory>
           <outputDirectory>${basedir}/src/main/webapp/style</outputDirectory>
-          <watch>true</watch>
           <compress>true</compress>
+          <!--<watchInThread>true</watchInThread>-->
         </configuration>
         <executions>
           <execution>
             <goals>
-              <goal>compile</goal>
+              <goal>watch</goal>
             </goals>
           </execution>
         </executions>
