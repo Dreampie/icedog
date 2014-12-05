@@ -1,23 +1,21 @@
 package org.icedog.common.config;
 
 
-import cn.dreampie.flyway.FlywayPlugin;
 import cn.dreampie.log.Slf4jLogFactory;
 import cn.dreampie.mail.MailerPlugin;
 import cn.dreampie.quartz.QuartzPlugin;
+import cn.dreampie.routebind.RouteBind;
 import cn.dreampie.shiro.core.ShiroInterceptor;
 import cn.dreampie.shiro.core.ShiroPlugin;
 import cn.dreampie.sqlinxml.SqlInXmlPlugin;
 import cn.dreampie.tablebind.SimpleNameStyles;
 import cn.dreampie.tablebind.TableBindPlugin;
-import cn.dreampie.web.JFConfig;
-import cn.dreampie.web.cache.CacheRemoveInterceptor;
+import cn.dreampie.web.Config;
 import cn.dreampie.web.handler.FakeStaticHandler;
 import cn.dreampie.web.handler.ResourceHandler;
 import cn.dreampie.web.handler.SkipHandler;
 import cn.dreampie.web.handler.xss.AttackHandler;
 import cn.dreampie.web.render.JsonErrorRenderFactory;
-import cn.dreampie.web.route.AutoBindRoutes;
 import com.alibaba.druid.filter.stat.StatFilter;
 import com.alibaba.druid.wall.WallFilter;
 import com.jfinal.config.*;
@@ -26,10 +24,8 @@ import com.jfinal.log.Logger;
 import com.jfinal.plugin.activerecord.CaseInsensitiveContainerFactory;
 import com.jfinal.plugin.activerecord.dialect.AnsiSqlDialect;
 import com.jfinal.plugin.druid.DruidPlugin;
-import com.jfinal.plugin.ehcache.CacheInterceptor;
 import com.jfinal.plugin.ehcache.EhCachePlugin;
 import org.icedog.common.shiro.MyJdbcAuthzService;
-import org.icedog.common.web.controller.Controller;
 
 /**
  * Created with IntelliJ IDEA.
@@ -38,7 +34,7 @@ import org.icedog.common.web.controller.Controller;
  * Time: 下午6:28
  * API引导式配置
  */
-public class AppConfig extends JFConfig {
+public class AppConfig extends Config {
   /**
    * 供Shiro插件使用。
    */
@@ -60,8 +56,8 @@ public class AppConfig extends JFConfig {
    */
   public void configRoute(Routes routes) {
     this.routes = routes;
-    AutoBindRoutes autoBindRoutes = new AutoBindRoutes();
-    routes.add(autoBindRoutes);
+    RouteBind routeBind = new RouteBind();
+    routes.add(routeBind);
   }
 
   /**
@@ -119,8 +115,8 @@ public class AppConfig extends JFConfig {
   public void configInterceptor(Interceptors interceptors) {
     interceptors.add(new ShiroInterceptor());
     //开发时不用开启  避免不能实时看到数据效果
-    interceptors.add(new CacheRemoveInterceptor());
-    interceptors.add(new CacheInterceptor());
+//    interceptors.add(new CacheRemoveInterceptor());
+//    interceptors.add(new CacheInterceptor());
     interceptors.add(new SessionInViewInterceptor());
   }
 

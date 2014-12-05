@@ -1,23 +1,20 @@
 package org.icedog.common.web.controller;
 
 import cn.dreampie.captcha.CaptchaRender;
-import cn.dreampie.quartz.QuartzFactory;
+import cn.dreampie.quartz.QuartzKey;
+import cn.dreampie.quartz.job.QuartzCronJob;
+import cn.dreampie.quartz.job.QuartzOnceJob;
 import cn.dreampie.shiro.core.SubjectKit;
-import cn.dreampie.web.JFController;
-import cn.dreampie.web.filter.ThreadLocalKit;
-import cn.dreampie.web.websocket.Message;
-import cn.dreampie.web.websocket.MessageServer;
 import org.icedog.function.user.model.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.awt.*;
 import java.util.Date;
 
 /**
  * Controller
  */
-public class Controller extends JFController {
+public class Controller extends cn.dreampie.web.Controller {
   static String indexView = "view/index.html";
   protected Logger logger = LoggerFactory.getLogger(getClass());
 
@@ -25,7 +22,8 @@ public class Controller extends JFController {
    * 根目录
    */
   public void index() {
-    QuartzFactory.me().startJobOnce(new Date(), 1, "test", "test", DemoJob.class);
+    new QuartzCronJob(new QuartzKey(1, "test", "test"), "*/5 * * * * ?", DemoJob.class).addParam("name", "quartzCron").start();
+    new QuartzOnceJob(new QuartzKey(2, "test", "test"), new Date(), DemoJob.class).addParam("name", "quartzOnce").start();
 //    if (SubjectKit.isAuthed())
 //      MessageServer.send(new Message(SubjectKit.getUser().get("id").toString(), "message"));
     render(indexView);

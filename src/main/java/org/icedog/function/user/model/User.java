@@ -1,7 +1,6 @@
 package org.icedog.function.user.model;
 
 import cn.dreampie.ValidateKit;
-import cn.dreampie.shiro.core.SubjectKit;
 import cn.dreampie.sqlinxml.SqlKit;
 import cn.dreampie.tablebind.TableBind;
 import cn.dreampie.web.model.Model;
