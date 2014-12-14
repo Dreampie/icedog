@@ -1,4 +1,4 @@
-define ['controller', 'angular-ui-calendar'], (ctrls)->
+define ['controller'], ->
   'use strict'
   #common controller
   angular.module('controller')

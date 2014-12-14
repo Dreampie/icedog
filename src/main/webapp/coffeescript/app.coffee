@@ -1,12 +1,10 @@
-define ['angular', 'angular-route', 'angular-cookies', 'angular-animate', 'angular-ui-bootstrap-tpls','angular-headroom', 'local',
-        'controller', 'service', 'resource', 'filter', 'directive',
-        'angular-marked', 'nprogress'],
+define ['angular', 'angular-route', 'angular-cookies', 'angular-animate', 'angular-headroom', 'local',
+        'controller', 'service', 'resource', 'filter', 'directive', 'nprogress'],
 ->
   'use strict'
   angular.module('app',
-    ['ngRoute', 'ngCookies', 'ngAnimate' , 'ui.bootstrap', 'headroom', 'local',
-     'controller', 'service', 'resource','filter', 'directive',
-     'hc.marked'])
+    ['ngRoute', 'ngCookies', 'ngAnimate' , 'headroom', 'local',
+     'controller', 'service', 'resource', 'filter', 'directive'])
 
   #config app
   .constant 'CONFIG',
@@ -23,7 +21,7 @@ define ['angular', 'angular-route', 'angular-cookies', 'angular-animate', 'angul
       'errors.route.unknownError': 'Unknown error'
       'errors.browser.ieSupportError': 'Not support the Internet explorer browser version below 8'
 
-  .config ($routeProvider, $locationProvider, $httpProvider, markedProvider) ->
+  .config ($routeProvider, $locationProvider, $httpProvider) ->
     #use the HTML5 History API
     $locationProvider.html5Mode(true)
 
@@ -64,29 +62,20 @@ define ['angular', 'angular-route', 'angular-cookies', 'angular-animate', 'angul
         $q.reject(response)
 
     $routeProvider
-    .when '/',
-      templateUrl: 'view/app/home.html', controller: 'HomeCtrl'
-    .when '/signup',
-      templateUrl: 'view/app/signup.html', controller: 'SignupCtrl'
-    .when '/signin',
-      templateUrl: 'view/app/signin.html', controller: 'SigninCtrl'
-    .when '/about',
-      templateUrl: 'view/app/about.html', controller: 'AboutCtrl'
-    .when '/editor',
-      templateUrl: 'view/app/editor.html', controller: 'EditorCtrl'
-    .when '/calendar',
-      templateUrl: 'view/app/schedule/calendar.html', controller: 'CalendarCtrl'
-#      ,resolver ['javascript/controller/schedule']
-#      require: ['javascript/controller/schedule']
-    .otherwise
-        redirectTo: '/'
-
-    markedProvider.setOptions
-      gfm: true
-      tables: true
-      highlight: (code)->
-        require('highlightjs').highlightAuto(code).value
-
+      .when '/',
+        templateUrl: 'view/app/home.html', controller: 'HomeCtrl'
+      .when '/signup',
+        templateUrl: 'view/app/signup.html', controller: 'SignupCtrl'
+      .when '/signin',
+        templateUrl: 'view/app/signin.html', controller: 'SigninCtrl'
+      .when '/about',
+        templateUrl: 'view/app/about.html', controller: 'AboutCtrl'
+      .when '/editor',
+        templateUrl: 'view/app/editor.html', controller: 'EditorCtrl'
+      .when '/calendar',
+        templateUrl: 'view/app/schedule/calendar.html', controller: 'CalendarCtrl'
+      .otherwise
+          redirectTo: '/'
 
   .run ($q, $rootScope, $location, Message, Alert) ->
     $rootScope.path = $location.path()

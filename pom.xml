@@ -14,9 +14,9 @@
     <!-- For the Maven Jetty plugin (mvn jetty:run) -->
     <jetty.version>9.1.1.v20140108</jetty.version>
     <jfinal.version>1.8</jfinal.version>
-    <jfinal-dreampie.version>1.2</jfinal-dreampie.version>
+    <jfinal-dreampie.version>1.2.1</jfinal-dreampie.version>
     <jquery.version>2.1.1</jquery.version>
-    <angular.version>1.3.0-beta.17</angular.version>
+    <angular.version>1.3.6</angular.version>
     <bootstrap.version>3.2.0</bootstrap.version>
     <font-awesome.version>4.1.0</font-awesome.version>
     <requirejs.version>2.1.14-1</requirejs.version>
@@ -79,18 +79,8 @@
     </dependency>
     <dependency>
       <groupId>org.webjars</groupId>
-      <artifactId>angular-ui-bootstrap</artifactId>
-      <version>${angular-ui-bootstrap.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.webjars</groupId>
       <artifactId>bootstrap</artifactId>
       <version>${bootstrap.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.webjars</groupId>
-      <artifactId>angular-bootstrap-switch</artifactId>
-      <version>0.3.0-alpha.2</version>
     </dependency>
     <!--字体-->
     <dependency>
@@ -112,27 +102,9 @@
     </dependency>
     <dependency>
       <groupId>org.webjars</groupId>
-      <artifactId>angular-ui-calendar</artifactId>
-      <version>${angular-ui-calendar.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.webjars</groupId>
       <artifactId>nprogress</artifactId>
       <version>${nprogress.version}</version>
     </dependency>
-
-    <dependency>
-      <groupId>org.webjars</groupId>
-      <artifactId>marked</artifactId>
-      <version>${marked.version}</version>
-    </dependency>
-
-    <dependency>
-      <groupId>org.webjars</groupId>
-      <artifactId>highlightjs</artifactId>
-      <version>${highlightjs.version}</version>
-    </dependency>
-
     <dependency>
       <groupId>javax.servlet</groupId>
       <artifactId>javax.servlet-api</artifactId>
@@ -153,26 +125,26 @@
     <finalName>${project.name}</finalName>
     <plugins>
       <!--<plugin>-->
-        <!--<groupId>com.github.iron9light</groupId>-->
-        <!--<artifactId>coffeescript-maven-plugin</artifactId>-->
-        <!--<version>1.1.2</version>-->
-        <!--<configuration>-->
-          <!--<srcDir>${basedir}/src/main/webapp/coffeescript</srcDir>-->
-          <!--<outputDir>${basedir}/src/main/webapp/javascript</outputDir>-->
-          <!--<bare>false</bare>-->
-          <!--<modifiedOnly>false</modifiedOnly>-->
-          <!--<allowedDelete>true</allowedDelete>-->
-          <!--<compilerUrl></compilerUrl>-->
-        <!--</configuration>-->
-        <!--<executions>-->
-          <!--<execution>-->
-            <!--<id>coffeescript</id>-->
-            <!--<phase>generate-resources</phase>-->
-            <!--<goals>-->
-              <!--<goal>compile</goal>-->
-            <!--</goals>-->
-          <!--</execution>-->
-        <!--</executions>-->
+      <!--<groupId>com.github.iron9light</groupId>-->
+      <!--<artifactId>coffeescript-maven-plugin</artifactId>-->
+      <!--<version>1.1.2</version>-->
+      <!--<configuration>-->
+      <!--<srcDir>${basedir}/src/main/webapp/coffeescript</srcDir>-->
+      <!--<outputDir>${basedir}/src/main/webapp/javascript</outputDir>-->
+      <!--<bare>false</bare>-->
+      <!--<modifiedOnly>false</modifiedOnly>-->
+      <!--<allowedDelete>true</allowedDelete>-->
+      <!--<compilerUrl></compilerUrl>-->
+      <!--</configuration>-->
+      <!--<executions>-->
+      <!--<execution>-->
+      <!--<id>coffeescript</id>-->
+      <!--<phase>generate-resources</phase>-->
+      <!--<goals>-->
+      <!--<goal>compile</goal>-->
+      <!--</goals>-->
+      <!--</execution>-->
+      <!--</executions>-->
       <!--</plugin>-->
       <plugin>
         <groupId>cn.dreampie</groupId>
@@ -193,11 +165,11 @@
       <plugin>
         <groupId>cn.dreampie</groupId>
         <artifactId>coffeescript-maven-plugin</artifactId>
-        <version>2.0</version>
+        <version>1.1.1</version>
         <configuration>
           <sourceDirectory>${basedir}/src/main/webapp/coffeescript</sourceDirectory>
           <outputDirectory>${basedir}/src/main/webapp/javascript</outputDirectory>
-          <compress>true</compress>
+          <compress>false</compress>
           <args>
             <arg>-bare</arg>
           </args>
@@ -213,17 +185,17 @@
       <plugin>
         <groupId>cn.dreampie</groupId>
         <artifactId>lesscss-maven-plugin</artifactId>
-        <version>2.0</version>
+        <version>1.1</version>
         <configuration>
           <sourceDirectory>${basedir}/src/main/webapp/lesscss</sourceDirectory>
           <outputDirectory>${basedir}/src/main/webapp/style</outputDirectory>
-          <compress>true</compress>
+          <compress>false</compress>
           <!--<watchInThread>true</watchInThread>-->
         </configuration>
         <executions>
           <execution>
             <goals>
-              <goal>watch</goal>
+              <goal>compile</goal>
             </goals>
           </execution>
         </executions>

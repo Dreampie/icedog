@@ -18,7 +18,7 @@ define ['angular', 'css!style/app/signin'], ->
 #      Alert.addAlert({type: 'danger', msg: '不支持该浏览器，推荐使用最新版本以获得更好的体验!', keep: true})
 
   #HeaderCtrl is Navbar
-  .controller 'HeaderCtrl', ($scope, $log, $modal, AppSrv, UserSrv) ->
+  .controller 'HeaderCtrl', ($scope, $log, AppSrv, UserSrv) ->
     $scope.menus = [
       {icon: 'user', name: 'Center', url: '/center', children: [{icon: 'user', name: 'Center1', url: '/center'}
                                                                   {icon: 'info', name: 'About1', url: '/about'}]}

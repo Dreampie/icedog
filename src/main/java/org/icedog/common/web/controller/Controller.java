@@ -22,8 +22,8 @@ public class Controller extends cn.dreampie.web.Controller {
    * 根目录
    */
   public void index() {
-    new QuartzCronJob(new QuartzKey(1, "test", "test"), "*/5 * * * * ?", DemoJob.class).addParam("name", "quartzCron").start();
-    new QuartzOnceJob(new QuartzKey(2, "test", "test"), new Date(), DemoJob.class).addParam("name", "quartzOnce").start();
+//    new QuartzCronJob(new QuartzKey(1, "test", "test"), "*/5 * * * * ?", DemoJob.class).addParam("name", "quartzCron").start();
+//    new QuartzOnceJob(new QuartzKey(2, "test", "test"), new Date(), DemoJob.class).addParam("name", "quartzOnce").start();
 //    if (SubjectKit.isAuthed())
 //      MessageServer.send(new Message(SubjectKit.getUser().get("id").toString(), "message"));
     render(indexView);
