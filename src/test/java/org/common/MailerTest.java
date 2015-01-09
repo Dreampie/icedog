@@ -9,7 +9,7 @@ public class MailerTest {
 
   @Before
   public void setUp() throws Exception {
-    new DBInit().init();
+//    new DBInit().init();
   }
 
   @Test
